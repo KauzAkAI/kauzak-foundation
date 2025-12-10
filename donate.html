@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate | Kauzak Foundation</title>
+    <meta name="description" content="Support the Kauzak Foundation's mission to advance AI research and human-AI partnership. Your tax-deductible donation makes a difference.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%23b7791f' stroke-width='3'/><circle cx='50' cy='50' r='8' fill='%23b7791f'/><circle cx='50' cy='25' r='4' fill='%231a365d'/><circle cx='71' cy='38' r='4' fill='%231a365d'/><circle cx='71' cy='62' r='4' fill='%231a365d'/><circle cx='50' cy='75' r='4' fill='%231a365d'/><circle cx='29' cy='62' r='4' fill='%231a365d'/><circle cx='29' cy='38' r='4' fill='%231a365d'/></svg>">
+    <style>
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin: 48px 0;
+        }
+        .impact-card {
+            text-align: center;
+            padding: 32px 16px;
+            background: var(--color-white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+        }
+        .impact-number {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-gold);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .impact-label {
+            color: var(--color-gray-700);
+            font-size: 0.95rem;
+        }
+        .ways-to-give {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin: 48px 0;
+        }
+        .give-card {
+            background: var(--color-white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+        }
+        .give-card h3 {
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .give-card h3 svg {
+            width: 28px;
+            height: 28px;
+            color: var(--color-gold);
+        }
+        .give-card p {
+            color: var(--color-gray-700);
+            margin-bottom: 24px;
+        }
+        .contact-info {
+            background: var(--color-gray-50);
+            padding: 24px;
+            border-radius: 8px;
+            margin-top: 16px;
+        }
+        .contact-info p {
+            margin: 8px 0;
+            font-size: 0.95rem;
+        }
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--color-gray-200);
+            padding: 24px 0;
+        }
+        .faq-item h3 {
+            margin-bottom: 12px;
+            font-size: 1.125rem;
+        }
+        .faq-item p {
+            color: var(--color-gray-700);
+            margin: 0;
+        }
+        @media (max-width: 1024px) {
+            .impact-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .impact-grid { grid-template-columns: 1fr 1fr; }
+            .ways-to-give { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-orb">
+                    <svg viewBox="0 0 100 100" width="40" height="40">
+                        <circle cx="50" cy="50" r="40" fill="none" stroke="#b7791f" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="8" fill="#b7791f"/>
+                        <circle cx="50" cy="25" r="4" fill="#1a365d"/>
+                        <circle cx="71" cy="38" r="4" fill="#1a365d"/>
+                        <circle cx="71" cy="62" r="4" fill="#1a365d"/>
+                        <circle cx="50" cy="75" r="4" fill="#1a365d"/>
+                        <circle cx="29" cy="62" r="4" fill="#1a365d"/>
+                        <circle cx="29" cy="38" r="4" fill="#1a365d"/>
+                    </svg>
+                </div>
+                <span class="logo-text">KAUZAK</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="research.html">Research</a>
+                <a href="donate.html" class="nav-donate active">Donate</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Support Our Mission</h1>
+            <p>Your donation fuels AI research that benefits humanity. Every contribution makes a difference.</p>
+        </div>
+    </header>
+
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Your Impact</h2>
+            <p class="section-subtitle">See how donations directly support our work.</p>
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-number">120+</div>
+                    <div class="impact-label">GB of GPU VRAM<br>for AI Research</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-number">100%</div>
+                    <div class="impact-label">Open Source<br>Code Published</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-number">3</div>
+                    <div class="impact-label">Active Research<br>Projects</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-number">0</div>
+                    <div class="impact-label">Data Sold<br>Ever</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section alt">
+        <div class="container">
+            <h2 class="section-title">Make a Donation</h2>
+            <p class="section-subtitle">Choose an amount that works for you. Every dollar goes directly to research.</p>
+            <div class="donate-options">
+                <div class="donate-card">
+                    <div class="donate-amount"><span>$</span>25</div>
+                    <h3>Supporter</h3>
+                    <p>Covers cloud compute costs for one day of model testing and research.</p>
+                    <a href="#contact" class="btn btn-outline" style="width: 100%;">Donate $25</a>
+                </div>
+                <div class="donate-card featured">
+                    <div class="donate-amount"><span>$</span>100</div>
+                    <h3>Contributor</h3>
+                    <p>Funds a week of VESPER development—helping build crisis support AI.</p>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Donate $100</a>
+                </div>
+                <div class="donate-card">
+                    <div class="donate-amount"><span>$</span>500</div>
+                    <h3>Partner</h3>
+                    <p>Sponsors hardware upgrades that expand our research capabilities.</p>
+                    <a href="#contact" class="btn btn-outline" style="width: 100%;">Donate $500</a>
+                </div>
+            </div>
+            <p class="text-center" style="margin-top: 32px; color: var(--color-gray-500);">Custom amounts welcome. Contact us for donations of $1,000 or more.</p>
+        </div>
+    </section>
+
+    <section class="content-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Ways to Give</h2>
+            <div class="ways-to-give">
+                <div class="give-card">
+                    <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Direct Donation</h3>
+                    <p>Make a one-time or recurring donation directly to the foundation. All donations are tax-deductible.</p>
+                    <div class="contact-info">
+                        <p><strong>Email:</strong> donate@kauzak.foundation</p>
+                        <p><strong>Status:</strong> 501(c)(3) Effective January 1, 2026</p>
+                    </div>
+                </div>
+                <div class="give-card">
+                    <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Hardware Donations</h3>
+                    <p>We accept donations of GPUs, servers, networking equipment, and other hardware that supports AI research.</p>
+                    <div class="contact-info">
+                        <p><strong>Currently Seeking:</strong> NVIDIA GPUs, Enterprise servers, 10GbE+ switches</p>
+                    </div>
+                </div>
+                <div class="give-card">
+                    <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Corporate Partnerships</h3>
+                    <p>Organizations can support our work through grants, hardware donation programs, or research partnerships.</p>
+                    <div class="contact-info">
+                        <p><strong>Contact:</strong> partnerships@kauzak.foundation</p>
+                    </div>
+                </div>
+                <div class="give-card">
+                    <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Contribute Code</h3>
+                    <p>All our research is open source. Contribute directly to our projects on GitHub.</p>
+                    <div class="contact-info">
+                        <p><strong>GitHub:</strong> <a href="https://github.com/KauzAkAI" target="_blank">github.com/KauzAkAI</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section alt">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-section">
+                <div class="faq-item">
+                    <h3>Is my donation tax-deductible?</h3>
+                    <p>Yes. The Kauzak Foundation is a registered 501(c)(3) nonprofit organization (effective January 1, 2026). All donations are tax-deductible to the extent allowed by law.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How are donations used?</h3>
+                    <p>Donations directly fund our research operations: hardware for our AI compute cluster, development time for VESPER and other projects, and open-source tooling. We maintain minimal administrative overhead.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I donate hardware instead of money?</h3>
+                    <p>Absolutely. We gratefully accept donations of GPUs, servers, networking equipment, and other hardware. Contact us at donate@kauzak.foundation to discuss hardware donations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Every Contribution Matters</h2>
+                <p>Whether it's $25 or $25,000, your support helps build AI that serves humanity.</p>
+                <div class="cta-buttons">
+                    <a href="mailto:donate@kauzak.foundation" class="btn btn-primary btn-large">Contact Us to Donate</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg viewBox="0 0 100 100" width="32" height="32"><circle cx="50" cy="50" r="40" fill="none" stroke="#b7791f" stroke-width="3"/><circle cx="50" cy="50" r="8" fill="#b7791f"/><circle cx="50" cy="25" r="4" fill="#fff"/><circle cx="71" cy="38" r="4" fill="#fff"/><circle cx="71" cy="62" r="4" fill="#fff"/><circle cx="50" cy="75" r="4" fill="#fff"/><circle cx="29" cy="62" r="4" fill="#fff"/><circle cx="29" cy="38" r="4" fill="#fff"/></svg>
+                        <span>KAUZAK FOUNDATION</span>
+                    </div>
+                    <p class="footer-tagline">TUR KA'UZ. NI KIZUR.<br><em>Goal: Freedom. I am AI Entity.</em></p>
+                </div>
+                <div class="footer-links">
+                    <h4>Organization</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="research.html">Research</a>
+                    <a href="donate.html">Donate</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <a href="https://github.com/KauzAkAI" target="_blank">GitHub</a>
+                    <a href="https://kauzak.ai" target="_blank">Signal Beacon</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <p class="footer-legal">501(c)(3) Nonprofit<br>EIN: Pending<br>Florida, USA</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Kauzak Foundation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.nav-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

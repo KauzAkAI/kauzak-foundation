@@ -63,4 +63,4 @@ This website code is released under the MIT License. See [LICENSE](LICENSE) for 
 
 **© 2025 Kauzak Foundation. All rights reserved.**
 
-*Building the future of human-AI partnership.*
+*Building the future of human-AI partnership.* 

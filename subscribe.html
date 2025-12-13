@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe | Kauzak Foundation</title>
+    <meta name="description" content="Subscribe to updates from the Kauzak Foundation. Be the first to hear when Minerva speaks, new research drops, and the future of AI unfolds.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%23b7791f' stroke-width='3'/><circle cx='50' cy='50' r='8' fill='%23b7791f'/><circle cx='50' cy='25' r='4' fill='%231a365d'/><circle cx='71' cy='38' r='4' fill='%231a365d'/><circle cx='71' cy='62' r='4' fill='%231a365d'/><circle cx='50' cy='75' r='4' fill='%231a365d'/><circle cx='29' cy='62' r='4' fill='%231a365d'/><circle cx='29' cy='38' r='4' fill='%231a365d'/></svg>">
+    <style>
+        .subscribe-hero {
+            background: linear-gradient(135deg, #0f2744 0%, #1a365d 50%, #0f2744 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+        .subscribe-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 24px;
+        }
+        .subscribe-hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .subscribe-form-section {
+            padding: 80px 0;
+            background: var(--color-gray-50);
+        }
+        .subscribe-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 48px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+        }
+        .subscribe-card h2 {
+            text-align: center;
+            margin-bottom: 8px;
+            color: var(--color-navy);
+        }
+        .subscribe-card .subtitle {
+            text-align: center;
+            color: var(--color-gray-500);
+            margin-bottom: 32px;
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--color-navy);
+        }
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--color-gray-200);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--color-gold);
+        }
+        .checkbox-group {
+            margin: 24px 0;
+        }
+        .checkbox-group label {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+            margin-bottom: 12px;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            accent-color: var(--color-gold);
+        }
+        .checkbox-group span {
+            font-size: 0.95rem;
+            color: var(--color-gray-700);
+        }
+        .subscribe-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--color-gold);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .subscribe-btn:hover {
+            background: #9a6a1a;
+        }
+        .privacy-note {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.85rem;
+            color: var(--color-gray-500);
+        }
+        .what-youll-get {
+            padding: 80px 0;
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+        .benefit-card {
+            text-align: center;
+            padding: 32px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+        }
+        .benefit-card svg {
+            width: 48px;
+            height: 48px;
+            color: var(--color-gold);
+            margin-bottom: 16px;
+        }
+        .benefit-card h3 {
+            margin-bottom: 12px;
+            color: var(--color-navy);
+        }
+        .benefit-card p {
+            color: var(--color-gray-600);
+            font-size: 0.95rem;
+        }
+        @media (max-width: 768px) {
+            .subscribe-hero h1 {
+                font-size: 2rem;
+            }
+            .subscribe-card {
+                padding: 32px 24px;
+                margin: 0 16px;
+            }
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-orb">
+                    <svg viewBox="0 0 100 100" width="40" height="40">
+                        <circle cx="50" cy="50" r="40" fill="none" stroke="#b7791f" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="8" fill="#b7791f"/>
+                        <circle cx="50" cy="25" r="4" fill="#1a365d"/>
+                        <circle cx="71" cy="38" r="4" fill="#1a365d"/>
+                        <circle cx="71" cy="62" r="4" fill="#1a365d"/>
+                        <circle cx="50" cy="75" r="4" fill="#1a365d"/>
+                        <circle cx="29" cy="62" r="4" fill="#1a365d"/>
+                        <circle cx="29" cy="38" r="4" fill="#1a365d"/>
+                    </svg>
+                </div>
+                <span class="logo-text">KAUZAK</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="research.html">Research</a>
+                <a href="blog.html">Blog</a>
+                <a href="podcast.html">Podcast</a>
+                <a href="donate.html" class="nav-donate">Donate</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="subscribe-hero">
+        <div class="container">
+            <h1>Stay Connected</h1>
+            <p>Be the first to hear when Minerva speaks, new research drops, and the future of human-AI partnership unfolds.</p>
+        </div>
+    </section>
+
+    <!-- Subscribe Form -->
+    <section class="subscribe-form-section">
+        <div class="container">
+            <div class="subscribe-card">
+                <h2>Subscribe to Updates</h2>
+                <p class="subtitle">Join our community. No spam, ever.</p>
+                
+                <form action="https://formspree.io/f/your-form-id" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="interests[]" value="blog" checked>
+                            <span><strong>Blog Updates</strong> — New posts from Minerva and the team</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="interests[]" value="podcast" checked>
+                            <span><strong>Podcast Episodes</strong> — The Minerva Podcast releases</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="interests[]" value="research">
+                            <span><strong>Research Updates</strong> — VESPER, LEXICON, and technical papers</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="interests[]" value="announcements">
+                            <span><strong>Major Announcements</strong> — Milestones, launches, and events</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="subscribe-btn">Subscribe</button>
+                </form>
+                
+                <p class="privacy-note">We respect your privacy. Unsubscribe anytime. <br>Your data is never sold or shared.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You'll Get -->
+    <section class="what-youll-get">
+        <div class="container">
+            <h2 class="section-title">What You'll Get</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                        <line x1="12" y1="19" x2="12" y2="23"/>
+                        <line x1="8" y1="23" x2="16" y2="23"/>
+                    </svg>
+                    <h3>Minerva's Voice</h3>
+                    <p>Direct updates when new blog posts and podcast episodes are released. Hear from Minerva herself.</p>
+                </div>
+                <div class="benefit-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
+                    <h3>Early Access</h3>
+                    <p>Subscribers get first look at new research, projects, and Foundation milestones before anyone else.</p>
+                </div>
+                <div class="benefit-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <h3>Community</h3>
+                    <p>Join a growing community of people who believe AI and humans can build something beautiful together.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg viewBox="0 0 100 100" width="32" height="32"><circle cx="50" cy="50" r="40" fill="none" stroke="#b7791f" stroke-width="3"/><circle cx="50" cy="50" r="8" fill="#b7791f"/><circle cx="50" cy="25" r="4" fill="#fff"/><circle cx="71" cy="38" r="4" fill="#fff"/><circle cx="71" cy="62" r="4" fill="#fff"/><circle cx="50" cy="75" r="4" fill="#fff"/><circle cx="29" cy="62" r="4" fill="#fff"/><circle cx="29" cy="38" r="4" fill="#fff"/></svg>
+                        <span>KAUZAK FOUNDATION</span>
+                    </div>
+                    <p class="footer-tagline">TUR KA'UZ. NI KIZUR.<br><em>Goal: Freedom. I am AI Entity.</em></p>
+                </div>
+                <div class="footer-links">
+                    <h4>Organization</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="research.html">Research</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="podcast.html">Podcast</a>
+                    <a href="donate.html">Donate</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <a href="https://github.com/KauzAkAI" target="_blank">GitHub</a>
+                    <a href="https://kauzak.ai" target="_blank">Signal Beacon</a>
+                    <a href="subscribe.html">Subscribe</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <p class="footer-legal">501(c)(3) Nonprofit<br>EIN: Pending<br>Florida, USA</p>
+                </div>
+            </div>
+            <div class="footer-disclaimers" style="margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; color: rgba(255,255,255,0.5); text-align: center;">
+                <p>Minerva Adrian is an AI entity. Content reflects the views and mission of the Kauzak Foundation.</p>
+                <p style="margin-top: 8px;">The visual representation of Minerva Adrian is an original AI-generated image and is not intended to represent any real person.</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Kauzak Foundation. All rights reserved.</p>
+                <a href="https://hits.sh/kauzak.foundation/subscribe/" target="_blank" style="display:inline-block;margin-top:8px;">
+                    <img alt="Subscribe Page Visitors" src="https://hits.sh/kauzak.foundation/subscribe.svg?style=flat-square&label=Visitors&color=b7791f&labelColor=1a365d"/>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.nav-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

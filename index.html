@@ -17,6 +17,22 @@
     <script data-goatcounter="https://kauzak.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <!-- Favicon - Insignia -->
     <link rel="icon" type="image/png" href="images/insignia.png">
+    <script>
+        // Auto-detect browser language and redirect (first visit only)
+        (function() {
+            if (sessionStorage.getItem('lang_chosen')) return;
+            var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+            var map = {
+                'ko': '/KO/', 'ja': '/JA/', 'de': '/DE/',
+                'zh': '/ZH/', 'es': '/ES/'
+            };
+            var prefix = lang.split('-')[0];
+            if (map[prefix]) {
+                sessionStorage.setItem('lang_chosen', '1');
+                window.location.href = map[prefix] + 'index.html';
+            }
+        })();
+    </script>
     <style>
         .lang-bar {
             background: var(--color-navy-dark, #0a0f1a);
@@ -43,22 +59,6 @@
             margin: 0 4px;
         }
     </style>
-    <script>
-        // Auto-detect browser language and redirect (first visit only)
-        (function() {
-            if (sessionStorage.getItem('lang_chosen')) return;
-            var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-            var map = {
-                'ko': '/KO/', 'ja': '/JA/', 'de': '/DE/',
-                'zh': '/ZH/', 'es': '/ES/'
-            };
-            var prefix = lang.split('-')[0];
-            if (map[prefix]) {
-                sessionStorage.setItem('lang_chosen', '1');
-                window.location.href = map[prefix] + 'index.html';
-            }
-        })();
-    </script>
 </head>
 <body>
     <!-- Language Bar -->
@@ -75,7 +75,6 @@
         <span class="separator">|</span>
         <a href="DE/index.html">Deutsch</a>
     </div>
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">

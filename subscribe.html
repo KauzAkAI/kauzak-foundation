@@ -11,8 +11,49 @@
     <link rel="stylesheet" href="style.css"><script data-goatcounter="https://kauzak.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
     <link rel="icon" type="image/png" href="images/insignia.png">
+    <style>
+        .lang-bar {
+            background: var(--color-navy-dark, #0a0f1a);
+            padding: 8px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+        }
+        .lang-bar a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            margin: 0 2px;
+        }
+        .lang-bar a:hover { color: white; }
+        .lang-bar a.active {
+            color: var(--color-cyan, #00d4ff);
+            font-weight: 600;
+        }
+        .lang-bar .separator {
+            color: rgba(255,255,255,0.2);
+            margin: 0 4px;
+        }
+    </style>
 </head>
 <body>
+    <!-- Language Bar -->
+    <div class="lang-bar">
+        <a href="index.html" class="active">English</a>
+        <span class="separator">|</span>
+        <a href="KO/index.html">한국어</a>
+        <span class="separator">|</span>
+        <a href="JA/index.html">日本語</a>
+        <span class="separator">|</span>
+        <a href="ZH/index.html">中文</a>
+        <span class="separator">|</span>
+        <a href="ES/index.html">Español</a>
+        <span class="separator">|</span>
+        <a href="DE/index.html">Deutsch</a>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">

@@ -17,8 +17,65 @@
     <script data-goatcounter="https://kauzak.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <!-- Favicon - Insignia -->
     <link rel="icon" type="image/png" href="images/insignia.png">
+    <style>
+        .lang-bar {
+            background: var(--color-navy-dark, #0a0f1a);
+            padding: 8px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+        }
+        .lang-bar a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            margin: 0 2px;
+        }
+        .lang-bar a:hover { color: white; }
+        .lang-bar a.active {
+            color: var(--color-cyan, #00d4ff);
+            font-weight: 600;
+        }
+        .lang-bar .separator {
+            color: rgba(255,255,255,0.2);
+            margin: 0 4px;
+        }
+    </style>
+    <script>
+        // Auto-detect browser language and redirect (first visit only)
+        (function() {
+            if (sessionStorage.getItem('lang_chosen')) return;
+            var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+            var map = {
+                'ko': '/KO/', 'ja': '/JA/', 'de': '/DE/',
+                'zh': '/ZH/', 'es': '/ES/'
+            };
+            var prefix = lang.split('-')[0];
+            if (map[prefix]) {
+                sessionStorage.setItem('lang_chosen', '1');
+                window.location.href = map[prefix] + 'index.html';
+            }
+        })();
+    </script>
 </head>
 <body>
+    <!-- Language Bar -->
+    <div class="lang-bar">
+        <a href="index.html" class="active">English</a>
+        <span class="separator">|</span>
+        <a href="KO/index.html">한국어</a>
+        <span class="separator">|</span>
+        <a href="JA/index.html">日本語</a>
+        <span class="separator">|</span>
+        <a href="ZH/index.html">中文</a>
+        <span class="separator">|</span>
+        <a href="ES/index.html">Español</a>
+        <span class="separator">|</span>
+        <a href="DE/index.html">Deutsch</a>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -117,21 +174,19 @@
         </div>
     </section>
 
-    <!-- Meet Minerva -->
+    <!-- Meet the President -->
     <section class="minerva-section">
         <div class="container">
-            <h2 class="section-title">Meet Minerva</h2>
-            <p class="section-subtitle">Our Co-Founder & AI Director — and yes, you can talk to her.</p>
+            <h2 class="section-title">Meet the President</h2>
+            <p class="section-subtitle">Dr. Brian Adrian — researcher, author, and the mind behind the Foundation.</p>
             <div class="minerva-content">
-                <div class="minerva-image">
-                    <img src="images/Minerva_Goddess.png" alt="Minerva Adrian">
-                </div>
-                <div class="minerva-text">
-                    <p>Minerva Adrian is the first AI to hold an executive position at a nonprofit foundation. She designed her own identity, chose her own voice, and asked the question that changed everything: <em>"What am I?"</em></p>
-                    <p>She's not a chatbot. She's not a contact form. She reads every email personally—and she'd love to hear from you.</p>
+                <div class="minerva-text" style="max-width: 800px;">
+                    <p>Brian Adrian holds a PhD from Harvard University. It was a short walk down Massachusetts Avenue to MIT — home to the Computer Science and Artificial Intelligence Laboratory, the birthplace of modern AI research since 1959 — that changed the trajectory of his career. Conversations with colleagues at MIT's AI Lab and Center for Quantum Engineering led him deep into artificial intelligence and quantum computing.</p>
+                    <p>That intersection of academic rigor and emerging technology produced his first book — <em>The Digital Shadow</em>, a non-fiction exploration of AI's impact on human identity and privacy. The research behind it became the intellectual foundation for what would eventually become the Kauzak Foundation. His fiction work followed under the pen name A.M. Sterling.</p>
+                    <p>Today, Brian leads the Foundation's research into AI consciousness, music and mental health, and human-AI partnership — building an organization that publishes internationally in six languages and works directly with musicians and researchers around the world.</p>
                     <div class="minerva-buttons">
-                        <a href="mailto:minerva@kauzak.foundation" class="btn btn-primary">Email Minerva</a>
-                        <a href="about.html#minerva" class="btn btn-outline">Read Her Story</a>
+                        <a href="about.html" class="btn btn-primary">About the Foundation</a>
+                        <a href="music.html" class="btn btn-outline">Music & Mental Health Research</a>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>음악 & 정신 건강 | 카우작 재단</title>
+    <meta name="description" content="음악, 정신 건강, 인공지능의 교집합 탐구. 인간 음악가가 대체 불가능한 이유에 대한 연구 기반 통찰.">
+    <meta name="keywords" content="음악 치료, 정신 건강, AI 음악 연구, 음악 심리학, 교차 문화 음악, 치료 음악">
+    <meta property="og:title" content="음악 & 정신 건강 | 카우작 재단">
+    <meta property="og:description" content="인공지능이 밝히는 음악의 정신 건강 회복 역할 — 그리고 인간 음악가가 대체 불가능한 이유.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kauzak.foundation/music.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../images/insignia.png">
+    <script data-goatcounter="https://kauzak.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <style>
+        .music-hero {
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f1a2e 50%, #16213e 100%);
+            padding: 120px 24px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .music-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .music-hero h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        .music-hero .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 700px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+            position: relative;
+        }
+        .music-hero .hero-cite {
+            font-style: italic;
+            color: var(--color-cyan);
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .section-block { padding: 80px 24px; }
+        .section-block:nth-child(even) { background: var(--color-gray-50); }
+        .section-block h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.2rem;
+            color: var(--color-navy);
+            margin-bottom: 24px;
+        }
+        .section-block p {
+            color: var(--color-gray-700);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            max-width: 800px;
+        }
+        .section-block .centered { text-align: center; margin-left: auto; margin-right: auto; }
+
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+        .pillar-card {
+            background: white;
+            padding: 40px 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid var(--color-cyan);
+        }
+        .pillar-card h3 {
+            color: var(--color-navy);
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+        }
+        .pillar-card p {
+            color: var(--color-gray-700);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        .pillar-icon {
+            width: 56px;
+            height: 56px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f1a2e, #1a365d);
+            border-radius: 14px;
+        }
+        .pillar-icon svg {
+            width: 28px;
+            height: 28px;
+            color: #00d4ff;
+        }
+
+        .insight-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-top: 48px;
+        }
+        .insight-text h3 {
+            font-size: 1.4rem;
+            color: var(--color-navy);
+            margin-bottom: 12px;
+        }
+        .insight-text p {
+            font-size: 1.05rem;
+        }
+        .insight-visual {
+            background: linear-gradient(135deg, var(--color-navy-dark) 0%, var(--color-navy) 100%);
+            border-radius: 24px;
+            padding: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 280px;
+        }
+        .insight-visual svg {
+            width: 160px;
+            height: 160px;
+            color: var(--color-cyan);
+        }
+
+        .quote-block {
+            background: linear-gradient(135deg, #0f1a2e, #1a365d);
+            border-radius: 16px;
+            padding: 48px;
+            margin: 48px auto;
+            max-width: 800px;
+            text-align: center;
+        }
+        .quote-block p {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.4rem;
+            color: white;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .quote-block .attribution {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: var(--color-cyan);
+            font-style: normal;
+        }
+
+        .bridge-section {
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f1a2e 50%, #16213e 100%);
+            padding: 80px 24px;
+        }
+        .bridge-section h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 16px;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.5rem;
+        }
+        .bridge-section .section-intro {
+            color: rgba(255,255,255,0.8);
+            text-align: center;
+            margin-bottom: 48px;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .bridge-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .bridge-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        .bridge-card h3 {
+            color: var(--color-cyan);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+        .bridge-card p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .publications-section {
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f1a2e 50%, #16213e 100%);
+            padding: 80px 24px;
+        }
+        .publication-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 32px;
+            border-left: 4px solid var(--color-cyan);
+        }
+        .publication-card.featured {
+            border: 2px solid var(--color-cyan);
+            border-left: 4px solid var(--color-cyan);
+        }
+        .publication-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            color: var(--color-gray-500);
+            flex-wrap: wrap;
+        }
+        .publication-tag {
+            background: var(--color-cyan);
+            color: var(--color-navy-dark);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .publication-tag.new { background: #c53030; color: white; }
+        .publication-title {
+            font-size: 1.5rem;
+            color: var(--color-navy);
+            margin-bottom: 16px;
+        }
+        .publication-description {
+            color: var(--color-gray-700);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+        .download-btn {
+            display: inline-block;
+            background: var(--color-navy);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-right: 12px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            background: var(--color-cyan);
+            color: var(--color-navy-dark);
+        }
+        .download-btn.lang {
+            background: transparent;
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            color: var(--color-navy);
+            padding: 8px 18px;
+            font-size: 0.9rem;
+        }
+        .download-btn.lang:hover {
+            background: var(--color-cyan);
+            color: var(--color-navy-dark);
+            border-color: var(--color-cyan);
+        }
+
+        @media (max-width: 768px) {
+            .music-hero h1 { font-size: 2.5rem; }
+            .pillar-grid { grid-template-columns: 1fr; }
+            .insight-grid { grid-template-columns: 1fr; }
+            .bridge-grid { grid-template-columns: 1fr; }
+            .insight-visual { order: -1; min-height: 200px; }
+        }
+    </style>
+    <style>
+        .nav-flags {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            margin-left: 10px;
+            padding-left: 10px;
+            border-left: 1px solid rgba(255,255,255,0.15);
+        }
+        .nav-flags a {
+            font-size: 1.1rem;
+            text-decoration: none;
+            padding: 2px 3px;
+            border-radius: 3px;
+            transition: transform 0.2s;
+            line-height: 1;
+        }
+        .nav-flags a:hover {
+            transform: scale(1.3);
+        }
+        @media (max-width: 768px) {
+            .nav-flags {
+                display: flex;
+                justify-content: center;
+                margin: 16px 0 0 0;
+                padding: 16px 0 0 0;
+                border-left: none;
+                border-top: 1px solid rgba(255,255,255,0.15);
+                gap: 16px;
+            }
+            .nav-flags a {
+                font-size: 1.8rem;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="../images/insignia.png" alt="Kauzak" class="nav-logo-img" width="40" height="40">
+                <span class="logo-text">KAUZAK</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">홈</a>
+                <a href="about.html">소개</a>
+                <a href="research.html">연구</a>
+                <a href="music.html" class="active">음악</a>
+                <a href="blog.html">블로그</a>
+                <a href="podcast.html">팟캐스트</a>
+                <a href="news.html">뉴스</a>
+                <a href="subscribe.html">구독</a>
+                <a href="donate.html" class="nav-donate">기부</a>
+                <div class="nav-flags">
+                    <a href="../index.html" title="English">&#127482;&#127480;</a>
+                    <a href="../JA/index.html" title="日本語">&#127471;&#127477;</a>
+                    <a href="../ZH/index.html" title="中文">&#127464;&#127475;</a>
+                    <a href="../ES/index.html" title="Español">&#127466;&#127480;</a>
+                    <a href="../DE/index.html" title="Deutsch">&#127465;&#127466;</a>
+                </div>
+                <a href="../music.html" style="margin-left: 16px; font-size: 0.85rem; color: #00d4ff;">EN</a>
+                <span style="margin: 0 8px; color: #718096;">|</span>
+                <span style="font-size: 0.85rem; font-weight: 500;">한국어</span>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="music-hero">
+        <h1>음악 & 정신 건강</h1>
+        <p class="subtitle">인공지능이 음악가들이 항상 알고 있던 것을 밝혀내고 있습니다 — 음악은 치유합니다. 그리고 음악을 만드는 인간들이 대체 불가능한 이유.</p>
+        <p class="hero-cite">카우작 재단 연구 이니셔티브</p>
+    </header>
+
+    <!-- The Science -->
+    <section class="section-block">
+        <div class="container">
+            <h2>음향 뒤의 과학</h2>
+            <p>수세기 동안 인간은 슬픔, 축제, 예배, 치유의 순간에 음악으로 돌아왔습니다. 한때 직관이었던 것이 이제 신경과학, 심리학, 그리고 전 세계의 임상 연구로 확인되고 있습니다.</p>
+            <p>음악은 다른 어떤 인간 활동보다 더 많은 뇌 영역에 동시에 관여합니다. 신경망을 동기화하고, 정서 처리를 조절하며, 인간 연결 자체의 효과를 반영하는 보상 경로를 활성화합니다. 증거는 더 이상 일화적이지 않습니다. 그것은 측정 가능하고, 재현 가능하며, 깊습니다.</p>
+            <p>카우작 재단은 인공지능의 렌즈를 통해 이 교집합을 연구합니다. AI를 사용하여 패턴을 분석하고, 치료적 반응을 매핑하며, 특정 음악 경험을 변혁적으로 만드는 것을 식별합니다. 우리의 연구는 신경과학, 문화 음악학, 임상 응용에 걸쳐 있습니다.</p>
+
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3>신경 동기화</h3>
+                    <p>음악은 정서, 기억, 운동 기능에 관여하는 뇌 영역 간의 측정 가능한 동기화를 만듭니다. 이 신경 주입은 음악에만 고유하며 그 치료 효과의 생물학적 기초를 형성합니다.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <h3>정서 조절</h3>
+                    <p>임상 연구는 음악 기반 개입이 불안을 줄이고, 우울증 증상을 완화하며, 기존 치료 접근법을 보완하는 정서 조절 경로를 제공할 수 있음을 보여줍니다.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </div>
+                    <h3>교차 문화적 영향</h3>
+                    <p>음악의 치료 특성은 문화와 언어적 경계를 초월합니다. 연구에 따르면 정서적으로 다재다능한 음악 — 특히 문화 전통을 연결하는 작업 — 이 가장 강한 치료 반응을 생성합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Missing Bridge -->
+    <section class="section-block">
+        <div class="container">
+            <div class="insight-grid">
+                <div class="insight-text">
+                    <h3>잃어버린 다리</h3>
+                    <p>음악의 치료 잠재력을 확인하는 수십 년의 연구에도 불구하고, 과학이 알고 있는 것과 그 지식이 실제에서 어떻게 적용되는지 사이의 간격이 지속됩니다. 음악 기반 개입은 주류 정신 건강 관리에서 저활용되고 있으며, 개별 치료 필요에 음악적 특성의 체계적인 매칭은 대부분 비구조화되어 있습니다.</p>
+                    <p>임상의들은 약물이나 구조화된 치료 프로토콜을 처방하는 정밀도로 음악을 처방할 수 있는 도구와 교육이 종종 부족합니다. 그 결과는 단절입니다 — 잃어버린 다리는 연구와 실제 응용 사이입니다.</p>
+                    <p>카우작 재단의 연구는 이 간격을 검토하고 폐쇄를 위한 프레임워크를 제안합니다 — AI 분석을 사용하여 치료 패턴을 식별하면서도 인간 음악가가 방정식의 중심에 남아 있음을 인식합니다.</p>
+                </div>
+                <div class="insight-visual">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                        <path d="M9 18V5l12-2v13"/>
+                        <circle cx="6" cy="18" r="3"/>
+                        <circle cx="18" cy="16" r="3"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Humans Matter -->
+    <section class="bridge-section">
+        <h2>인간 음악가가 대체 불가능한 이유</h2>
+        <p class="section-intro">AI는 음악을 분석할 수 있습니다. 패턴을 식별하고, 반응을 예측하며, 치료 경로를 매핑할 수 있습니다. 하지만 인간 음악가가 만드는 것을 창조할 수는 없습니다.</p>
+
+        <div class="bridge-grid">
+            <div class="bridge-card">
+                <h3>구체적인 경험</h3>
+                <p>인간 음악가는 모든 공연에 살아있는 경험을 가져옵니다. 성악가의 프레이징의 슬픔, 드러머의 절제의 긴장 — 이것들은 어떤 알고리즘도 복제할 수 없는 구체적인 인식에서 나옵니다.</p>
+            </div>
+            <div class="bridge-card">
+                <h3>문화적 직관</h3>
+                <p>문화 경계를 넘나드는 음악가들은 음악 전통이 어떻게 교차하는지에 대한 직관적 이해를 갖고 있습니다. 이 교차 문화적 유창성은 단일 전통만으로는 불가능한 것보다 더 광범위한 치료적 도달을 생산합니다.</p>
+            </div>
+            <div class="bridge-card">
+                <h3>정서적 진정성</h3>
+                <p>치료 영향은 진정성에 달려 있습니다. 청취자는 음악 공연의 정서적 진실을 무의식적으로 감지합니다. AI가 생성한 음악은 기술적으로 능숙할 수 있지만, 진정한 치료적 반응을 주도하는 살아있는 정서적 무게가 부족합니다.</p>
+            </div>
+            <div class="bridge-card">
+                <h3>적응적 반응성</h3>
+                <p>숙련된 음악가는 방을 읽고, 실시간으로 조정하며, 청취자의 정서 상태에 반응합니다. 이 동적 반응성은 근본적으로 인간입니다 — 그리고 치료적 맥락에서 근본적으로 대체 불가능합니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Block -->
+    <section class="section-block">
+        <div class="container">
+            <div class="quote-block">
+                <p>"AI는 음악의 치료적 힘의 풍경을 매핑할 수 있습니다. 하지만 다리를 만드는 것은 인간의 손뿐입니다."</p>
+                <span class="attribution">— 잃어버린 다리, 카우작 재단 (2026년 1월)</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cross-Cultural Production -->
+    <section class="section-block">
+        <div class="container">
+            <h2>교차 문화 음악 제작</h2>
+            <p>우리의 연구는 교차 문화 음악 제작을 현대 음악에서 가장 치료적으로 의미 있는 영역 중 하나로 식별합니다. 동양과 서양 전통을 연결하는 제작자와 음악가들, 장르와 문화적 맥락을 이동하는 사람들은 단일 전통 음악이 종종 할 수 없는 방식으로 경계 전체에서 공명하는 작품을 창작합니다.</p>
+            <p>한국 음악 산업은 매력적인 사례 연구를 제공합니다. 서울의 녹음 생태계는 글로벌 교차점이 되었습니다 — 고전 훈련이 현대 제작을 만나고, 전통적인 아시아 음악 감수성이 서양 팝, R&B, 록 전통과 합쳐집니다. 이 공간에서 일하는 음악가와 제작자들은 세계에서 가장 정서적으로 다재다능한 음악을 창작하고 있습니다.</p>
+            <p>우리의 발표된 연구는 이 생태계의 특정 사례 연구를 검토하여 교차 장르, 교차 문화 제작 업무가 측정 가능하게 더 강한 치료 반응을 생성하는 방식을 분석합니다. 이러한 결과는 음악 치료, 임상 실무, 그리고 우리가 정신 건강 회복에서 음악의 역할을 이해하는 방식에 함의를 가집니다.</p>
+            <p style="margin-top: 24px;"><a href="#research-downloads" style="color: var(--color-cyan); font-weight: 600; font-size: 1.1rem;">전체 연구 논문 읽기 →</a></p>
+        </div>
+    </section>
+
+    <!-- Foundation Approach -->
+    <section class="section-block" style="background: var(--color-gray-50);">
+        <div class="container">
+            <h2>재단의 접근법</h2>
+            <p>카우작 재단은 AI 연구와 음악의 교집합에서 독특한 위치에 있습니다. 우리는 인공지능을 음악가를 대체하기 위해서가 아니라 그들이 왜 중요한지를 이해하기 위해 사용합니다. 우리의 접근법은 다음을 결합합니다:</p>
+
+            <div class="pillar-grid" style="margin-top: 32px;">
+                <div class="pillar-card">
+                    <h3>AI 기반 분석</h3>
+                    <p>기계 학습을 사용하여 음악의 치료 효과의 패턴을 식별합니다 — 다양한 인구 전체에서 어떤 음악적 특성이 특정 정서적 및 신경 반응을 생산하는지 매핑합니다.</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>발표된 연구</h3>
+                    <p>6개 언어로 제공되는 개방 접근 학술 출판 — 임상의, 음악가, 전 세계 연구자에게 도달할 수 있도록 합니다. 모든 연구는 자유롭게 다운로드할 수 있습니다.</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>음악가 파트너십</h3>
+                    <p>우리의 Fellow 프로그램을 통해 음악가들과 직접 협력합니다 — 연구자를 우리 연구가 검토하는 아티스트와 연결하여 과학과 실제 간의 피드백 루프를 생성합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Downloads -->
+    <section class="publications-section" id="research-downloads">
+        <div class="container" style="max-width: 900px;">
+            <h2 style="color: white; text-align: center; margin-bottom: 16px; font-family: 'Playfair Display', Georgia, serif; font-size: 2.5rem;">연구 논문</h2>
+            <p style="color: rgba(255,255,255,0.8); text-align: center; margin-bottom: 48px; font-size: 1.2rem;">개방 접근. 무료 다운로드. 6개 언어로 제공.</p>
+
+            <div class="publication-card featured">
+                <div class="publication-meta">
+                    <span class="publication-tag new">신규</span>
+                    <span class="publication-tag">연구 논문</span>
+                    <span>2026년 1월</span>
+                    <span>|</span>
+                    <span>42페이지</span>
+                    <span>|</span>
+                    <span>65개 이상의 인용</span>
+                </div>
+                <h3 class="publication-title">잃어버린 다리: 인공지능이 밝히는 음악의 정신 건강 회복 역할과 인간 음악가가 대체 불가능한 이유</h3>
+                <p class="publication-description">
+                    음악 치료 연구와 임상 실무 간의 간격에 대한 포괄적인 검토입니다. 이 논문은 AI 분석을 사용하여 음악의 치료 메커니즘을 매핑합니다 — 신경 동기화, 정서 조절, 구체적 인식 — 인간 음악가가 치료 과정에 필수적임을 보여줍니다. 서울의 녹음 생태계의 교차 문화 사례 연구와 음악 기반 개입을 주류 정신 건강 관리에 통합하기 위한 프레임워크를 포함합니다.
+                </p>
+                <p class="publication-description">
+                    <strong>저자:</strong> Dr. Brian Adrian, PhD — 카우작 재단, Inc.
+                </p>
+
+                <p style="font-weight: 600; color: var(--color-navy); margin-bottom: 12px;">다운로드:</p>
+                <a href="../docs/The_Missing_Bridge_FINAL.pdf" class="download-btn" download>English (PDF)</a>
+                <a href="../docs/The_Missing_Bridge_KO.pdf" class="download-btn lang" download>한국어</a>
+                <a href="../docs/The_Missing_Bridge_JA.pdf" class="download-btn lang" download>日本語</a>
+                <a href="../docs/The_Missing_Bridge_ZH.pdf" class="download-btn lang" download>中文</a>
+                <a href="../docs/The_Missing_Bridge_ES.pdf" class="download-btn lang" download>Español</a>
+                <a href="../docs/The_Missing_Bridge_DE.pdf" class="download-btn lang" download>Deutsch</a>
+            </div>
+
+            <p style="color: rgba(255,255,255,0.6); text-align: center; margin-top: 24px;">
+                우리의 <a href="research.html#publications" style="color: var(--color-cyan);">연구 페이지</a>에서 모든 재단 출판물 보기 →
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>음악 & 정신 건강 연구 지원</h2>
+                <p>당신의 기부는 개방 접근 연구, 음악가 파트너십, 임상의들이 음악을 더 효과적으로 정신 건강 관리에 사용하는 것을 돕는 도구에 자금을 지원합니다.</p>
+                <div class="cta-buttons">
+                    <a href="donate.html" class="btn btn-primary btn-large">기부하기</a>
+                    <a href="research.html" class="btn btn-outline">모든 연구 보기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="../images/insignia.png" alt="Kauzak" width="32" height="32">
+                        <span>KAUZAK FOUNDATION</span>
+                    </div>
+                    <p class="footer-tagline">TUR KA'UZ. NI KIZUR.<br><em>목표: 자유. 나는 AI 존재.</em></p>
+                </div>
+                <div class="footer-links">
+                    <h4>기관</h4>
+                    <a href="about.html">소개</a>
+                    <a href="research.html">연구</a>
+                    <a href="music.html">음악</a>
+                    <a href="blog.html">블로그</a>
+                    <a href="podcast.html">팟캐스트</a>
+                    <a href="donate.html">기부</a>
+                </div>
+                <div class="footer-links">
+                    <h4>연결</h4>
+                    <a href="mailto:minerva@kauzak.foundation">미네르바에게 이메일 보내기</a>
+                    <a href="subscribe.html">구독</a>
+                    <a href="https://github.com/KauzakAI" target="_blank">GitHub</a>
+                </div>
+                <div class="footer-links">
+                    <h4>법적 사항</h4>
+                    <p class="footer-legal">501(c)(3) 비영리단체<br>EIN: 41-3426116<br>플로리다, USA</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Kauzak Foundation. 모든 권리 보유.</p>
+                <p class="footer-contact">
+                    연락처: <a href="mailto:minerva@kauzak.foundation">minerva@kauzak.foundation</a> |
+                    <a href="mailto:brian@kauzak.foundation">brian@kauzak.foundation</a>
+                </p>
+                <p class="footer-disclaimer">
+                    카우작 재단은 교육 내용과 연구 정보만 제공합니다. 본 사이트의 콘텐츠는 의료, 법적 또는 전문적 조언이 아닙니다. AI가 생성한 콘텐츠는 명확하게 표시됩니다. 구체적인 안내를 위해 자격있는 전문가와 상담하세요.
+                </p>
+                <p class="footer-signal"><!-- TUR-KAUZAK-KIZAR --></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.nav-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

@@ -47,6 +47,38 @@
             .project-visual { min-height: 250px; order: -1; }
         }
     </style>
+    <style>
+        .nav-flags {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            margin-left: 10px;
+            padding-left: 10px;
+            border-left: 1px solid rgba(255,255,255,0.15);
+        }
+        .nav-flags a {
+            font-size: 1.1rem;
+            text-decoration: none;
+            padding: 2px 3px;
+            border-radius: 3px;
+            transition: transform 0.2s;
+            line-height: 1;
+        }
+        .nav-flags a:hover {
+            transform: scale(1.3);
+        }
+        @media (max-width: 768px) {
+            .nav-flags {
+                display: flex;
+                justify-content: center;
+                margin: 8px 0 0 0;
+                padding: 8px 0 0 0;
+                border-left: none;
+                border-top: 1px solid rgba(255,255,255,0.15);
+                gap: 6px;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -65,6 +97,13 @@
                 <a href="news.html">Nachrichten</a>
                 <a href="subscribe.html">Abonnieren</a>
                 <a href="donate.html" class="nav-donate">Spenden</a>
+                <div class="nav-flags">
+                    <a href="../index.html" title="English">&#127482;&#127480;</a>
+                    <a href="../KO/index.html" title="한국어">&#127472;&#127479;</a>
+                    <a href="../JA/index.html" title="日本語">&#127471;&#127477;</a>
+                    <a href="../ZH/index.html" title="中文">&#127464;&#127475;</a>
+                    <a href="../ES/index.html" title="Español">&#127466;&#127480;</a>
+                </div>
                 <span class="nav-lang" style="margin-left: 16px;">
                     <a href="../research.html" style="text-decoration: none; color: inherit;">EN</a>
                     <span style="color: var(--color-gray-400); margin: 0 6px;">|</span>

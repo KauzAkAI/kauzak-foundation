@@ -290,47 +290,43 @@
         }
     </style>
     <style>
-        .lang-bar {
-            background: var(--color-navy-dark, #0a0f1a);
-            padding: 8px 0;
-            text-align: center;
-            font-size: 0.85rem;
-            border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+        .nav-flags {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            margin-left: 10px;
+            padding-left: 10px;
+            border-left: 1px solid rgba(255,255,255,0.15);
         }
-        .lang-bar a {
-            color: rgba(255,255,255,0.6);
+        .nav-flags a {
+            font-size: 1.1rem;
             text-decoration: none;
-            padding: 4px 10px;
-            border-radius: 4px;
-            transition: all 0.2s;
-            margin: 0 2px;
+            padding: 2px 3px;
+            border-radius: 3px;
+            transition: transform 0.2s;
+            line-height: 1;
         }
-        .lang-bar a:hover { color: white; }
-        .lang-bar a.active {
-            color: var(--color-cyan, #00d4ff);
-            font-weight: 600;
+        .nav-flags a:hover {
+            transform: scale(1.3);
         }
-        .lang-bar .separator {
-            color: rgba(255,255,255,0.2);
-            margin: 0 4px;
+        @media (max-width: 768px) {
+            .nav-flags {
+                display: flex;
+                justify-content: center;
+                margin: 16px 0 0 0;
+                padding: 16px 0 0 0;
+                border-left: none;
+                border-top: 1px solid rgba(255,255,255,0.15);
+                gap: 16px;
+            }
+            .nav-flags a {
+                font-size: 1.8rem;
+                padding: 8px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Language Bar -->
-    <div class="lang-bar">
-        <a href="../index.html">English</a>
-        <span class="separator">|</span>
-        <a href="../KO/index.html">한국어</a>
-        <span class="separator">|</span>
-        <a href="index.html" class="active">日本語</a>
-        <span class="separator">|</span>
-        <a href="../ZH/index.html">中文</a>
-        <span class="separator">|</span>
-        <a href="../ES/index.html">Español</a>
-        <span class="separator">|</span>
-        <a href="../DE/index.html">Deutsch</a>
-    </div>
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -347,6 +343,13 @@
                 <a href="news.html">ニュース</a>
                 <a href="subscribe.html">購読</a>
                 <a href="donate.html" class="nav-donate">寄付</a>
+                <div class="nav-flags">
+                    <a href="../index.html" title="English">&#127482;&#127480;</a>
+                    <a href="../KO/index.html" title="한국어">&#127472;&#127479;</a>
+                    <a href="../ZH/index.html" title="中文">&#127464;&#127475;</a>
+                    <a href="../ES/index.html" title="Español">&#127466;&#127480;</a>
+                    <a href="../DE/index.html" title="Deutsch">&#127465;&#127466;</a>
+                </div>
                 <span style="margin-left: 16px; color: #718096; font-size: 0.9rem;"><a href="../music.html">EN</a> | <strong>日本語</strong></span>
             </div>
             <button class="nav-toggle" aria-label="Toggle menu">

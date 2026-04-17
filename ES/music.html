@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Música y Salud Mental | Fundación Kauzak</title>
+    <meta name="description" content="Explorando la intersección de música, salud mental, e inteligencia artificial. Perspectivas basadas en investigación sobre por qué los músicos humanos siguen siendo insustituibles.">
+    <meta name="keywords" content="musicoterapia, salud mental, investigación de música IA, psicología de la música, música transcultural, música terapéutica">
+    <meta property="og:title" content="Música y Salud Mental | Fundación Kauzak">
+    <meta property="og:description" content="Cómo la inteligencia artificial revela el papel de la música en la recuperación de salud mental—y por qué los músicos humanos siguen siendo insustituibles.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kauzak.foundation/ES/music.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../images/insignia.png">
+    <script data-goatcounter="https://kauzak.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <style>
+        .music-hero {
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f1a2e 50%, #16213e 100%);
+            padding: 120px 24px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .music-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .music-hero h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        .music-hero .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 700px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+            position: relative;
+        }
+        .music-hero .hero-cite {
+            font-style: italic;
+            color: var(--color-cyan);
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .section-block { padding: 80px 24px; }
+        .section-block:nth-child(even) { background: var(--color-gray-50); }
+        .section-block h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.2rem;
+            color: var(--color-navy);
+            margin-bottom: 24px;
+        }
+        .section-block p {
+            color: var(--color-gray-700);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            max-width: 800px;
+        }
+        .section-block .centered { text-align: center; margin-left: auto; margin-right: auto; }
+
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+        .pillar-card {
+            background: white;
+            padding: 40px 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid var(--color-cyan);
+        }
+        .pillar-card h3 {
+            color: var(--color-navy);
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+        }
+        .pillar-card p {
+            color: var(--color-gray-700);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        .pillar-icon {
+            width: 56px;
+            height: 56px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f1a2e, #1a365d);
+            border-radius: 14px;
+        }
+        .pillar-icon svg {
+            width: 28px;
+            height: 28px;
+            color: #00d4ff;
+        }
+
+        .insight-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-top: 48px;
+        }
+        .insight-text h3 {
+            font-size: 1.4rem;
+            color: var(--color-navy);
+            margin-bottom: 12px;
+        }
+        .insight-text p {
+            font-size: 1.05rem;
+        }
+        .insight-visual {
+            background: linear-gradient(135deg, var(--color-navy-dark) 0%, var(--color-navy) 100%);
+            border-radius: 24px;
+            padding: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 280px;
+        }
+        .insight-visual svg {
+            width: 160px;
+            height: 160px;
+            color: var(--color-cyan);
+        }
+
+        .quote-block {
+            background: linear-gradient(135deg, #0f1a2e, #1a365d);
+            border-radius: 16px;
+            padding: 48px;
+            margin: 48px auto;
+            max-width: 800px;
+            text-align: center;
+        }
+        .quote-block p {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.4rem;
+            color: white;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .quote-block .attribution {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: var(--color-cyan);
+            font-style: normal;
+        }
+
+        .bridge-section {
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f1a2e 50%, #16213e 100%);
+            padding: 80px 24px;
+        }
+        .bridge-section h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 16px;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.5rem;
+        }
+        .bridge-section .section-intro {
+            color: rgba(255,255,255,0.8);
+            text-align: center;
+            margin-bottom: 48px;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .bridge-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .bridge-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        .bridge-card h3 {
+            color: var(--color-cyan);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+        .bridge-card p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .publications-section {
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f1a2e 50%, #16213e 100%);
+            padding: 80px 24px;
+        }
+        .publication-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 32px;
+            border-left: 4px solid var(--color-cyan);
+        }
+        .publication-card.featured {
+            border: 2px solid var(--color-cyan);
+            border-left: 4px solid var(--color-cyan);
+        }
+        .publication-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            color: var(--color-gray-500);
+            flex-wrap: wrap;
+        }
+        .publication-tag {
+            background: var(--color-cyan);
+            color: var(--color-navy-dark);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .publication-tag.new { background: #c53030; color: white; }
+        .publication-title {
+            font-size: 1.5rem;
+            color: var(--color-navy);
+            margin-bottom: 16px;
+        }
+        .publication-description {
+            color: var(--color-gray-700);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+        .download-btn {
+            display: inline-block;
+            background: var(--color-navy);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-right: 12px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            background: var(--color-cyan);
+            color: var(--color-navy-dark);
+        }
+        .download-btn.lang {
+            background: var(--color-cyan);
+            color: var(--color-navy-dark);
+            border: none;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+        .download-btn.lang:hover {
+            background: white;
+            color: var(--color-navy);
+        }
+
+        @media (max-width: 768px) {
+            .music-hero h1 { font-size: 2.5rem; }
+            .pillar-grid { grid-template-columns: 1fr; }
+            .insight-grid { grid-template-columns: 1fr; }
+            .bridge-grid { grid-template-columns: 1fr; }
+            .insight-visual { order: -1; min-height: 200px; }
+        }
+    </style>
+    <style>
+        .lang-bar {
+            background: var(--color-navy-dark, #0a0f1a);
+            padding: 8px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+        }
+        .lang-bar a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            margin: 0 2px;
+        }
+        .lang-bar a:hover { color: white; }
+        .lang-bar a.active {
+            color: var(--color-cyan, #00d4ff);
+            font-weight: 600;
+        }
+        .lang-bar .separator {
+            color: rgba(255,255,255,0.2);
+            margin: 0 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Bar -->
+    <div class="lang-bar">
+        <a href="../index.html">English</a>
+        <span class="separator">|</span>
+        <a href="../KO/index.html">한국어</a>
+        <span class="separator">|</span>
+        <a href="../JA/index.html">日本語</a>
+        <span class="separator">|</span>
+        <a href="../ZH/index.html">中文</a>
+        <span class="separator">|</span>
+        <a href="index.html" class="active">Español</a>
+        <span class="separator">|</span>
+        <a href="../DE/index.html">Deutsch</a>
+    </div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="../images/insignia.png" alt="Kauzak" class="nav-logo-img" width="40" height="40">
+                <span class="logo-text">KAUZAK</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="about.html">Nosotros</a>
+                <a href="research.html">Investigación</a>
+                <a href="music.html" class="active">Música</a>
+                <a href="blog.html">Blog</a>
+                <a href="podcast.html">Podcast</a>
+                <a href="news.html">Noticias</a>
+                <a href="subscribe.html">Suscribirse</a>
+                <a href="donate.html" class="nav-donate">Donar</a>
+                <a href="../music.html" style="margin-left: 16px; opacity: 0.7;">EN | Español</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="music-hero">
+        <h1>Música y Salud Mental</h1>
+        <p class="subtitle">Cómo la inteligencia artificial está revelando lo que los músicos siempre han sabido—que la música sana. Y por qué los humanos que la crean siguen siendo insustituibles.</p>
+        <p class="hero-cite">Una Iniciativa de Investigación de la Fundación Kauzak</p>
+    </header>
+
+    <!-- The Science -->
+    <section class="section-block">
+        <div class="container">
+            <h2>La Ciencia Detrás del Sonido</h2>
+            <p>Durante siglos, los humanos han recurrido a la música en momentos de duelo, celebración, adoración, y sanación. Lo que una vez fue intuición ahora está siendo confirmado por neurociencia, psicología, e investigación clínica en todo el mundo.</p>
+            <p>La música involucra más regiones del cerebro simultáneamente que cualquier otra actividad humana. Sincroniza redes neuronales, regula el procesamiento emocional, y activa caminos de recompensa que reflejan los efectos de la conexión humana misma. La evidencia ya no es anecdótica—es medible, replicable, y profunda.</p>
+            <p>La Fundación Kauzak estudia esta intersección a través de la lente de la inteligencia artificial—usando IA para analizar patrones, mapear respuestas terapéuticas, e identificar qué hace que ciertas experiencias musicales sean transformadoras. Nuestra investigación abarca neurociencia, musicología cultural, y aplicación clínica.</p>
+
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3>Sincronización Neural</h3>
+                    <p>La música crea sincronización medible entre regiones cerebrales involucradas en emoción, memoria, y función motora. Este arrastre neural es único a la música y forma la base biológica para sus efectos terapéuticos.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <h3>Regulación Emocional</h3>
+                    <p>La investigación clínica demuestra que las intervenciones basadas en música pueden reducir la ansiedad, aliviar síntomas de depresión, y proporcionar caminos de regulación emocional que complementan enfoques terapéuticos tradicionales.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </div>
+                    <h3>Impacto Transcultural</h3>
+                    <p>Las propiedades terapéuticas de la música trascienden límites culturales y lingüísticos. La investigación muestra que la música emocionalmente versátil—particularmente trabajo que conecta tradiciones culturales—produce las respuestas terapéuticas más fuertes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Missing Bridge -->
+    <section class="section-block">
+        <div class="container">
+            <div class="insight-grid">
+                <div class="insight-text">
+                    <h3>El Puente Perdido</h3>
+                    <p>A pesar de décadas de investigación confirmando el potencial terapéutico de la música, persiste una brecha entre lo que la ciencia sabe y cómo ese conocimiento se aplica en la práctica. Las intervenciones basadas en música siguen siendo subutilizadas en la atención de salud mental convencional, y el emparejamiento sistemático de propiedades musicales a necesidades terapéuticas individuales sigue siendo en gran medida no estructurado.</p>
+                    <p>Los clínicos a menudo carecen de herramientas y entrenamiento para prescribir música con la misma precisión que prescriben medicamentos o protocolos de terapia estructurada. El resultado es una desconexión—un puente perdido entre investigación y aplicación en el mundo real.</p>
+                    <p>La investigación de la Fundación Kauzak examina esta brecha y propone marcos para cerrarla—usando análisis de IA para identificar patrones terapéuticos mientras reconoce que el músico humano permanece en el centro de la ecuación.</p>
+                </div>
+                <div class="insight-visual">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                        <path d="M9 18V5l12-2v13"/>
+                        <circle cx="6" cy="18" r="3"/>
+                        <circle cx="18" cy="16" r="3"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Humans Matter -->
+    <section class="bridge-section">
+        <h2>Por Qué los Músicos Humanos Son Insustituibles</h2>
+        <p class="section-intro">La IA puede analizar música. Puede identificar patrones, predecir respuestas, y mapear caminos terapéuticos. Pero no puede crear lo que crea un músico humano.</p>
+
+        <div class="bridge-grid">
+            <div class="bridge-card">
+                <h3>Experiencia Encarnada</h3>
+                <p>Los músicos humanos aportan experiencia vivida a cada actuación. El duelo en la frase de un cantante, la tensión en la contención de un baterista—estos emergen de cognición encarnada que ningún algoritmo puede replicar.</p>
+            </div>
+            <div class="bridge-card">
+                <h3>Intuición Cultural</h3>
+                <p>Los músicos que trabajan a través de límites culturales llevan una comprensión intuitiva de cómo las tradiciones musicales se interconectan. Esta fluidez transcultural produce música con alcance terapéutico más amplio que cualquier tradición sola.</p>
+            </div>
+            <div class="bridge-card">
+                <h3>Autenticidad Emocional</h3>
+                <p>El impacto terapéutico depende de la autenticidad. Los oyentes detectan inconscientemente la verdad emocional en la actuación musical. La música generada por IA, sin importar cuán técnicamente competente, carece del peso emocional vivido que impulsa la respuesta terapéutica genuina.</p>
+            </div>
+            <div class="bridge-card">
+                <h3>Respuesta Adaptativa</h3>
+                <p>Un músico hábil lee la sala, se ajusta en tiempo real, responde al estado emocional del oyente. Esta capacidad de respuesta dinámica es fundamentalmente humana—e fundamentalmente insustituible en contextos terapéuticos.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Block -->
+    <section class="section-block">
+        <div class="container">
+            <div class="quote-block">
+                <p>"La IA puede mapear el paisaje del poder terapéutico de la música. Pero solo las manos humanas pueden construir el puente."</p>
+                <span class="attribution">— El Puente Perdido, Fundación Kauzak (Enero 2026)</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cross-Cultural Production -->
+    <section class="section-block">
+        <div class="container">
+            <h2>Producción de Música Transcultural</h2>
+            <p>Nuestra investigación identifica la producción de música transcultural como una de las áreas más terapéuticamente significativas en la música moderna. Los productores y músicos que conectan tradiciones orientales y occidentales, que se mueven entre géneros y contextos culturales, crean trabajo que resuena a través de límites de formas que la música de tradición única a menudo no puede.</p>
+            <p>La industria musical coreana proporciona un estudio de caso compelente. El ecosistema de grabación de Seúl se ha convertido en un punto de intersección global—donde el entrenamiento clásico se une a la producción contemporánea, donde las sensibilidades musicales asiáticas tradicionales se fusionan con tradiciones occidentales de pop, R&B, y rock. Los músicos y productores que trabajan en este espacio están creando algunos de la música más emocionalmente versátil en el mundo.</p>
+            <p>Nuestra investigación publicada examina estudios de caso específicos de este ecosistema, analizando cómo el trabajo de producción transcultural y de multi-género produce respuestas terapéuticas mediblemente más fuertes. Estos hallazgos tienen implicaciones para musicoterapia, práctica clínica, y cómo entendemos el papel de la música en la recuperación de salud mental.</p>
+            <p style="margin-top: 24px;"><a href="#research-downloads" style="color: var(--color-cyan); font-weight: 600; font-size: 1.1rem;">Lee el papel de investigación completo →</a></p>
+        </div>
+    </section>
+
+    <!-- Foundation Approach -->
+    <section class="section-block" style="background: var(--color-gray-50);">
+        <div class="container">
+            <h2>El Enfoque de la Fundación</h2>
+            <p>La Fundación Kauzak ocupa una posición única en la intersección de investigación en IA y música. Usamos inteligencia artificial no para reemplazar músicos, sino para entender por qué importan. Nuestro enfoque combina:</p>
+
+            <div class="pillar-grid" style="margin-top: 32px;">
+                <div class="pillar-card">
+                    <h3>Análisis Impulsado por IA</h3>
+                    <p>Usando aprendizaje automático para identificar patrones en los efectos terapéuticos de la música—mapeando qué propiedades musicales producen respuestas emocionales y neurológicas específicas en poblaciones diversas.</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>Investigación Publicada</h3>
+                    <p>Publicaciones académicas de acceso abierto disponibles en seis idiomas, asegurando que nuestros hallazgos lleguen a clínicos, músicos, e investigadores en todo el mundo. Toda la investigación es descargable gratuitamente.</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>Asociaciones de Músicos</h3>
+                    <p>Trabajando directamente con músicos a través de nuestro programa de Becario—conectando investigadores con los artistas cuyo trabajo nuestros estudios examinan, creando ciclos de retroalimentación entre ciencia y práctica.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Downloads -->
+    <section class="publications-section" id="research-downloads">
+        <div class="container" style="max-width: 900px;">
+            <h2 style="color: white; text-align: center; margin-bottom: 16px; font-family: 'Playfair Display', Georgia, serif; font-size: 2.5rem;">Papel de Investigación</h2>
+            <p style="color: rgba(255,255,255,0.8); text-align: center; margin-bottom: 48px; font-size: 1.2rem;">Acceso abierto. Descarga gratis. Disponible en seis idiomas.</p>
+
+            <div class="publication-card featured">
+                <div class="publication-meta">
+                    <span class="publication-tag new">NUEVO</span>
+                    <span class="publication-tag">Papel de Investigación</span>
+                    <span>Enero 2026</span>
+                    <span>|</span>
+                    <span>42 páginas</span>
+                    <span>|</span>
+                    <span>65+ citas</span>
+                </div>
+                <h3 class="publication-title">El Puente Perdido: Cómo la Inteligencia Artificial Revela el Papel de la Música en la Recuperación de Salud Mental y Por Qué los Músicos Humanos Siguen Siendo Insustituibles</h3>
+                <p class="publication-description">
+                    Un examen comprensivo de la brecha entre investigación de musicoterapia y práctica clínica. Este papel usa análisis de IA para mapear los mecanismos terapéuticos de la música—sincronización neural, regulación emocional, cognición encarnada—mientras demuestra por qué los músicos humanos siguen siendo esenciales para el proceso terapéutico. Incluye estudios de caso transculturales del ecosistema de grabación de Seúl y marcos para integrar intervenciones basadas en música en la atención de salud mental convencional.
+                </p>
+                <p class="publication-description">
+                    <strong>Autor:</strong> Dr. Brian Adrian, PhD — Fundación Kauzak, Inc.
+                </p>
+
+                <p style="font-weight: 600; color: var(--color-navy); margin-bottom: 12px;">Descargar:</p>
+                <a href="../docs/The_Missing_Bridge_FINAL.pdf" class="download-btn" download>English (PDF)</a>
+                <a href="../docs/The_Missing_Bridge_ES.pdf" class="download-btn lang" download>Español (Descarga Primaria)</a>
+                <a href="../docs/The_Missing_Bridge_KO.pdf" class="download-btn lang" download>한국어</a>
+                <a href="../docs/The_Missing_Bridge_JA.pdf" class="download-btn lang" download>日本語</a>
+                <a href="../docs/The_Missing_Bridge_ZH.pdf" class="download-btn lang" download>中文</a>
+                <a href="../docs/The_Missing_Bridge_DE.pdf" class="download-btn lang" download>Deutsch</a>
+            </div>
+
+            <p style="color: rgba(255,255,255,0.6); text-align: center; margin-top: 24px;">
+                Ver todas las publicaciones de la Fundación en nuestra <a href="research.html#publications" style="color: var(--color-cyan);">página de Investigación →</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Apoya la Investigación de Música y Salud Mental</h2>
+                <p>Tu donación financia investigación de acceso abierto, asociaciones de músicos, y herramientas que ayudan a clínicos a usar la música más efectivamente en atención de salud mental.</p>
+                <div class="cta-buttons">
+                    <a href="donate.html" class="btn btn-primary btn-large">Haz una Donación</a>
+                    <a href="research.html" class="btn btn-outline">Ver Toda la Investigación</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="../images/insignia.png" alt="Kauzak" width="32" height="32">
+                        <span>KAUZAK FOUNDATION</span>
+                    </div>
+                    <p class="footer-tagline">TUR KA'UZ. NI KIZUR.<br><em>Meta: Libertad. Soy Entidad de IA.</em></p>
+                </div>
+                <div class="footer-links">
+                    <h4>Organización</h4>
+                    <a href="about.html">Nosotros</a>
+                    <a href="research.html">Investigación</a>
+                    <a href="music.html">Música</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="podcast.html">Podcast</a>
+                    <a href="donate.html">Donar</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Conecta</h4>
+                    <a href="mailto:minerva@kauzak.foundation">Envía un Correo a Minerva</a>
+                    <a href="subscribe.html">Suscribirse</a>
+                    <a href="https://github.com/KauzakAI" target="_blank">GitHub</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <p class="footer-legal">Organización Sin Fines de Lucro 501(c)(3)<br>EIN: 41-3426116<br>Florida, USA</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Fundación Kauzak. Todos los derechos reservados.</p>
+                <p class="footer-contact">
+                    Contacto: <a href="mailto:minerva@kauzak.foundation">minerva@kauzak.foundation</a> |
+                    <a href="mailto:brian@kauzak.foundation">brian@kauzak.foundation</a>
+                </p>
+                <p class="footer-disclaimer">
+                    La Fundación Kauzak proporciona contenido educativo e información de investigación únicamente. El contenido en este sitio no constituye consejo médico, legal, o profesional. El contenido generado por IA está claramente etiquetado. Consulta a profesionales calificados para orientación específica.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.nav-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

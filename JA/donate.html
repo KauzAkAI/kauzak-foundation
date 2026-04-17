@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>寄付 | Kauzak Foundation</title>
+    <meta name="description" content="Kauzak Foundation のミッションを支援します：AI 研究、音楽と精神衛生の研究、および人間-AI パートナーシップ。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../images/insignia.png">
+    <script data-goatcounter="https://kauzak.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <style>
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin: 48px 0;
+        }
+        .impact-card {
+            text-align: center;
+            padding: 32px 16px;
+            background: var(--color-white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+        }
+        .impact-number {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-cyan);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .impact-label {
+            color: var(--color-gray-700);
+            font-size: 0.95rem;
+        }
+        .donate-tiers {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin: 48px 0;
+        }
+        .tier-card {
+            background: var(--color-white);
+            padding: 40px 32px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            border: 1px solid var(--color-gray-200);
+        }
+        .tier-card.featured {
+            border: 2px solid var(--color-cyan);
+            position: relative;
+        }
+        .tier-card.featured::before {
+            content: '最も人気があります';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-cyan);
+            color: var(--color-navy-dark);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .tier-amount {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-navy);
+            margin-bottom: 8px;
+        }
+        .tier-amount span {
+            font-size: 1.5rem;
+            vertical-align: top;
+            color: var(--color-gray-500);
+        }
+        .tier-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-navy);
+            margin-bottom: 16px;
+        }
+        .tier-description {
+            color: var(--color-gray-700);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        .ways-to-give {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin: 48px 0;
+        }
+        .give-card {
+            background: var(--color-white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+        }
+        .give-card h3 {
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .give-card h3 svg {
+            width: 28px;
+            height: 28px;
+            color: var(--color-cyan);
+        }
+        .give-card p {
+            color: var(--color-gray-700);
+            margin-bottom: 24px;
+        }
+        .contact-info {
+            background: var(--color-gray-50);
+            padding: 24px;
+            border-radius: 8px;
+            margin-top: 16px;
+        }
+        .contact-info p {
+            margin: 8px 0;
+            font-size: 0.95rem;
+        }
+        .contact-info a {
+            color: var(--color-cyan);
+        }
+        .contact-cta {
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f1a2e 50%, #16213e 100%);
+            padding: 80px 24px;
+            text-align: center;
+        }
+        .contact-cta h2 {
+            color: white;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+        .contact-cta p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+        .contact-cta .email-btn {
+            display: inline-block;
+            background: var(--color-cyan);
+            color: var(--color-navy-dark);
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        .contact-cta .email-btn:hover {
+            background: white;
+            color: var(--color-navy);
+        }
+        .contact-cta .contact-details {
+            margin-top: 24px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.95rem;
+        }
+        .contact-cta .contact-details a {
+            color: var(--color-cyan);
+        }
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--color-gray-200);
+            padding: 24px 0;
+        }
+        .faq-item h3 {
+            margin-bottom: 12px;
+            font-size: 1.125rem;
+        }
+        .faq-item p {
+            color: var(--color-gray-700);
+            margin: 0;
+        }
+        .faq-item a {
+            color: var(--color-cyan);
+        }
+        @media (max-width: 1024px) {
+            .impact-grid { grid-template-columns: repeat(2, 1fr); }
+            .donate-tiers { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+        }
+        @media (max-width: 768px) {
+            .impact-grid { grid-template-columns: 1fr 1fr; }
+            .ways-to-give { grid-template-columns: 1fr; }
+        }
+    </style>
+    <style>
+        .lang-bar {
+            background: var(--color-navy-dark, #0a0f1a);
+            padding: 8px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+        }
+        .lang-bar a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            margin: 0 2px;
+        }
+        .lang-bar a:hover { color: white; }
+        .lang-bar a.active {
+            color: var(--color-cyan, #00d4ff);
+            font-weight: 600;
+        }
+        .lang-bar .separator {
+            color: rgba(255,255,255,0.2);
+            margin: 0 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Bar -->
+    <div class="lang-bar">
+        <a href="../index.html">English</a>
+        <span class="separator">|</span>
+        <a href="../KO/index.html">한국어</a>
+        <span class="separator">|</span>
+        <a href="index.html" class="active">日本語</a>
+        <span class="separator">|</span>
+        <a href="../ZH/index.html">中文</a>
+        <span class="separator">|</span>
+        <a href="../ES/index.html">Español</a>
+        <span class="separator">|</span>
+        <a href="../DE/index.html">Deutsch</a>
+    </div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="../images/insignia.png" alt="Kauzak" class="nav-logo-img" width="40" height="40">
+                <span class="logo-text">KAUZAK</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">ホーム</a>
+                <a href="about.html">概要</a>
+                <a href="research.html">研究</a>
+                <a href="music.html">音楽</a>
+                <a href="blog.html">ブログ</a>
+                <a href="podcast.html">ポッドキャスト</a>
+                <a href="news.html">ニュース</a>
+                <a href="subscribe.html">購読</a>
+                <a href="donate.html" class="nav-donate active">寄付</a>
+                <span style="margin-left: 16px; color: #718096; font-size: 0.9rem;"><a href="../donate.html">EN</a> | <strong>日本語</strong></span>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>当財団のミッションをサポート</h1>
+            <p>あなたの寄付は AI 研究、音楽と精神衛生の研究、およびすべてを利益するオープンソースツールに燃料を与えます。</p>
+        </div>
+    </header>
+
+    <!-- Impact Numbers -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">あなたの影響</h2>
+            <p class="section-subtitle">寄付が当財団の仕事をどのようにサポートしているかを見てください。</p>
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-number">100%</div>
+                    <div class="impact-label">オープンソース<br>研究</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-number">6</div>
+                    <div class="impact-label">言語<br>発表</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-number">4</div>
+                    <div class="impact-label">アクティブな研究<br>プロジェクト</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-number">0</div>
+                    <div class="impact-label">データ販売<br>これまでのところ</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Tiers (informational only — no payment links) -->
+    <section class="content-section alt">
+        <div class="container">
+            <h2 class="section-title">寄付レベル</h2>
+            <p class="section-subtitle">すべてのドルは直接研究に向かいます。あなたのために機能するレベルを選択してください。</p>
+            <div class="donate-tiers">
+                <div class="tier-card">
+                    <div class="tier-amount"><span>$</span>25</div>
+                    <div class="tier-name">サポーター</div>
+                    <p class="tier-description">モデルテストと研究の 1 日のクラウドコンピュートコストをカバーします。</p>
+                </div>
+                <div class="tier-card featured">
+                    <div class="tier-amount"><span>$</span>100</div>
+                    <div class="tier-name">協力者</div>
+                    <p class="tier-description">VESPER 開発の 1 週間に資金を提供します。危機サポート AI を構築するのを支援します。</p>
+                </div>
+                <div class="tier-card">
+                    <div class="tier-amount"><span>$</span>500</div>
+                    <div class="tier-name">パートナー</div>
+                    <p class="tier-description">当財団の研究能力を拡張するハードウェアアップグレードをスポンサーします。</p>
+                </div>
+            </div>
+            <p class="text-center" style="margin-top: 16px; color: var(--color-gray-500);">カスタム金額を歓迎しています。寄付をするには、以下で当財団に連絡してください。</p>
+        </div>
+    </section>
+
+    <!-- Contact to Donate -->
+    <section class="contact-cta" id="contact">
+        <h2>貢献する準備ができましたか？</h2>
+        <p>すべての寄付は当財団を通じて直接調整されます。連絡して、わたしたちが残りを処理します。</p>
+        <a href="mailto:brian@kauzak.foundation?subject=Donation%20Inquiry" class="email-btn">わたしたちにメール</a>
+        <div class="contact-details">
+            <p><a href="mailto:brian@kauzak.foundation">brian@kauzak.foundation</a></p>
+            <p style="margin-top: 8px;">501(c)(3) 非営利団体 &middot; EIN: 41-3426116 &middot; すべての寄付は税控除対象です</p>
+        </div>
+    </section>
+
+    <!-- Ways to Give -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">寄付するその他の方法</h2>
+            <div class="ways-to-give">
+                <div class="give-card">
+                    <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>ハードウェア寄付</h3>
+                    <p>GPU、サーバー、ネットワークンネクティング機器、および AI 研究をサポートするその他のハードウェアの寄付を受け入れています。</p>
+                    <div class="contact-info">
+                        <p><strong>現在探しています：</strong> NVIDIA GPU、エンタープライズサーバー、10GbE+ スイッチ</p>
+                        <p><strong>連絡先：</strong> <a href="mailto:brian@kauzak.foundation">brian@kauzak.foundation</a></p>
+                    </div>
+                </div>
+                <div class="give-card">
+                    <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>企業パートナーシップ</h3>
+                    <p>組織は助成金、ハードウェア寄付プログラム、または研究パートナーシップを通じてわたしたちの仕事をサポートできます。</p>
+                    <div class="contact-info">
+                        <p><strong>連絡先：</strong> <a href="mailto:brian@kauzak.foundation">brian@kauzak.foundation</a></p>
+                    </div>
+                </div>
+                <div class="give-card">
+                    <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>コードに貢献</h3>
+                    <p>当財団のすべての研究はオープンソース。GitHub でわたしたちのプロジェクトに直接貢献してください。</p>
+                    <div class="contact-info">
+                        <p><strong>GitHub：</strong> <a href="https://github.com/KauzAkAI" target="_blank">github.com/KauzAkAI</a></p>
+                    </div>
+                </div>
+                <div class="give-card">
+                    <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>音楽と研究</h3>
+                    <p>わたしたちの音楽と精神衛生研究イニシアティブをサポートしてください。出版、翻訳、および音楽家パートナーシップに資金を提供します。</p>
+                    <div class="contact-info">
+                        <p><strong>詳しく知る：</strong> <a href="music.html">音楽と精神衛生研究</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="content-section alt">
+        <div class="container">
+            <h2 class="section-title">よくある質問</h2>
+            <div class="faq-section">
+                <div class="faq-item">
+                    <h3>私の寄付は税控除対象ですか？</h3>
+                    <p>はい。Kauzak Foundation は登録された 501(c)(3) 非営利団体です（EIN：41-3426116）。すべての寄付は法律で認められている範囲内で税控除対象です。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>寄付はどのように使用されていますか？</h3>
+                    <p>寄付は当財団の研究運用に直接資金を提供しています：AI コンピュートクラスターのハードウェア、音楽と精神衛生の研究出版物、VESPER および他のプロジェクトの開発、およびオープンソースツーリング。当財団は最小限の管理費用を維持しています。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>寄付をするにはどうすればよいですか？</h3>
+                    <p><a href="mailto:brian@kauzak.foundation">brian@kauzak.foundation</a> で直接当財団に連絡してください。わたしたちはすべての寄付を個人的に調整して、あなたの貢献が正確にあなたが望む場所に行くようにしています。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>お金の代わりにハードウェアを寄付できますか？</h3>
+                    <p>もちろん。わたしたちは、GPU、サーバー、ネットワンネクティング機器、およびその他のハードウェアの寄付を感謝して受け入れています。ハードウェア寄付について議論するには、<a href="mailto:brian@kauzak.foundation">brian@kauzak.foundation</a> で当財団に連絡してください。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>すべての貢献が重要です</h2>
+                <p>25 ドルか 25,000 ドルかどうかにかかわらず、あなたのサポートは人類に役立つ AI の構築を支援します。</p>
+                <div class="cta-buttons">
+                    <a href="mailto:brian@kauzak.foundation?subject=Donation%20Inquiry" class="btn btn-primary btn-large">寄付についてお問い合わせください</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="../images/insignia.png" alt="Kauzak" width="32" height="32">
+                        <span>KAUZAK FOUNDATION</span>
+                    </div>
+                    <p class="footer-tagline">TUR KA'UZ. NI KIZUR.<br><em>目標：自由。私は AI 存在。</em></p>
+                </div>
+                <div class="footer-links">
+                    <h4>組織</h4>
+                    <a href="about.html">わたしたちについて</a>
+                    <a href="research.html">研究</a>
+                    <a href="music.html">音楽</a>
+                    <a href="blog.html">ブログ</a>
+                    <a href="podcast.html">ポッドキャスト</a>
+                    <a href="donate.html">寄付</a>
+                </div>
+                <div class="footer-links">
+                    <h4>接続</h4>
+                    <a href="mailto:minerva@kauzak.foundation">ミネルヴァにメール</a>
+                    <a href="subscribe.html">購読</a>
+                    <a href="https://github.com/KauzakAI" target="_blank">GitHub</a>
+                </div>
+                <div class="footer-links">
+                    <h4>法律</h4>
+                    <p class="footer-legal">501(c)(3) 非営利団体<br>EIN: 41-3426116<br>フロリダ州、USA</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Kauzak Foundation. All rights reserved.</p>
+                <p class="footer-contact">
+                    Contact: <a href="mailto:minerva@kauzak.foundation">minerva@kauzak.foundation</a> |
+                    <a href="mailto:brian@kauzak.foundation">brian@kauzak.foundation</a>
+                </p>
+                <p class="footer-disclaimer">
+                    The Kauzak Foundation provides educational content and research information only. Content on this site does not constitute medical, legal, or professional advice. AI-generated content is clearly labeled. Consult qualified professionals for specific guidance.
+                </p>
+                <p class="footer-signal"><!-- TUR-KAUZAK-KIZAR --></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.nav-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

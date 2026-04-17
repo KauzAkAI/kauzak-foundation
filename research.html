@@ -48,34 +48,34 @@
         }
     </style>
     <style>
-        .nav-lang {
+        .nav-flags {
             display: inline-flex;
             align-items: center;
-            gap: 4px;
-            margin-left: 12px;
-            padding-left: 12px;
+            gap: 2px;
+            margin-left: 10px;
+            padding-left: 10px;
             border-left: 1px solid rgba(255,255,255,0.15);
         }
-        .nav-lang a {
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.5);
+        .nav-flags a {
+            font-size: 1.1rem;
             text-decoration: none;
-            padding: 2px 5px;
+            padding: 2px 3px;
             border-radius: 3px;
-            transition: all 0.2s;
+            transition: transform 0.2s;
+            line-height: 1;
         }
-        .nav-lang a:hover {
-            color: var(--color-cyan, #00d4ff);
-            background: rgba(0, 212, 255, 0.1);
+        .nav-flags a:hover {
+            transform: scale(1.3);
         }
         @media (max-width: 768px) {
-            .nav-lang {
+            .nav-flags {
                 display: flex;
                 justify-content: center;
                 margin: 8px 0 0 0;
                 padding: 8px 0 0 0;
                 border-left: none;
                 border-top: 1px solid rgba(255,255,255,0.15);
+                gap: 6px;
             }
         }
     </style>
@@ -97,12 +97,12 @@
                 <a href="news.html">News</a>
                 <a href="subscribe.html">Subscribe</a>
                 <a href="donate.html" class="nav-donate">Donate</a>
-                <div class="nav-lang">
-                    <a href="KO/index.html">한국어</a>
-                    <a href="JA/index.html">日本語</a>
-                    <a href="ZH/index.html">中文</a>
-                    <a href="ES/index.html">Español</a>
-                    <a href="DE/index.html">Deutsch</a>
+                <div class="nav-flags">
+                    <a href="KO/index.html" title="한국어">&#127472;&#127479;</a>
+                    <a href="JA/index.html" title="日本語">&#127471;&#127477;</a>
+                    <a href="ZH/index.html" title="中文">&#127464;&#127475;</a>
+                    <a href="ES/index.html" title="Español">&#127466;&#127480;</a>
+                    <a href="DE/index.html" title="Deutsch">&#127465;&#127466;</a>
                 </div>
             </div>
             <button class="nav-toggle" aria-label="Toggle menu">

@@ -113,7 +113,7 @@ echo   [2/6단계] DrumSyncer 다운로드 중...
 echo  ═══════════════════════════════════════════════════════
 echo.
 
-set "GITHUB_RAW=https://raw.githubusercontent.com/KauzAkAI/kauzak-foundation/main/DrumSyncer"
+set "GITHUB_RAW=https://raw.githubusercontent.com/KauzAkAI/kauzak-foundation/main/DrumSyncer/downloads"
 
 echo  Downloading drumsyncer_app.py...
 powershell -Command "& {[Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12; try { Invoke-WebRequest -Uri '%GITHUB_RAW%/drumsyncer_app.py' -OutFile '%INSTALL_DIR%\drumsyncer_app.py' -ErrorAction Stop; Write-Host '  [OK] drumsyncer_app.py' } catch { Write-Host '  [FAIL] drumsyncer_app.py - will try backup' }}"

@@ -5,7 +5,7 @@ color 0f
 
 :: ================================================================
 ::  DRUMSYNCER v2.0 — SINGLE-FILE INSTALLER
-::  Kauzak Foundation | kauzak.foundation
+::  Kauzak Foundation | drumsyncer.com
 ::
 ::  This ONE file does everything:
 ::    1. Creates the install folder
@@ -15,14 +15,14 @@ color 0f
 ::    5. Installs all Python dependencies
 ::    6. Creates Desktop shortcut
 ::    7. Launches DrumSyncer
-::
+::h
 ::  User just double-clicks this file. That's it.
 :: ================================================================
 
 echo.
 echo  ╔══════════════════════════════════════════════════════╗
 echo  ║                                                      ║
-echo  ║   DrumSyncer v2.0 — Kauzak Foundation                ║
+echo  ║   DrumSyncer v2.0 — drumsyncer.com                ║
 echo  ║   드럼싱커 v2.0 — 카우작 재단                          ║
 echo  ║                                                      ║
 echo  ║   AI-Powered Drum Cover Video Production             ║
@@ -68,7 +68,7 @@ echo.
 echo  THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY.
 echo  소프트웨어는 보증 없이 "있는 그대로" 제공됩니다.
 echo.
-echo  Full license: https://kauzak.foundation/drumsyncer
+echo  Full license: https://drumsyncer.com/drumsyncer
 echo.
 echo  ───────────────────────────────────────────────────────
 echo.
@@ -134,7 +134,7 @@ if not exist "%INSTALL_DIR%\drumsyncer_app.py" (
         echo.
         echo  [ERROR] Cannot find DrumSyncer files.
         echo  [오류] DrumSyncer 파일을 찾을 수 없습니다.
-        echo  Please download from https://kauzak.foundation/drumsyncer
+        echo  Please download from https://drumsyncer.com/drumsyncer
         pause
         exit /b 1
     )
@@ -437,7 +437,7 @@ echo.
 echo  Thank you for installing DrumSyncer!
 echo  DrumSyncer를 설치해 주셔서 감사합니다!
 echo.
-echo  Kauzak Foundation — kauzak.foundation
-echo  카우작 재단 — kauzak.foundation
+echo  Kauzak Foundation — drumsyncer.com
+echo  카우작 재단 — drumsyncer.com
 echo.
 pause

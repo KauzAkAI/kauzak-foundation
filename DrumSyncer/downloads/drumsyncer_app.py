@@ -15,7 +15,7 @@ Usage:
 
 import os
 import sys
-import json
+import jsonh
 import subprocess
 import threading
 import time
@@ -568,7 +568,7 @@ HTML_PAGE = r'''<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DrumSyncer v2.0 — Kauzak Foundation</title>
+<title>DrumSyncer v2.0 — drumsyncer.com</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥁</text></svg>">
 <style>
 :root {
@@ -665,7 +665,7 @@ body { font-family:'Segoe UI',-apple-system,sans-serif; background:var(--bg); co
   <div class="header">
     <div>
       <h1>Drum<span>Syncer</span> <small style="font-size:14px;color:var(--text2);font-weight:400;">v2.0</small></h1>
-      <div class="subtitle" data-en="Kauzak Foundation — Artist Production Tool" data-kr="카우작 재단 — 아티스트 프로덕션 도구"></div>
+      <div class="subtitle" data-en="drumsyncer.com — Kauzak Foundation" data-kr="drumsyncer.com — 카우작 재단"></div>
     </div>
     <div class="right">
       <button class="sys-btn" onclick="checkSystem()" data-en="System Check" data-kr="시스템 확인"></button>
@@ -779,7 +779,7 @@ body { font-family:'Segoe UI',-apple-system,sans-serif; background:var(--bg); co
     </ol>
   </div>
 
-  <div class="footer">DrumSyncer v2.0 — Kauzak Foundation<br>
+  <div class="footer">DrumSyncer v2.0 — drumsyncer.com<br>
     <span data-en="Open source. Built with Demucs, librosa, FFmpeg." data-kr="오픈 소스. Demucs, librosa, FFmpeg으로 제작."></span>
   </div>
 </div>
@@ -1032,7 +1032,7 @@ if __name__ == '__main__':
     port = 5151
     print(f"""
     ╔══════════════════════════════════════════════════╗
-    ║  DrumSyncer v2.0 — Kauzak Foundation             ║
+    ║  DrumSyncer v2.0 — drumsyncer.com             ║
     ║  드럼싱커 v2.0 — 카우작 재단                       ║
     ║                                                    ║
     ║  Open in browser / 브라우저에서 열기:                ║

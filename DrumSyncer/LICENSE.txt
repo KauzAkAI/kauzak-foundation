@@ -1,0 +1,268 @@
+DRUMSYNCER v2.0 — PROPRIETARY SOFTWARE LICENSE AGREEMENT
+드럼싱커 v2.0 — 독점 소프트웨어 라이선스 계약
+
+Copyright (c) 2026 Kauzak Foundation, Inc.
+All rights reserved.
+
+================================================================
+
+KAUZAK FOUNDATION PROPRIETARY SOFTWARE LICENSE
+카우작 재단 독점 소프트웨어 라이선스
+
+================================================================
+
+BY INSTALLING, COPYING, OR OTHERWISE USING THIS SOFTWARE, YOU
+AGREE TO BE BOUND BY THE TERMS OF THIS LICENSE AGREEMENT. IF YOU
+DO NOT AGREE, DO NOT INSTALL OR USE THE SOFTWARE.
+
+이 소프트웨어를 설치, 복사 또는 사용함으로써 이 라이선스 계약의
+조건에 동의하는 것으로 간주됩니다. 동의하지 않는 경우 소프트웨어를
+설치하거나 사용하지 마십시오.
+
+================================================================
+
+1. OWNERSHIP / 소유권
+
+DrumSyncer ("Software") is the exclusive intellectual property
+of the Kauzak Foundation, Inc. ("Foundation"). The Software is
+proprietary and protected by copyright law, international treaty
+provisions, and all other applicable intellectual property laws.
+
+DrumSyncer("소프트웨어")는 Kauzak Foundation, Inc.("재단")의
+독점 지적 재산입니다. 소프트웨어는 독점적이며 저작권법, 국제
+조약 조항 및 기타 모든 적용 가능한 지적 재산권법에 의해
+보호됩니다.
+
+2. GRANT OF LICENSE / 라이선스 부여
+
+The Foundation grants you a limited, non-exclusive,
+non-transferable, revocable license to USE the compiled Software
+for personal and non-commercial purposes only.
+
+재단은 컴파일된 소프트웨어를 개인 및 비상업적 목적으로만
+사용할 수 있는 제한적, 비독점적, 양도 불가능한, 취소 가능한
+라이선스를 부여합니다.
+
+3. PERMITTED USES / 허용된 사용
+
+You MAY:
+다음을 할 수 있습니다:
+
+  a) Install and use the Software on your personal computer(s)
+     for music production and drum cover creation
+     음악 제작 및 드럼 커버 제작을 위해 개인 컴퓨터에
+     소프트웨어를 설치 및 사용
+
+  b) Create and distribute content (videos, audio) produced
+     USING the Software — your creative output belongs to you
+     소프트웨어를 사용하여 제작한 콘텐츠(영상, 오디오)를
+     생성 및 배포 — 창작물은 사용자의 소유입니다
+
+  c) Share the official installer package with others, provided
+     this license is included in its entirety and the Software
+     is not modified
+     이 라이선스가 전체적으로 포함되고 소프트웨어가 수정되지
+     않은 경우 공식 설치 패키지를 다른 사람과 공유
+
+4. RESTRICTIONS / 제한 사항
+
+You MAY NOT:
+다음을 할 수 없습니다:
+
+  a) Reverse engineer, decompile, disassemble, or otherwise
+     attempt to derive the source code of the Software
+     소프트웨어의 소스 코드를 역공학, 디컴파일, 역어셈블
+     또는 기타 방법으로 추출 시도
+
+  b) Modify, adapt, translate, or create derivative works
+     based on the Software
+     소프트웨어를 수정, 개조, 번역하거나 소프트웨어를 기반으로
+     파생 저작물을 생성
+
+  c) Copy, reproduce, or redistribute the Software or any
+     portion thereof, except as expressly permitted in Section 3
+     섹션 3에서 명시적으로 허용된 경우를 제외하고 소프트웨어
+     또는 그 일부를 복사, 복제 또는 재배포
+
+  d) Sell, rent, lease, sublicense, or commercially distribute
+     the Software in any form
+     소프트웨어를 어떤 형태로든 판매, 임대, 대여, 재라이선스
+     또는 상업적으로 배포
+
+  e) Remove, alter, or obscure any copyright notices,
+     trademarks, or this license agreement
+     저작권 고지, 상표 또는 이 라이선스 계약을 제거, 변경
+     또는 불명확하게 처리
+
+  f) Claim authorship or ownership of the Software
+     소프트웨어의 저자권 또는 소유권을 주장
+
+  g) Use the Software for any illegal purpose or in violation
+     of applicable laws
+     불법적인 목적이나 관련 법률을 위반하여 소프트웨어를 사용
+
+  h) Host, distribute, or make available the Software through
+     any unauthorized channel, website, or service
+     승인되지 않은 채널, 웹사이트 또는 서비스를 통해
+     소프트웨어를 호스팅, 배포 또는 제공
+
+5. DONATION / 기부
+
+DrumSyncer is provided free of charge. However, a voluntary
+donation of $1.00 (USD) is requested to support the Kauzak
+Foundation's continued work in artificial intelligence, music
+production, mental health awareness, and education.
+
+DrumSyncer는 무료로 제공됩니다. 그러나 카우작 재단의 인공지능,
+음악 제작, 정신 건강 인식 및 교육 분야의 지속적인 활동을
+지원하기 위해 $1.00(USD)의 자발적 기부를 요청합니다.
+
+All donations are FINAL and NON-REFUNDABLE. By making a donation,
+you acknowledge that it is a voluntary contribution and not a
+payment for goods, services, or future features.
+
+모든 기부는 최종적이며 환불 불가합니다. 기부를 함으로써
+이것이 상품, 서비스 또는 향후 기능에 대한 지불이 아닌
+자발적 기여임을 인정합니다.
+
+Donations are tax-deductible as permitted by law.
+기부금은 법이 허용하는 범위에서 세금 공제가 가능합니다.
+
+Donate at: https://drumsyncer.com/donate
+기부하기: https://drumsyncer.com/donate
+
+6. THIRD-PARTY COMPONENTS / 타사 구성 요소
+
+The Software incorporates the following open-source libraries,
+each governed by their respective licenses. These component
+licenses apply only to those individual components and do not
+extend to or modify the proprietary license of DrumSyncer
+as a whole.
+
+소프트웨어는 다음 오픈 소스 라이브러리를 포함하며, 각각 해당
+라이선스에 따릅니다. 이러한 구성 요소 라이선스는 해당 개별
+구성 요소에만 적용되며 DrumSyncer 전체의 독점 라이선스를
+확장하거나 수정하지 않습니다.
+
+  - Demucs (Meta) — MIT License
+  - PyTorch — BSD License
+  - librosa — ISC License
+  - FFmpeg — LGPL/GPL License
+  - Flask — BSD License
+  - yt-dlp — Unlicense
+  - SciPy — BSD License
+  - NumPy — BSD License
+  - SoundFile — BSD License
+
+7. RIGHT TO UPDATE / 업데이트 권한
+
+The Foundation reserves the right to update, modify, enhance,
+or discontinue the Software at any time, with or without notice.
+By using the Software, you acknowledge and agree that:
+
+재단은 사전 통지 여부에 관계없이 언제든지 소프트웨어를 업데이트,
+수정, 개선 또는 중단할 권리를 보유합니다. 소프트웨어를 사용함으로써
+다음에 동의하는 것으로 간주됩니다:
+
+  a) The Foundation may release updates that change the
+     functionality, features, or behavior of the Software
+     재단은 소프트웨어의 기능, 특징 또는 동작을 변경하는
+     업데이트를 배포할 수 있습니다
+
+  b) Continued use of the Software after updates constitutes
+     acceptance of all changes and modifications
+     업데이트 후 소프트웨어의 지속적인 사용은 모든 변경 및
+     수정 사항에 대한 수락을 의미합니다
+
+  c) This license grants a RIGHT TO USE the Software, NOT
+     ownership of the Software. You are licensing the Software,
+     not purchasing it.
+     이 라이선스는 소프트웨어의 소유권이 아닌 소프트웨어를
+     사용할 권리를 부여합니다. 소프트웨어를 구매하는 것이
+     아니라 라이선스하는 것입니다.
+
+  d) The Foundation may revoke, suspend, or modify this license
+     at any time at its sole discretion
+     재단은 자체 재량에 따라 언제든지 이 라이선스를 취소,
+     정지 또는 수정할 수 있습니다
+
+8. CONTENT RESPONSIBILITY & INDEMNIFICATION / 콘텐츠 책임 및 면책
+
+You are solely responsible for ensuring that any content
+processed through the Software complies with applicable
+copyright laws and terms of service. The Foundation does not
+condone or encourage copyright infringement.
+
+소프트웨어를 통해 처리되는 모든 콘텐츠가 해당 저작권법 및
+서비스 약관을 준수하는지 확인하는 것은 전적으로 사용자의
+책임입니다. 재단은 저작권 침해를 용납하거나 권장하지 않습니다.
+
+The Foundation shall NOT be held responsible, liable, or
+accountable for any damage, loss, copyright infringement, legal
+claim, or any consequence arising from the use or misuse of the
+Software by the user. You agree to indemnify, defend, and hold
+harmless the Kauzak Foundation, its officers, directors,
+employees, and agents from any claims, damages, or expenses
+arising from your use of the Software.
+
+재단은 사용자의 소프트웨어 사용 또는 오용으로 인한 손해,
+손실, 저작권 침해, 법적 청구 또는 기타 결과에 대해 책임을
+지지 않습니다. 사용자는 소프트웨어 사용으로 인한 모든 청구,
+손해 또는 비용으로부터 카우작 재단, 임원, 이사, 직원 및
+대리인을 면책하고 방어하며 피해를 입히지 않을 것에 동의합니다.
+
+9. DISCLAIMER OF WARRANTY / 보증 면책
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+NONINFRINGEMENT.
+
+소프트웨어는 상품성, 특정 목적에의 적합성, 비침해에 대한
+보증을 포함하되 이에 국한되지 않는 명시적이거나 묵시적인
+어떠한 종류의 보증 없이 "있는 그대로" 제공됩니다.
+
+10. LIMITATION OF LIABILITY / 책임 제한
+
+IN NO EVENT SHALL THE KAUZAK FOUNDATION BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR
+EXEMPLARY DAMAGES ARISING FROM THE USE OR INABILITY TO USE
+THE SOFTWARE.
+
+어떠한 경우에도 카우작 재단은 소프트웨어의 사용 또는 사용
+불능으로 인한 직접적, 간접적, 부수적, 특별, 결과적 또는
+징벌적 손해에 대해 책임을 지지 않습니다.
+
+11. TERMINATION / 종료
+
+This license is effective until terminated. The Foundation may
+terminate this license at any time if you fail to comply with
+any term or condition. Upon termination, you must immediately
+cease all use of the Software and destroy all copies in your
+possession.
+
+이 라이선스는 종료될 때까지 유효합니다. 재단은 사용자가
+조건을 준수하지 않을 경우 언제든지 이 라이선스를 종료할 수
+있습니다. 종료 시 소프트웨어의 모든 사용을 즉시 중단하고
+보유한 모든 사본을 파기해야 합니다.
+
+12. GOVERNING LAW / 준거법
+
+This Agreement shall be governed by and construed in accordance
+with the laws of the State of Florida, United States of America.
+
+이 계약은 미국 플로리다주 법률에 따라 규율되고 해석됩니다.
+
+================================================================
+
+Kauzak Foundation, Inc.
+501(c)(3) Nonprofit Organization
+EIN: 41-3426116
+Dade City, Florida, USA
+
+https://drumsyncer.com
+https://kauzak.foundation
+
+Contact: brian@kauzak.foundation
+
+================================================================

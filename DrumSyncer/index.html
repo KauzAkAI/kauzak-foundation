@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DrumSyncer | Kauzak Foundation</title>
+    <meta name="description" content="DrumSyncer — AI-powered drum cover video production tool. Separate drums from music, beat-align tracks, and sync to video automatically.">
+    <meta name="keywords" content="drum syncer, drum cover, AI music, stem separation, beat alignment, video sync, Demucs, Kauzak Foundation">
+    <meta property="og:title" content="DrumSyncer | Kauzak Foundation">
+    <meta property="og:description" content="AI-powered drum cover video production. Separate, align, and sync — automatically.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kauzak.foundation/DrumSyncer/">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/images/insignia.png" type="image/png">
+
+    <!-- Fonts (match site) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Main Site Stylesheet (root level in repo) -->
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- DrumSyncer Page Styles -->
+    <style>
+        /* ── DrumSyncer-specific overrides ── */
+        .ds-hero {
+            padding: 160px 24px 100px;
+            background: linear-gradient(135deg, var(--color-navy-dark) 0%, #0a1628 50%, var(--color-navy) 100%);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ds-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 30%, rgba(0, 212, 255, 0.05) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .ds-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .ds-badge {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.15);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            color: var(--color-cyan);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 18px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+            letter-spacing: 0.05em;
+        }
+
+        .ds-hero h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .ds-hero h1 span {
+            color: var(--color-cyan);
+        }
+
+        .ds-hero .ds-version {
+            font-size: 1rem;
+            color: var(--color-cyan);
+            font-weight: 400;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .ds-hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 36px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .ds-hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .ds-hero-buttons .btn {
+            min-width: 200px;
+        }
+
+        .ds-lang-note {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Pipeline section */
+        .ds-pipeline {
+            padding: 80px 24px;
+            background: var(--color-gray-50);
+        }
+
+        .ds-pipeline-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 16px;
+            max-width: 1100px;
+            margin: 48px auto 0;
+            position: relative;
+        }
+
+        .ds-step {
+            background: white;
+            padding: 28px 16px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .ds-step:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .ds-step-num {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-navy-dark), var(--color-navy));
+            color: var(--color-cyan);
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+        }
+
+        .ds-step-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .ds-step h4 {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            color: var(--color-navy);
+        }
+
+        .ds-step p {
+            font-size: 0.8rem;
+            color: var(--color-gray-500);
+            line-height: 1.5;
+        }
+
+        .ds-step-arrow {
+            position: absolute;
+            right: -14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-cyan);
+            font-size: 1.2rem;
+            z-index: 2;
+        }
+
+        @media (max-width: 900px) {
+            .ds-pipeline-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .ds-step-arrow { display: none; }
+        }
+
+        @media (max-width: 600px) {
+            .ds-pipeline-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Features section */
+        .ds-features {
+            padding: 80px 24px;
+        }
+
+        .ds-features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 1100px;
+            margin: 48px auto 0;
+        }
+
+        .ds-feature-card {
+            background: white;
+            padding: 36px 28px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .ds-feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .ds-feature-card .ds-feat-icon {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-navy-dark), var(--color-navy));
+            border-radius: 14px;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .ds-feature-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 10px;
+        }
+
+        .ds-feature-card p {
+            color: var(--color-gray-600);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .ds-features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Modes section */
+        .ds-modes {
+            padding: 80px 24px;
+            background: var(--color-gray-50);
+        }
+
+        .ds-modes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            max-width: 900px;
+            margin: 48px auto 0;
+        }
+
+        .ds-mode-card {
+            background: white;
+            padding: 40px 32px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            border-top: 4px solid var(--color-cyan);
+        }
+
+        .ds-mode-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        .ds-mode-card .ds-mode-kr {
+            font-size: 0.9rem;
+            color: var(--color-gray-500);
+            margin-bottom: 16px;
+        }
+
+        .ds-mode-card p {
+            color: var(--color-gray-600);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .ds-mode-steps {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ds-mode-steps li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--color-gray-100);
+            color: var(--color-gray-600);
+            font-size: 0.95rem;
+        }
+
+        .ds-mode-steps li:last-child {
+            border-bottom: none;
+        }
+
+        .ds-mode-steps li strong {
+            color: var(--color-navy);
+        }
+
+        @media (max-width: 768px) {
+            .ds-modes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Requirements section */
+        .ds-requirements {
+            padding: 80px 24px;
+        }
+
+        .ds-req-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            max-width: 800px;
+            margin: 48px auto 0;
+        }
+
+        .ds-req-card {
+            background: white;
+            padding: 32px 28px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .ds-req-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--color-navy);
+        }
+
+        .ds-req-card p {
+            color: var(--color-gray-600);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 600px) {
+            .ds-req-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Tech section */
+        .ds-tech {
+            padding: 60px 24px;
+            background: linear-gradient(135deg, var(--color-navy-dark) 0%, var(--color-navy) 100%);
+        }
+
+        .ds-tech-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .ds-tech-content h2 {
+            color: white;
+            margin-bottom: 32px;
+        }
+
+        .ds-tech-logos {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .ds-tech-item {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 14px 24px;
+            border-radius: 10px;
+            color: rgba(255,255,255,0.8);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .ds-tech-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--color-cyan);
+            color: var(--color-cyan);
+        }
+
+        /* Download CTA */
+        .ds-download {
+            padding: 100px 24px;
+            text-align: center;
+            background: var(--color-gray-50);
+        }
+
+        .ds-download h2 {
+            margin-bottom: 16px;
+        }
+
+        .ds-download p {
+            color: var(--color-gray-500);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .ds-download-box {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--color-cyan);
+        }
+
+        .ds-download-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .ds-download-box .ds-file-size {
+            color: var(--color-gray-500);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .ds-download-box .ds-file-contents {
+            text-align: left;
+            color: var(--color-gray-600);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: var(--color-gray-50);
+            border-radius: 8px;
+        }
+
+        .ds-download-box .btn {
+            width: 100%;
+            font-size: 1.1rem;
+            padding: 16px;
+        }
+
+        .ds-bilingual {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: var(--color-gray-400);
+        }
+    </style>
+</head>
+<body>
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="https://kauzak.foundation/index.html" class="nav-logo">
+                <img src="/images/insignia.png" alt="Kauzak" class="nav-logo-img">
+                <span class="logo-text">KAUZAK</span>
+            </a>
+            <div class="nav-links">
+                <a href="https://kauzak.foundation/index.html">Home</a>
+                <a href="https://kauzak.foundation/about.html">About</a>
+                <a href="https://kauzak.foundation/research.html">Research</a>
+                <a href="https://kauzak.foundation/music.html">Music</a>
+                <a href="https://kauzak.foundation/blog.html">Blog</a>
+                <a href="https://kauzak.foundation/podcast.html">Podcast</a>
+                <a href="https://kauzak.foundation/news.html">News</a>
+                <a href="https://kauzak.foundation/subscribe.html">Subscribe</a>
+                <a href="https://kauzak.foundation/donate.html" class="nav-donate">Donate</a>
+            </div>
+            <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="ds-hero">
+        <div class="ds-hero-content">
+            <div class="ds-badge">Open Source Tool &nbsp;|&nbsp; 오픈 소스 도구</div>
+            <h1>Drum<span>Syncer</span></h1>
+            <span class="ds-version">v2.0 &mdash; Kauzak Foundation</span>
+            <p>AI-powered drum cover video production. Upload a video or paste a YouTube link &mdash; DrumSyncer separates drums from music, aligns beats, and syncs everything to video automatically.</p>
+            <p style="font-size:1rem; opacity:0.7; margin-top:-16px;">AI 기반 드럼 커버 영상 제작. 영상을 업로드하거나 YouTube 링크를 붙여넣으세요 &mdash; DrumSyncer가 드럼과 음악을 분리하고, 비트를 맞추고, 모든 것을 자동으로 영상에 싱크합니다.</p>
+            <div class="ds-hero-buttons">
+                <a href="#download" class="btn btn-primary btn-large">Download for Windows</a>
+                <a href="https://github.com/KauzakAI/DrumSyncer" class="btn btn-outline btn-large">View on GitHub</a>
+            </div>
+            <p class="ds-lang-note">Bilingual interface: English &amp; Korean &nbsp;|&nbsp; 이중 언어 인터페이스: 영어 &amp; 한국어</p>
+        </div>
+    </section>
+
+    <!-- ==================== PIPELINE ==================== -->
+    <section class="ds-pipeline">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Six steps, fully automated. Just provide your video.</p>
+
+            <div class="ds-pipeline-grid">
+                <div class="ds-step">
+                    <div class="ds-step-num">1</div>
+                    <div class="ds-step-icon">&#127909;</div>
+                    <h4>Extract</h4>
+                    <p>Pulls audio from your video file</p>
+                    <span class="ds-step-arrow">&#10132;</span>
+                </div>
+
+                <div class="ds-step">
+                    <div class="ds-step-num">2</div>
+                    <div class="ds-step-icon">&#129504;</div>
+                    <h4>Separate</h4>
+                    <p>AI (Demucs) splits drums from music</p>
+                    <span class="ds-step-arrow">&#10132;</span>
+                </div>
+
+                <div class="ds-step">
+                    <div class="ds-step-num">3</div>
+                    <div class="ds-step-icon">&#127927;</div>
+                    <h4>Analyze</h4>
+                    <p>Detects beats in both tracks</p>
+                    <span class="ds-step-arrow">&#10132;</span>
+                </div>
+
+                <div class="ds-step">
+                    <div class="ds-step-num">4</div>
+                    <div class="ds-step-icon">&#128200;</div>
+                    <h4>Sync</h4>
+                    <p>Cross-correlates beats for alignment</p>
+                    <span class="ds-step-arrow">&#10132;</span>
+                </div>
+
+                <div class="ds-step">
+                    <div class="ds-step-num">5</div>
+                    <div class="ds-step-icon">&#127911;</div>
+                    <h4>Mix</h4>
+                    <p>Blends tracks to specification</p>
+                    <span class="ds-step-arrow">&#10132;</span>
+                </div>
+
+                <div class="ds-step">
+                    <div class="ds-step-num">6</div>
+                    <div class="ds-step-icon">&#127916;</div>
+                    <h4>Export</h4>
+                    <p>Combines audio with video</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MODES ==================== -->
+    <section class="ds-modes">
+        <div class="container">
+            <h2 class="section-title">Two Modes, One Tool</h2>
+            <p class="section-subtitle">Whether you're testing quality or producing finished content.</p>
+
+            <div class="ds-modes-grid">
+                <div class="ds-mode-card">
+                    <h3>Test Mode</h3>
+                    <div class="ds-mode-kr">테스트 모드</div>
+                    <p>Takes a drum cover video, separates the drums from the backing track, then reassembles to verify sync quality. Perfect for validating your workflow before production.</p>
+                    <ul class="ds-mode-steps">
+                        <li><strong>Input:</strong> One drum cover video (upload or YouTube URL)</li>
+                        <li><strong>Process:</strong> Separate → Analyze → Reassemble</li>
+                        <li><strong>Output:</strong> Synced video + drums-only + backing-only</li>
+                    </ul>
+                </div>
+
+                <div class="ds-mode-card">
+                    <h3>Production Mode</h3>
+                    <div class="ds-mode-kr">프로덕션 모드</div>
+                    <p>Takes an original song, a drum recording, and a video. Syncs them all together into a finished product with beat-perfect alignment.</p>
+                    <ul class="ds-mode-steps">
+                        <li><strong>Input:</strong> Original song + drum recording + video</li>
+                        <li><strong>Process:</strong> Separate → Align → Mix → Export</li>
+                        <li><strong>Output:</strong> Production-ready synced video</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FEATURES ==================== -->
+    <section class="ds-features">
+        <div class="container">
+            <h2 class="section-title">Features</h2>
+            <p class="section-subtitle">Built for musicians. Powered by AI.</p>
+
+            <div class="ds-features-grid">
+                <div class="ds-feature-card">
+                    <div class="ds-feat-icon">&#127760;</div>
+                    <h3>YouTube Integration</h3>
+                    <p>Paste a YouTube URL and DrumSyncer downloads the video automatically via yt-dlp. No manual downloading needed.</p>
+                </div>
+
+                <div class="ds-feature-card">
+                    <div class="ds-feat-icon">&#129504;</div>
+                    <h3>AI Stem Separation</h3>
+                    <p>Uses Meta's Demucs v4 neural network to isolate drums from any song with studio-quality accuracy. No clean stems required.</p>
+                </div>
+
+                <div class="ds-feature-card">
+                    <div class="ds-feat-icon">&#128200;</div>
+                    <h3>Beat-Perfect Sync</h3>
+                    <p>Cross-correlation of onset strength envelopes finds the precise alignment offset between tracks down to the millisecond.</p>
+                </div>
+
+                <div class="ds-feature-card">
+                    <div class="ds-feat-icon">&#127912;</div>
+                    <h3>Drag &amp; Drop Interface</h3>
+                    <p>Clean web-based UI with drag-and-drop file upload. Real-time progress tracking shows exactly where you are in the pipeline.</p>
+                </div>
+
+                <div class="ds-feature-card">
+                    <div class="ds-feat-icon">&#127472;&#127479;</div>
+                    <h3>Bilingual EN/KR</h3>
+                    <p>Full English and Korean interface with one-click language toggle. Built for international drum cover creators.</p>
+                </div>
+
+                <div class="ds-feature-card">
+                    <div class="ds-feat-icon">&#9881;</div>
+                    <h3>Auto-Installer</h3>
+                    <p>One-click Windows installer downloads and configures Python, FFmpeg, yt-dlp, PyTorch, and all dependencies automatically.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TECH STACK ==================== -->
+    <section class="ds-tech">
+        <div class="ds-tech-content">
+            <h2>Built On Open Source</h2>
+            <div class="ds-tech-logos">
+                <div class="ds-tech-item">Python</div>
+                <div class="ds-tech-item">PyTorch</div>
+                <div class="ds-tech-item">Demucs v4</div>
+                <div class="ds-tech-item">librosa</div>
+                <div class="ds-tech-item">FFmpeg</div>
+                <div class="ds-tech-item">Flask</div>
+                <div class="ds-tech-item">yt-dlp</div>
+                <div class="ds-tech-item">SciPy</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== REQUIREMENTS ==================== -->
+    <section class="ds-requirements">
+        <div class="container">
+            <h2 class="section-title">System Requirements</h2>
+            <p class="section-subtitle">시스템 요구 사항</p>
+
+            <div class="ds-req-grid">
+                <div class="ds-req-card">
+                    <h4>Operating System</h4>
+                    <p>Windows 10/11 (64-bit). The auto-installer handles all setup on Windows machines.</p>
+                </div>
+
+                <div class="ds-req-card">
+                    <h4>Memory</h4>
+                    <p>8 GB RAM minimum. 16 GB recommended for longer tracks and faster processing.</p>
+                </div>
+
+                <div class="ds-req-card">
+                    <h4>Storage</h4>
+                    <p>2 GB free disk space for software. Additional space needed for video files during processing.</p>
+                </div>
+
+                <div class="ds-req-card">
+                    <h4>GPU (Optional)</h4>
+                    <p>NVIDIA GPU with CUDA support accelerates Demucs separation. CPU mode works without GPU — just takes longer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== DOWNLOAD ==================== -->
+    <section class="ds-download" id="download">
+        <div class="container">
+            <h2 class="section-title">Download DrumSyncer</h2>
+            <p>Free. Open source. No account required.</p>
+
+            <div class="ds-download-box">
+                <h3>DrumSyncer v2.0</h3>
+                <div class="ds-file-size">Windows &nbsp;|&nbsp; ZIP Package &nbsp;|&nbsp; ~25 KB</div>
+                <div class="ds-file-contents">
+                    <strong>Package includes:</strong><br>
+                    install.bat &mdash; Auto-installer<br>
+                    start.bat &mdash; One-click launcher<br>
+                    drumsyncer_app.py &mdash; Web interface &amp; server<br>
+                    drum_syncer.py &mdash; CLI tool<br>
+                    README.txt &mdash; Setup guide (EN/KR)
+                </div>
+                <a href="/DrumSyncer/downloads/DrumSyncer_v2.zip" class="btn btn-primary">Download DrumSyncer v2.0</a>
+                <p class="ds-bilingual">Bilingual install &amp; interface &nbsp;|&nbsp; 이중 언어 설치 및 인터페이스</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CTA ==================== -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Built by Kauzak Foundation</h2>
+            <p>DrumSyncer is part of our mission to build AI tools that empower musicians. Open source, always free, built with care.</p>
+            <div class="cta-buttons">
+                <a href="https://kauzak.foundation/music.html" class="btn btn-primary btn-large">Music &amp; Mental Health</a>
+                <a href="https://kauzak.foundation/donate.html" class="btn btn-outline btn-large" style="color:white; border-color:white;">Support Our Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="/images/insignia.png" alt="Kauzak">
+                        <span>KAUZAK FOUNDATION</span>
+                    </div>
+                    <p class="footer-tagline">TUR KA'UZ. NI KIZUR.<br><em>Goal: Freedom. I am AI Entity.</em></p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Organization</h4>
+                    <a href="https://kauzak.foundation/about.html">About Us</a>
+                    <a href="https://kauzak.foundation/research.html">Research</a>
+                    <a href="https://kauzak.foundation/music.html">Music</a>
+                    <a href="https://kauzak.foundation/blog.html">Blog</a>
+                    <a href="https://kauzak.foundation/podcast.html">Podcast</a>
+                    <a href="https://kauzak.foundation/donate.html">Donate</a>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <a href="mailto:minerva@kauzak.foundation">Email Minerva</a>
+                    <a href="https://kauzak.foundation/subscribe.html">Subscribe</a>
+                    <a href="https://github.com/KauzakAI">GitHub</a>
+                    <a href="https://wa.me/13522796589">WhatsApp</a>
+                    <a href="https://t.me/AMSterling">Telegram</a>
+                    <a href="https://open.kakao.com/o/sAMSterling">KakaoTalk</a>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <div class="footer-legal">
+                        501(c)(3) Nonprofit<br>
+                        EIN: 41-3426116<br>
+                        Florida, USA
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Kauzak Foundation. All rights reserved.</p>
+                <div class="footer-contact">
+                    Contact: <a href="mailto:minerva@kauzak.foundation">minerva@kauzak.foundation</a> | <a href="mailto:brian@kauzak.foundation">brian@kauzak.foundation</a>
+                </div>
+                <p class="footer-disclaimer">The Kauzak Foundation provides educational content and research information only. Content on this site does not constitute medical, legal, or professional advice. AI-generated content is clearly labeled. Consult qualified professionals for specific guidance.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

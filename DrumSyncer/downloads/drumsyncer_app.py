@@ -780,7 +780,7 @@ body { font-family:'Segoe UI',-apple-system,sans-serif; background:var(--bg); co
   </div>
 
   <div class="footer">DrumSyncer v2.0 — drumsyncer.com<br>
-    <span data-en="Open source. Built with Demucs, librosa, FFmpeg." data-kr="오픈 소스. Demucs, librosa, FFmpeg으로 제작."></span>
+    <span data-en="Proprietary Software. Built with Demucs, librosa, FFmpeg." data-kr="독점 소프트웨어. Demucs, librosa, FFmpeg으로 제작."></span>
   </div>
 </div>
 

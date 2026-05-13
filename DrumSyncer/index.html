@@ -27,34 +27,53 @@
         /* ── DrumSyncer-specific overrides ── */
         .ds-hero {
             padding: 160px 24px 100px;
-            background: linear-gradient(135deg, var(--color-navy-dark) 0%, #0a1628 50%, var(--color-navy) 100%);
+            background: url('/DrumSyncer/images/drumsyncer-hero.jpg') center center / cover no-repeat;
             text-align: center;
             color: white;
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
+        /* Dark overlay so text is readable over the image */
         .ds-hero::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background:
-                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 30%, rgba(0, 212, 255, 0.05) 0%, transparent 40%);
+                linear-gradient(180deg, rgba(10,14,28,0.75) 0%, rgba(10,14,28,0.55) 40%, rgba(10,14,28,0.80) 100%),
+                radial-gradient(circle at 50% 60%, rgba(0, 212, 255, 0.06) 0%, transparent 50%);
+            z-index: 1;
             pointer-events: none;
         }
 
+        /* ── Glassmorphism content panel ── */
         .ds-hero-content {
             position: relative;
             z-index: 2;
-            max-width: 800px;
+            max-width: 760px;
             margin: 0 auto;
+            background: rgba(10, 14, 28, 0.45);
+            backdrop-filter: blur(18px) saturate(1.4);
+            -webkit-backdrop-filter: blur(18px) saturate(1.4);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 24px;
+            padding: 48px 40px;
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                0 0 60px rgba(0, 212, 255, 0.06);
         }
 
         .ds-badge {
             display: inline-block;
-            background: rgba(0, 212, 255, 0.15);
-            border: 1px solid rgba(0, 212, 255, 0.3);
+            background: rgba(0, 212, 255, 0.12);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 212, 255, 0.25);
             color: var(--color-cyan);
             font-size: 0.85rem;
             font-weight: 600;
@@ -68,10 +87,12 @@
             font-size: 3.5rem;
             color: white;
             margin-bottom: 8px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
         }
 
         .ds-hero h1 span {
             color: var(--color-cyan);
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
         }
 
         .ds-hero .ds-version {
@@ -83,9 +104,9 @@
         }
 
         .ds-hero p {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             opacity: 0.9;
-            margin-bottom: 36px;
+            margin-bottom: 28px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
@@ -103,10 +124,31 @@
             min-width: 200px;
         }
 
+        /* Glassmorphed buttons */
+        .ds-hero-buttons .btn-outline {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .ds-hero-buttons .btn-outline:hover {
+            background: rgba(0, 212, 255, 0.15);
+            border-color: var(--color-cyan);
+            color: var(--color-cyan);
+        }
+
         .ds-lang-note {
             margin-top: 20px;
             font-size: 0.9rem;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.45);
+        }
+
+        @media (max-width: 768px) {
+            .ds-hero { min-height: auto; padding: 140px 16px 80px; }
+            .ds-hero-content { padding: 32px 20px; }
+            .ds-hero h1 { font-size: 2.5rem; }
         }
 
         /* Pipeline section */
@@ -248,6 +290,15 @@
             }
         }
 
+        /* ── Glassmorphism utility ── */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(16px) saturate(1.3);
+            -webkit-backdrop-filter: blur(16px) saturate(1.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
         /* Modes section */
         .ds-modes {
             padding: 80px 24px;
@@ -377,20 +428,24 @@
         }
 
         .ds-tech-item {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px) saturate(1.2);
+            -webkit-backdrop-filter: blur(12px) saturate(1.2);
+            border: 1px solid rgba(255,255,255,0.1);
             padding: 14px 24px;
             border-radius: 10px;
             color: rgba(255,255,255,0.8);
             font-weight: 500;
             font-size: 0.95rem;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.04);
         }
 
         .ds-tech-item:hover {
-            background: rgba(0, 212, 255, 0.1);
+            background: rgba(0, 212, 255, 0.12);
             border-color: var(--color-cyan);
             color: var(--color-cyan);
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.15);
         }
 
         /* Download CTA */
@@ -416,10 +471,12 @@
         .ds-download-box {
             max-width: 500px;
             margin: 0 auto;
-            background: white;
+            background: rgba(26, 54, 93, 0.08);
+            backdrop-filter: blur(12px) saturate(1.2);
+            -webkit-backdrop-filter: blur(12px) saturate(1.2);
             padding: 40px;
             border-radius: 16px;
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 212, 255, 0.05);
             border: 2px solid var(--color-cyan);
         }
 

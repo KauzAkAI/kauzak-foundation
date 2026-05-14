@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate — DrumSyncer | Kauzak Foundation</title>
+    <style>
+        :root {
+            --color-bg: #0a0a0a;
+            --color-surface: #141414;
+            --color-border: #222;
+            --color-cyan: #00d4ff;
+            --color-cyan-dim: rgba(0,212,255,0.15);
+            --color-text: #e0e0e0;
+            --color-muted: #888;
+            --color-dim: #555;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- HEADER --- */
+        header {
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--color-border);
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span { color: var(--color-cyan); }
+
+        nav a {
+            color: var(--color-muted);
+            text-decoration: none;
+            margin-left: 24px;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: var(--color-cyan); }
+
+        /* --- MAIN CONTENT --- */
+        main {
+            max-width: 640px;
+            width: 100%;
+            padding: 60px 24px 100px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        h1 span { color: var(--color-cyan); }
+
+        .subtitle {
+            color: var(--color-muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        /* --- DONATION CARD --- */
+        .donate-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .price-tag {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .price-tag .amount {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--color-cyan);
+        }
+
+        .price-tag .label {
+            color: var(--color-muted);
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        /* --- FORM --- */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--color-muted);
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: var(--color-cyan);
+        }
+
+        .form-group input::placeholder {
+            color: #444;
+        }
+
+        .email-note {
+            color: var(--color-dim);
+            font-size: 0.8rem;
+            margin-top: 6px;
+        }
+
+        /* --- PAYPAL BUTTON AREA --- */
+        .paypal-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        #paypal-button-container {
+            min-height: 55px;
+        }
+
+        .donate-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 16px 32px;
+            background: var(--color-cyan);
+            color: #000;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .donate-btn:hover {
+            background: #33e0ff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(0,212,255,0.3);
+        }
+
+        .donate-btn:disabled {
+            background: #333;
+            color: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* --- SUCCESS STATE --- */
+        .success-card {
+            display: none;
+            background: var(--color-surface);
+            border: 2px solid #00cc66;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .success-card.visible { display: block; }
+
+        .success-card h2 {
+            color: #00cc66;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .success-card p {
+            color: var(--color-muted);
+            line-height: 1.7;
+        }
+
+        .checkmark {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        /* --- FEATURES LIST --- */
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .feature {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .feature h3 {
+            color: #fff;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .feature p {
+            color: var(--color-dim);
+            font-size: 0.82rem;
+            line-height: 1.5;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            width: 100%;
+            padding: 30px 40px;
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+            color: var(--color-dim);
+            font-size: 0.8rem;
+            line-height: 1.8;
+        }
+
+        footer a {
+            color: var(--color-cyan);
+            text-decoration: none;
+        }
+
+        /* --- MOBILE --- */
+        @media (max-width: 600px) {
+            header { padding: 16px 20px; }
+            main { padding: 40px 16px 80px; }
+            h1 { font-size: 1.6rem; }
+            .donate-card { padding: 24px; }
+            .price-tag .amount { font-size: 2.5rem; }
+            .features { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <a href="index.html" class="logo">Drum<span>Syncer</span></a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="donate.html" style="color: var(--color-cyan);">Donate</a>
+        <!-- Language Toggle -->
+        <a href="donate.html" style="color:var(--color-cyan); font-weight:700; font-size:0.85rem; padding:4px 10px; border:1px solid var(--color-cyan); border-radius:6px; background:rgba(0,212,255,0.1); margin-left:12px;">EN</a>
+        <a href="donate-ko.html" style="color:rgba(255,255,255,0.6); font-size:0.85rem; padding:4px 10px; border:1px solid rgba(255,255,255,0.2); border-radius:6px; margin-left:4px;">KR</a>
+    </nav>
+</header>
+
+<!-- MAIN -->
+<main>
+
+    <h1>Activate <span>DrumSyncer</span></h1>
+    <p class="subtitle">
+        A $1.00 donation activates DrumSyncer and supports AI, music, mental health,
+        and education through the Kauzak Foundation — a 501(c)(3) nonprofit.
+        Your license key will be emailed to you instantly after donation.
+    </p>
+
+    <!-- WHAT YOUR DONATION SUPPORTS -->
+    <div class="features">
+        <div class="feature">
+            <div class="feature-icon">&#127911;</div>
+            <h3>Music Education</h3>
+            <p>Supporting musicians and music programs worldwide</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">&#129302;</div>
+            <h3>AI Innovation</h3>
+            <p>Advancing open AI tools for creative production</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">&#128154;</div>
+            <h3>Mental Health</h3>
+            <p>Funding mental health awareness and support</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">&#127891;</div>
+            <h3>Education</h3>
+            <p>Building educational resources and tools</p>
+        </div>
+    </div>
+
+    <!-- DONATION CARD -->
+    <div class="donate-card" id="donate-card">
+        <div class="price-tag">
+            <div class="amount">$1<span style="font-size: 1.5rem; color: #666;">.00</span></div>
+            <div class="label">One-time donation &mdash; Lifetime license</div>
+        </div>
+
+        <div class="form-group">
+            <label for="donor-email">Email Address</label>
+            <input type="email" id="donor-email" placeholder="you@example.com" required>
+            <p class="email-note">Your license key is tied to this email. Use the same email in DrumSyncer to activate.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="donor-name">Name (optional)</label>
+            <input type="text" id="donor-name" placeholder="Your name">
+        </div>
+
+        <div class="paypal-container">
+            <!-- PayPal Hosted Button -->
+            <div id="paypal-container-S27ASRLX6GGBE"></div>
+
+            <!-- Fallback for no-JS -->
+            <noscript>
+                <a href="https://www.paypal.com/ncp/payment/S27ASRLX6GGBE"
+                   class="donate-btn" target="_blank">
+                    Donate $1 via PayPal
+                </a>
+            </noscript>
+        </div>
+    </div>
+
+    <!-- SUCCESS CARD (shown after donation) -->
+    <div class="success-card" id="success-card">
+        <div class="checkmark">&#10003;</div>
+        <h2>Thank You!</h2>
+        <p>
+            Your donation has been received.<br><br>
+            A license key has been sent to <strong id="success-email"></strong>.<br>
+            Check your inbox (and spam folder) for an email from
+            <strong>brian@kauzak.foundation</strong>.<br><br>
+            Copy the license key from the email and paste it into DrumSyncer to activate.
+        </p>
+    </div>
+
+    <!-- ALREADY HAVE A KEY -->
+    <div style="text-align: center; margin-top: 20px;">
+        <p style="color: var(--color-dim); font-size: 0.85rem;">
+            Already donated? Check your email for your license key.<br>
+            Lost your key? Donate again with the same email — same key, no extra charge concept.<br>
+            Questions? <a href="mailto:brian@kauzak.foundation" style="color: var(--color-cyan);">brian@kauzak.foundation</a>
+        </p>
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <a href="https://drumsyncer.com">drumsyncer.com</a> &mdash; Kauzak Foundation, Inc.<br>
+    501(c)(3) Nonprofit Organization &mdash; EIN: 41-3426116<br>
+    Copyright &copy; 2026 Kauzak Foundation, Inc. All rights reserved.
+</footer>
+
+<!-- ============================================================ -->
+<!--  PAYPAL HOSTED BUTTON                                         -->
+<!--  Button ID: S27ASRLX6GGBE                                    -->
+<!--  Created: May 13, 2026                                        -->
+<!-- ============================================================ -->
+
+<!-- PayPal JS SDK — Hosted Buttons -->
+<script src="https://www.paypal.com/sdk/js?client-id=BAAqxWWSAefRCOl-ONvZeFWANMnstBG8ZFW71_AJnh1SqdJfNVBUb-If_CuMQuW1VqY2_jBqAEoJVTTYGk&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
+
+<script>
+    // Render PayPal Hosted Button
+    paypal.HostedButtons({
+        hostedButtonId: "S27ASRLX6GGBE",
+    }).render("#paypal-container-S27ASRLX6GGBE");
+</script>
+
+</body>
+</html>

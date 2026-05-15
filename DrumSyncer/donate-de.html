@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donate — DrumSyncer | Kauzak Foundation</title>
+    <title>Spenden — DrumSyncer | Kauzak Foundation</title>
     <style>
         :root {
             --color-bg: #0a0a0a;
@@ -53,15 +53,43 @@
 
         .logo span { color: var(--color-cyan); }
 
+        nav { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; }
+
         nav a {
             color: var(--color-muted);
             text-decoration: none;
-            margin-left: 24px;
+            margin-left: 16px;
             font-size: 0.9rem;
             transition: color 0.2s;
         }
 
         nav a:hover { color: var(--color-cyan); }
+
+        .lang-btn {
+            font-size: 0.8rem;
+            padding: 3px 8px;
+            border-radius: 5px;
+            margin-left: 4px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active {
+            color: var(--color-cyan);
+            font-weight: 700;
+            border: 1px solid var(--color-cyan);
+            background: rgba(0,212,255,0.1);
+        }
+
+        .lang-btn.inactive {
+            color: rgba(255,255,255,0.5);
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .lang-btn.inactive:hover {
+            color: rgba(255,255,255,0.8);
+            border-color: rgba(255,255,255,0.4);
+        }
 
         /* --- MAIN CONTENT --- */
         main {
@@ -158,10 +186,6 @@
             text-align: center;
         }
 
-        #paypal-button-container {
-            min-height: 55px;
-        }
-
         .donate-btn {
             display: inline-block;
             width: 100%;
@@ -182,14 +206,6 @@
             background: #33e0ff;
             transform: translateY(-1px);
             box-shadow: 0 4px 20px rgba(0,212,255,0.3);
-        }
-
-        .donate-btn:disabled {
-            background: #333;
-            color: #666;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
         }
 
         /* --- SUCCESS STATE --- */
@@ -253,6 +269,53 @@
             line-height: 1.5;
         }
 
+        /* --- STEPS --- */
+        .steps {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .steps h2 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .step-num {
+            background: var(--color-cyan);
+            color: #000;
+            font-weight: 800;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            margin-right: 14px;
+            margin-top: 2px;
+        }
+
+        .step p {
+            color: var(--color-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .step p strong {
+            color: #fff;
+        }
+
         /* --- FOOTER --- */
         footer {
             width: 100%;
@@ -286,50 +349,66 @@
 <header>
     <a href="index.html" class="logo">Drum<span>Syncer</span></a>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="donate.html" style="color: var(--color-cyan);">Donate</a>
-        <!-- Language Toggle -->
+        <a href="index.html">Startseite</a>
+        <a href="donate-de.html" style="color: var(--color-cyan);">Spenden</a>
         <span style="margin-left:12px;"></span>
-        <a href="donate.html" style="color:var(--color-cyan); font-weight:700; font-size:0.8rem; padding:3px 8px; border:1px solid var(--color-cyan); border-radius:5px; background:rgba(0,212,255,0.1); margin-left:4px; text-decoration:none;">EN</a>
-        <a href="donate-ko.html" style="color:rgba(255,255,255,0.5); font-size:0.8rem; padding:3px 8px; border:1px solid rgba(255,255,255,0.15); border-radius:5px; margin-left:4px; text-decoration:none;">KR</a>
-        <a href="donate-ja.html" style="color:rgba(255,255,255,0.5); font-size:0.8rem; padding:3px 8px; border:1px solid rgba(255,255,255,0.15); border-radius:5px; margin-left:4px; text-decoration:none;">JA</a>
-        <a href="donate-zh.html" style="color:rgba(255,255,255,0.5); font-size:0.8rem; padding:3px 8px; border:1px solid rgba(255,255,255,0.15); border-radius:5px; margin-left:4px; text-decoration:none;">ZH</a>
-        <a href="donate-es.html" style="color:rgba(255,255,255,0.5); font-size:0.8rem; padding:3px 8px; border:1px solid rgba(255,255,255,0.15); border-radius:5px; margin-left:4px; text-decoration:none;">ES</a>
-        <a href="donate-de.html" style="color:rgba(255,255,255,0.5); font-size:0.8rem; padding:3px 8px; border:1px solid rgba(255,255,255,0.15); border-radius:5px; margin-left:4px; text-decoration:none;">DE</a>
+        <a href="donate.html" class="lang-btn inactive">EN</a>
+        <a href="donate-ko.html" class="lang-btn inactive">KR</a>
+        <a href="donate-ja.html" class="lang-btn inactive">JA</a>
+        <a href="donate-zh.html" class="lang-btn inactive">ZH</a>
+        <a href="donate-es.html" class="lang-btn inactive">ES</a>
+        <a href="donate-de.html" class="lang-btn active">DE</a>
     </nav>
 </header>
 
 <!-- MAIN -->
 <main>
 
-    <h1>Activate <span>DrumSyncer</span></h1>
+    <h1><span>DrumSyncer</span> aktivieren</h1>
     <p class="subtitle">
-        A $1.00 donation activates DrumSyncer and supports AI, music, mental health,
-        and education through the Kauzak Foundation — a 501(c)(3) nonprofit.
-        Your license key will be emailed to you instantly after donation.
+        Eine Spende von $1,00 aktiviert DrumSyncer und unterst&uuml;tzt KI, Musik, psychische Gesundheit
+        und Bildung durch die Kauzak Foundation &mdash; eine gemeinn&uuml;tzige 501(c)(3)-Organisation in den USA.
+        Ihr Lizenzschl&uuml;ssel wird Ihnen sofort nach der Spende per E-Mail zugeschickt.
     </p>
 
-    <!-- WHAT YOUR DONATION SUPPORTS -->
+    <!-- Aktivierungsschritte -->
+    <div class="steps">
+        <h2>&#128221; So aktivieren Sie (3 einfache Schritte)</h2>
+        <div class="step">
+            <div class="step-num">1</div>
+            <p><strong>Spenden Sie unten $1</strong> &mdash; Geben Sie Ihre E-Mail-Adresse ein und zahlen Sie $1,00 &uuml;ber PayPal. Sie ben&ouml;tigen kein PayPal-Konto &mdash; Sie k&ouml;nnen auch mit Kredit- oder Debitkarte bezahlen.</p>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <p><strong>Pr&uuml;fen Sie Ihre E-Mail auf den Lizenzschl&uuml;ssel</strong> &mdash; Nach der Zahlung erhalten Sie eine E-Mail von <strong>brian@kauzak.foundation</strong> mit Ihrem Lizenzschl&uuml;ssel. Bitte pr&uuml;fen Sie auch Ihren Spam-Ordner.</p>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <p><strong>Geben Sie den Schl&uuml;ssel in DrumSyncer ein</strong> &mdash; Starten Sie DrumSyncer, klicken Sie auf &bdquo;Enter License Key&ldquo; und geben Sie den Schl&uuml;ssel (DS-XXXX-XXXX-XXXX-XXXX) sowie Ihre E-Mail-Adresse ein. Fertig!</p>
+        </div>
+    </div>
+
+    <!-- Ihre Spende unterst&uuml;tzt -->
     <div class="features">
         <div class="feature">
             <div class="feature-icon">&#127911;</div>
-            <h3>Music Education</h3>
-            <p>Supporting musicians and music programs worldwide</p>
+            <h3>Musikbildung</h3>
+            <p>Unterst&uuml;tzung von Musikern und Musikprogrammen weltweit</p>
         </div>
         <div class="feature">
             <div class="feature-icon">&#129302;</div>
-            <h3>AI Innovation</h3>
-            <p>Advancing open AI tools for creative production</p>
+            <h3>KI-Innovation</h3>
+            <p>F&ouml;rderung offener KI-Tools f&uuml;r kreative Produktion</p>
         </div>
         <div class="feature">
             <div class="feature-icon">&#128154;</div>
-            <h3>Mental Health</h3>
-            <p>Funding mental health awareness and support</p>
+            <h3>Psychische Gesundheit</h3>
+            <p>Finanzierung von Aufkl&auml;rung und Unterst&uuml;tzung f&uuml;r psychische Gesundheit</p>
         </div>
         <div class="feature">
             <div class="feature-icon">&#127891;</div>
-            <h3>Education</h3>
-            <p>Building educational resources and tools</p>
+            <h3>Bildung</h3>
+            <p>Aufbau von Bildungsressourcen und -werkzeugen</p>
         </div>
     </div>
 
@@ -337,18 +416,18 @@
     <div class="donate-card" id="donate-card">
         <div class="price-tag">
             <div class="amount">$1<span style="font-size: 1.5rem; color: #666;">.00</span></div>
-            <div class="label">One-time donation &mdash; Lifetime license</div>
+            <div class="label">Einmalige Spende &mdash; Lebenslange Lizenz</div>
         </div>
 
         <div class="form-group">
-            <label for="donor-email">Email Address</label>
-            <input type="email" id="donor-email" placeholder="you@example.com" required>
-            <p class="email-note">Your license key is tied to this email. Use the same email in DrumSyncer to activate.</p>
+            <label for="donor-email">E-MAIL-ADRESSE</label>
+            <input type="email" id="donor-email" placeholder="ihre@email.de" required>
+            <p class="email-note">Ihr Lizenzschl&uuml;ssel ist mit dieser E-Mail-Adresse verkn&uuml;pft. Verwenden Sie dieselbe E-Mail in DrumSyncer zur Aktivierung.</p>
         </div>
 
         <div class="form-group">
-            <label for="donor-name">Name (optional)</label>
-            <input type="text" id="donor-name" placeholder="Your name">
+            <label for="donor-name">NAME (OPTIONAL)</label>
+            <input type="text" id="donor-name" placeholder="Ihr Name">
         </div>
 
         <div class="paypal-container">
@@ -359,31 +438,31 @@
             <noscript>
                 <a href="https://www.paypal.com/ncp/payment/S27ASRLX6GGBE"
                    class="donate-btn" target="_blank">
-                    Donate $1 via PayPal
+                    $1 &uuml;ber PayPal spenden
                 </a>
             </noscript>
         </div>
     </div>
 
-    <!-- SUCCESS CARD (shown after donation) -->
+    <!-- SUCCESS CARD -->
     <div class="success-card" id="success-card">
         <div class="checkmark">&#10003;</div>
-        <h2>Thank You!</h2>
+        <h2>Vielen Dank!</h2>
         <p>
-            Your donation has been received.<br><br>
-            A license key has been sent to <strong id="success-email"></strong>.<br>
-            Check your inbox (and spam folder) for an email from
-            <strong>brian@kauzak.foundation</strong>.<br><br>
-            Copy the license key from the email and paste it into DrumSyncer to activate.
+            Ihre Spende wurde empfangen.<br><br>
+            Ein Lizenzschl&uuml;ssel wurde an <strong id="success-email"></strong> gesendet.<br>
+            Suchen Sie nach einer E-Mail von <strong>brian@kauzak.foundation</strong>.<br>
+            (Bitte pr&uuml;fen Sie auch Ihren Spam-Ordner)<br><br>
+            Kopieren Sie den Lizenzschl&uuml;ssel aus der E-Mail und f&uuml;gen Sie ihn in DrumSyncer ein, um zu aktivieren.
         </p>
     </div>
 
     <!-- ALREADY HAVE A KEY -->
     <div style="text-align: center; margin-top: 20px;">
         <p style="color: var(--color-dim); font-size: 0.85rem;">
-            Already donated? Check your email for your license key.<br>
-            Lost your key? Donate again with the same email — same key, no extra charge concept.<br>
-            Questions? <a href="mailto:brian@kauzak.foundation" style="color: var(--color-cyan);">brian@kauzak.foundation</a>
+            Bereits gespendet? Suchen Sie Ihren Lizenzschl&uuml;ssel in Ihrer E-Mail.<br>
+            Schl&uuml;ssel verloren? Spenden Sie erneut mit derselben E-Mail &mdash; Sie erhalten denselben Schl&uuml;ssel.<br>
+            Fragen: <a href="mailto:brian@kauzak.foundation" style="color: var(--color-cyan);">brian@kauzak.foundation</a>
         </p>
     </div>
 
@@ -392,15 +471,9 @@
 <!-- FOOTER -->
 <footer>
     <a href="https://drumsyncer.com">drumsyncer.com</a> &mdash; Kauzak Foundation, Inc.<br>
-    501(c)(3) Nonprofit Organization &mdash; EIN: 41-3426116<br>
+    Gemeinn&uuml;tzige Organisation 501(c)(3) &mdash; EIN: 41-3426116<br>
     Copyright &copy; 2026 Kauzak Foundation, Inc. All rights reserved.
 </footer>
-
-<!-- ============================================================ -->
-<!--  PAYPAL HOSTED BUTTON                                         -->
-<!--  Button ID: S27ASRLX6GGBE                                    -->
-<!--  Created: May 13, 2026                                        -->
-<!-- ============================================================ -->
 
 <!-- PayPal JS SDK — Hosted Buttons -->
 <script src="https://www.paypal.com/sdk/js?client-id=BAAqxWWSAefRCOl-ONvZeFWANMnstBG8ZFW71_AJnh1SqdJfNVBUb-If_CuMQuW1VqY2_jBqAEoJVTTYGk&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>

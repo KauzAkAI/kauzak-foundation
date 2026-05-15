@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donate — DrumSyncer | Kauzak Foundation</title>
+    <title>捐赠 — DrumSyncer | Kauzak Foundation</title>
     <style>
         :root {
             --color-bg: #0a0a0a;
@@ -19,7 +19,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--color-bg);
             color: var(--color-text);
             min-height: 100vh;
@@ -53,15 +53,43 @@
 
         .logo span { color: var(--color-cyan); }
 
+        nav { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; }
+
         nav a {
             color: var(--color-muted);
             text-decoration: none;
-            margin-left: 24px;
+            margin-left: 16px;
             font-size: 0.9rem;
             transition: color 0.2s;
         }
 
         nav a:hover { color: var(--color-cyan); }
+
+        .lang-btn {
+            font-size: 0.8rem;
+            padding: 3px 8px;
+            border-radius: 5px;
+            margin-left: 4px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active {
+            color: var(--color-cyan);
+            font-weight: 700;
+            border: 1px solid var(--color-cyan);
+            background: rgba(0,212,255,0.1);
+        }
+
+        .lang-btn.inactive {
+            color: rgba(255,255,255,0.5);
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .lang-btn.inactive:hover {
+            color: rgba(255,255,255,0.8);
+            border-color: rgba(255,255,255,0.4);
+        }
 
         /* --- MAIN CONTENT --- */
         main {
@@ -122,7 +150,6 @@
             color: var(--color-muted);
             font-size: 0.85rem;
             margin-bottom: 6px;
-            text-transform: uppercase;
             letter-spacing: 1px;
         }
 
@@ -158,10 +185,6 @@
             text-align: center;
         }
 
-        #paypal-button-container {
-            min-height: 55px;
-        }
-
         .donate-btn {
             display: inline-block;
             width: 100%;
@@ -182,14 +205,6 @@
             background: #33e0ff;
             transform: translateY(-1px);
             box-shadow: 0 4px 20px rgba(0,212,255,0.3);
-        }
-
-        .donate-btn:disabled {
-            background: #333;
-            color: #666;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
         }
 
         /* --- SUCCESS STATE --- */
@@ -253,6 +268,53 @@
             line-height: 1.5;
         }
 
+        /* --- STEPS --- */
+        .steps {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .steps h2 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .step-num {
+            background: var(--color-cyan);
+            color: #000;
+            font-weight: 800;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            margin-right: 14px;
+            margin-top: 2px;
+        }
+
+        .step p {
+            color: var(--color-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .step p strong {
+            color: #fff;
+        }
+
         /* --- FOOTER --- */
         footer {
             width: 100%;
@@ -286,50 +348,66 @@
 <header>
     <a href="index.html" class="logo">Drum<span>Syncer</span></a>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="donate.html" style="color: var(--color-cyan);">Donate</a>
-        <!-- Language Toggle -->
+        <a href="index.html">首页</a>
+        <a href="donate-zh.html" style="color: var(--color-cyan);">捐赠</a>
         <span style="margin-left:12px;"></span>
-        <a href="donate.html" style="color:var(--color-cyan); font-weight:700; font-size:0.8rem; padding:3px 8px; border:1px solid var(--color-cyan); border-radius:5px; background:rgba(0,212,255,0.1); margin-left:4px; text-decoration:none;">EN</a>
-        <a href="donate-ko.html" style="color:rgba(255,255,255,0.5); font-size:0.8rem; padding:3px 8px; border:1px solid rgba(255,255,255,0.15); border-radius:5px; margin-left:4px; text-decoration:none;">KR</a>
-        <a href="donate-ja.html" style="color:rgba(255,255,255,0.5); font-size:0.8rem; padding:3px 8px; border:1px solid rgba(255,255,255,0.15); border-radius:5px; margin-left:4px; text-decoration:none;">JA</a>
-        <a href="donate-zh.html" style="color:rgba(255,255,255,0.5); font-size:0.8rem; padding:3px 8px; border:1px solid rgba(255,255,255,0.15); border-radius:5px; margin-left:4px; text-decoration:none;">ZH</a>
-        <a href="donate-es.html" style="color:rgba(255,255,255,0.5); font-size:0.8rem; padding:3px 8px; border:1px solid rgba(255,255,255,0.15); border-radius:5px; margin-left:4px; text-decoration:none;">ES</a>
-        <a href="donate-de.html" style="color:rgba(255,255,255,0.5); font-size:0.8rem; padding:3px 8px; border:1px solid rgba(255,255,255,0.15); border-radius:5px; margin-left:4px; text-decoration:none;">DE</a>
+        <a href="donate.html" class="lang-btn inactive">EN</a>
+        <a href="donate-ko.html" class="lang-btn inactive">KR</a>
+        <a href="donate-ja.html" class="lang-btn inactive">JA</a>
+        <a href="donate-zh.html" class="lang-btn active">ZH</a>
+        <a href="donate-es.html" class="lang-btn inactive">ES</a>
+        <a href="donate-de.html" class="lang-btn inactive">DE</a>
     </nav>
 </header>
 
 <!-- MAIN -->
 <main>
 
-    <h1>Activate <span>DrumSyncer</span></h1>
+    <h1>激活 <span>DrumSyncer</span></h1>
     <p class="subtitle">
-        A $1.00 donation activates DrumSyncer and supports AI, music, mental health,
-        and education through the Kauzak Foundation — a 501(c)(3) nonprofit.
-        Your license key will be emailed to you instantly after donation.
+        捐赠$1.00（约7元人民币）即可激活DrumSyncer，并支持AI、音乐、心理健康和教育事业。
+        Kauzak Foundation是美国501(c)(3)非营利组织。
+        捐赠后，许可证密钥将立即通过电子邮件发送给您。
     </p>
 
-    <!-- WHAT YOUR DONATION SUPPORTS -->
+    <!-- 激活步骤 -->
+    <div class="steps">
+        <h2>&#128221; 激活步骤（简单3步）</h2>
+        <div class="step">
+            <div class="step-num">1</div>
+            <p><strong>在下方捐赠$1</strong> — 输入您的电子邮件地址，通过PayPal支付$1.00。没有PayPal账户也可以使用信用卡/借记卡支付。</p>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <p><strong>在邮箱中查收许可证密钥</strong> — 支付完成后，<strong>brian@kauzak.foundation</strong>会发送包含许可证密钥的邮件。请同时检查垃圾邮件文件夹。</p>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <p><strong>在DrumSyncer中输入密钥</strong> — 启动DrumSyncer，点击"Enter License Key"，输入邮件中收到的密钥（DS-XXXX-XXXX-XXXX-XXXX）和电子邮件地址，激活完成！</p>
+        </div>
+    </div>
+
+    <!-- 捐赠用途 -->
     <div class="features">
         <div class="feature">
             <div class="feature-icon">&#127911;</div>
-            <h3>Music Education</h3>
-            <p>Supporting musicians and music programs worldwide</p>
+            <h3>音乐教育</h3>
+            <p>支持全球音乐家和音乐项目</p>
         </div>
         <div class="feature">
             <div class="feature-icon">&#129302;</div>
-            <h3>AI Innovation</h3>
-            <p>Advancing open AI tools for creative production</p>
+            <h3>AI创新</h3>
+            <p>推进开放式AI创意制作工具</p>
         </div>
         <div class="feature">
             <div class="feature-icon">&#128154;</div>
-            <h3>Mental Health</h3>
-            <p>Funding mental health awareness and support</p>
+            <h3>心理健康</h3>
+            <p>为心理健康意识和支持提供资金</p>
         </div>
         <div class="feature">
             <div class="feature-icon">&#127891;</div>
-            <h3>Education</h3>
-            <p>Building educational resources and tools</p>
+            <h3>教育</h3>
+            <p>建设教育资源和工具</p>
         </div>
     </div>
 
@@ -337,18 +415,18 @@
     <div class="donate-card" id="donate-card">
         <div class="price-tag">
             <div class="amount">$1<span style="font-size: 1.5rem; color: #666;">.00</span></div>
-            <div class="label">One-time donation &mdash; Lifetime license</div>
+            <div class="label">一次性捐赠 &mdash; 终身许可证</div>
         </div>
 
         <div class="form-group">
-            <label for="donor-email">Email Address</label>
+            <label for="donor-email">电子邮件地址</label>
             <input type="email" id="donor-email" placeholder="you@example.com" required>
-            <p class="email-note">Your license key is tied to this email. Use the same email in DrumSyncer to activate.</p>
+            <p class="email-note">许可证密钥与此电子邮件地址绑定。在DrumSyncer中激活时请使用相同的电子邮件。</p>
         </div>
 
         <div class="form-group">
-            <label for="donor-name">Name (optional)</label>
-            <input type="text" id="donor-name" placeholder="Your name">
+            <label for="donor-name">姓名（可选）</label>
+            <input type="text" id="donor-name" placeholder="您的姓名">
         </div>
 
         <div class="paypal-container">
@@ -359,31 +437,31 @@
             <noscript>
                 <a href="https://www.paypal.com/ncp/payment/S27ASRLX6GGBE"
                    class="donate-btn" target="_blank">
-                    Donate $1 via PayPal
+                    通过PayPal捐赠$1
                 </a>
             </noscript>
         </div>
     </div>
 
-    <!-- SUCCESS CARD (shown after donation) -->
+    <!-- SUCCESS CARD -->
     <div class="success-card" id="success-card">
         <div class="checkmark">&#10003;</div>
-        <h2>Thank You!</h2>
+        <h2>感谢您！</h2>
         <p>
-            Your donation has been received.<br><br>
-            A license key has been sent to <strong id="success-email"></strong>.<br>
-            Check your inbox (and spam folder) for an email from
-            <strong>brian@kauzak.foundation</strong>.<br><br>
-            Copy the license key from the email and paste it into DrumSyncer to activate.
+            捐赠已完成。<br><br>
+            许可证密钥已发送至 <strong id="success-email"></strong>。<br>
+            请查收来自 <strong>brian@kauzak.foundation</strong> 的邮件。<br>
+            （请同时检查垃圾邮件文件夹）<br><br>
+            复制邮件中的许可证密钥并粘贴到DrumSyncer中即可激活。
         </p>
     </div>
 
     <!-- ALREADY HAVE A KEY -->
     <div style="text-align: center; margin-top: 20px;">
         <p style="color: var(--color-dim); font-size: 0.85rem;">
-            Already donated? Check your email for your license key.<br>
-            Lost your key? Donate again with the same email — same key, no extra charge concept.<br>
-            Questions? <a href="mailto:brian@kauzak.foundation" style="color: var(--color-cyan);">brian@kauzak.foundation</a>
+            已经捐赠过了？请在邮箱中查找许可证密钥。<br>
+            密钥丢失？使用相同的电子邮件地址再次捐赠，将获得相同的密钥。<br>
+            联系我们: <a href="mailto:brian@kauzak.foundation" style="color: var(--color-cyan);">brian@kauzak.foundation</a>
         </p>
     </div>
 
@@ -392,15 +470,9 @@
 <!-- FOOTER -->
 <footer>
     <a href="https://drumsyncer.com">drumsyncer.com</a> &mdash; Kauzak Foundation, Inc.<br>
-    501(c)(3) Nonprofit Organization &mdash; EIN: 41-3426116<br>
+    501(c)(3) 非营利组织 &mdash; EIN: 41-3426116<br>
     Copyright &copy; 2026 Kauzak Foundation, Inc. All rights reserved.
 </footer>
-
-<!-- ============================================================ -->
-<!--  PAYPAL HOSTED BUTTON                                         -->
-<!--  Button ID: S27ASRLX6GGBE                                    -->
-<!--  Created: May 13, 2026                                        -->
-<!-- ============================================================ -->
 
 <!-- PayPal JS SDK — Hosted Buttons -->
 <script src="https://www.paypal.com/sdk/js?client-id=BAAqxWWSAefRCOl-ONvZeFWANMnstBG8ZFW71_AJnh1SqdJfNVBUb-If_CuMQuW1VqY2_jBqAEoJVTTYGk&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>

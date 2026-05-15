@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donate — DrumSyncer | Kauzak Foundation</title>
+    <title>기부하기 — 드럼싱커 | 카우작 재단</title>
     <style>
         :root {
             --color-bg: #0a0a0a;
@@ -19,7 +19,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--color-bg);
             color: var(--color-text);
             min-height: 100vh;
@@ -158,10 +158,6 @@
             text-align: center;
         }
 
-        #paypal-button-container {
-            min-height: 55px;
-        }
-
         .donate-btn {
             display: inline-block;
             width: 100%;
@@ -182,14 +178,6 @@
             background: #33e0ff;
             transform: translateY(-1px);
             box-shadow: 0 4px 20px rgba(0,212,255,0.3);
-        }
-
-        .donate-btn:disabled {
-            background: #333;
-            color: #666;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
         }
 
         /* --- SUCCESS STATE --- */
@@ -253,6 +241,53 @@
             line-height: 1.5;
         }
 
+        /* --- STEPS --- */
+        .steps {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .steps h2 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .step-num {
+            background: var(--color-cyan);
+            color: #000;
+            font-weight: 800;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            margin-right: 14px;
+            margin-top: 2px;
+        }
+
+        .step p {
+            color: var(--color-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .step p strong {
+            color: #fff;
+        }
+
         /* --- FOOTER --- */
         footer {
             width: 100%;
@@ -284,14 +319,14 @@
 
 <!-- HEADER -->
 <header>
-    <a href="index.html" class="logo">Drum<span>Syncer</span></a>
+    <a href="drumsyncer-ko.html" class="logo">드럼<span>싱커</span></a>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="donate.html" style="color: var(--color-cyan);">Donate</a>
+        <a href="drumsyncer-ko.html">홈</a>
+        <a href="donate-ko.html" style="color: var(--color-cyan);">기부하기</a>
         <!-- Language Toggle -->
         <span style="margin-left:12px;"></span>
-        <a href="donate.html" style="color:var(--color-cyan); font-weight:700; font-size:0.8rem; padding:3px 8px; border:1px solid var(--color-cyan); border-radius:5px; background:rgba(0,212,255,0.1); margin-left:4px; text-decoration:none;">EN</a>
-        <a href="donate-ko.html" style="color:rgba(255,255,255,0.5); font-size:0.8rem; padding:3px 8px; border:1px solid rgba(255,255,255,0.15); border-radius:5px; margin-left:4px; text-decoration:none;">KR</a>
+        <a href="donate.html" style="color:rgba(255,255,255,0.5); font-size:0.8rem; padding:3px 8px; border:1px solid rgba(255,255,255,0.15); border-radius:5px; margin-left:4px; text-decoration:none;">EN</a>
+        <a href="donate-ko.html" style="color:var(--color-cyan); font-weight:700; font-size:0.8rem; padding:3px 8px; border:1px solid var(--color-cyan); border-radius:5px; background:rgba(0,212,255,0.1); margin-left:4px; text-decoration:none;">KR</a>
         <a href="donate-ja.html" style="color:rgba(255,255,255,0.5); font-size:0.8rem; padding:3px 8px; border:1px solid rgba(255,255,255,0.15); border-radius:5px; margin-left:4px; text-decoration:none;">JA</a>
         <a href="donate-zh.html" style="color:rgba(255,255,255,0.5); font-size:0.8rem; padding:3px 8px; border:1px solid rgba(255,255,255,0.15); border-radius:5px; margin-left:4px; text-decoration:none;">ZH</a>
         <a href="donate-es.html" style="color:rgba(255,255,255,0.5); font-size:0.8rem; padding:3px 8px; border:1px solid rgba(255,255,255,0.15); border-radius:5px; margin-left:4px; text-decoration:none;">ES</a>
@@ -302,34 +337,51 @@
 <!-- MAIN -->
 <main>
 
-    <h1>Activate <span>DrumSyncer</span></h1>
+    <h1><span>드럼싱커</span> 활성화</h1>
     <p class="subtitle">
-        A $1.00 donation activates DrumSyncer and supports AI, music, mental health,
-        and education through the Kauzak Foundation — a 501(c)(3) nonprofit.
-        Your license key will be emailed to you instantly after donation.
+        $1.00(약 1,300원) 기부로 드럼싱커를 활성화하고, AI, 음악, 정신건강, 교육을 지원하세요.
+        카우작 재단(Kauzak Foundation)은 미국 501(c)(3) 비영리단체입니다.
+        기부 후 라이선스 키가 이메일로 즉시 발송됩니다.
     </p>
 
-    <!-- WHAT YOUR DONATION SUPPORTS -->
+    <!-- 활성화 방법 안내 -->
+    <div class="steps">
+        <h2>&#128221; 활성화 방법 (간단 3단계)</h2>
+        <div class="step">
+            <div class="step-num">1</div>
+            <p><strong>아래에서 $1 기부하기</strong> — 이메일 주소를 입력하고 PayPal로 $1.00를 결제합니다. PayPal 계정이 없어도 신용카드/체크카드로 결제할 수 있습니다.</p>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <p><strong>이메일에서 라이선스 키 확인</strong> — 결제 완료 후 <strong>brian@kauzak.foundation</strong>에서 라이선스 키가 포함된 이메일이 발송됩니다. 스팸 폴더도 확인해 주세요.</p>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <p><strong>드럼싱커에서 키 입력</strong> — 드럼싱커를 실행하고 "Enter License Key"를 클릭한 후, 이메일로 받은 키(DS-XXXX-XXXX-XXXX-XXXX)와 이메일 주소를 입력하면 활성화 완료!</p>
+        </div>
+    </div>
+
+    <!-- 기부금 사용처 -->
     <div class="features">
         <div class="feature">
             <div class="feature-icon">&#127911;</div>
-            <h3>Music Education</h3>
-            <p>Supporting musicians and music programs worldwide</p>
+            <h3>음악 교육</h3>
+            <p>전 세계 음악가와 음악 프로그램 지원</p>
         </div>
         <div class="feature">
             <div class="feature-icon">&#129302;</div>
-            <h3>AI Innovation</h3>
-            <p>Advancing open AI tools for creative production</p>
+            <h3>AI 혁신</h3>
+            <p>창작 제작을 위한 오픈 AI 도구 발전</p>
         </div>
         <div class="feature">
             <div class="feature-icon">&#128154;</div>
-            <h3>Mental Health</h3>
-            <p>Funding mental health awareness and support</p>
+            <h3>정신건강</h3>
+            <p>정신건강 인식 개선 및 지원 기금</p>
         </div>
         <div class="feature">
             <div class="feature-icon">&#127891;</div>
-            <h3>Education</h3>
-            <p>Building educational resources and tools</p>
+            <h3>교육</h3>
+            <p>교육 자원 및 도구 구축</p>
         </div>
     </div>
 
@@ -337,18 +389,18 @@
     <div class="donate-card" id="donate-card">
         <div class="price-tag">
             <div class="amount">$1<span style="font-size: 1.5rem; color: #666;">.00</span></div>
-            <div class="label">One-time donation &mdash; Lifetime license</div>
+            <div class="label">일회성 기부 &mdash; 평생 라이선스</div>
         </div>
 
         <div class="form-group">
-            <label for="donor-email">Email Address</label>
+            <label for="donor-email">이메일 주소</label>
             <input type="email" id="donor-email" placeholder="you@example.com" required>
-            <p class="email-note">Your license key is tied to this email. Use the same email in DrumSyncer to activate.</p>
+            <p class="email-note">라이선스 키는 이 이메일 주소에 연결됩니다. 드럼싱커 활성화 시 동일한 이메일을 사용하세요.</p>
         </div>
 
         <div class="form-group">
-            <label for="donor-name">Name (optional)</label>
-            <input type="text" id="donor-name" placeholder="Your name">
+            <label for="donor-name">이름 (선택사항)</label>
+            <input type="text" id="donor-name" placeholder="이름">
         </div>
 
         <div class="paypal-container">
@@ -359,7 +411,7 @@
             <noscript>
                 <a href="https://www.paypal.com/ncp/payment/S27ASRLX6GGBE"
                    class="donate-btn" target="_blank">
-                    Donate $1 via PayPal
+                    PayPal로 $1 기부하기
                 </a>
             </noscript>
         </div>
@@ -368,22 +420,22 @@
     <!-- SUCCESS CARD (shown after donation) -->
     <div class="success-card" id="success-card">
         <div class="checkmark">&#10003;</div>
-        <h2>Thank You!</h2>
+        <h2>감사합니다!</h2>
         <p>
-            Your donation has been received.<br><br>
-            A license key has been sent to <strong id="success-email"></strong>.<br>
-            Check your inbox (and spam folder) for an email from
-            <strong>brian@kauzak.foundation</strong>.<br><br>
-            Copy the license key from the email and paste it into DrumSyncer to activate.
+            기부가 완료되었습니다.<br><br>
+            라이선스 키가 <strong id="success-email"></strong>(으)로 발송되었습니다.<br>
+            <strong>brian@kauzak.foundation</strong>에서 보낸 이메일을 확인하세요.<br>
+            (스팸 폴더도 확인해 주세요)<br><br>
+            이메일의 라이선스 키를 복사하여 드럼싱커에 붙여넣으면 활성화됩니다.
         </p>
     </div>
 
     <!-- ALREADY HAVE A KEY -->
     <div style="text-align: center; margin-top: 20px;">
         <p style="color: var(--color-dim); font-size: 0.85rem;">
-            Already donated? Check your email for your license key.<br>
-            Lost your key? Donate again with the same email — same key, no extra charge concept.<br>
-            Questions? <a href="mailto:brian@kauzak.foundation" style="color: var(--color-cyan);">brian@kauzak.foundation</a>
+            이미 기부하셨나요? 이메일에서 라이선스 키를 확인하세요.<br>
+            키를 분실하셨나요? 동일한 이메일로 다시 기부하시면 같은 키가 발급됩니다.<br>
+            문의: <a href="mailto:brian@kauzak.foundation" style="color: var(--color-cyan);">brian@kauzak.foundation</a>
         </p>
     </div>
 
@@ -392,7 +444,7 @@
 <!-- FOOTER -->
 <footer>
     <a href="https://drumsyncer.com">drumsyncer.com</a> &mdash; Kauzak Foundation, Inc.<br>
-    501(c)(3) Nonprofit Organization &mdash; EIN: 41-3426116<br>
+    501(c)(3) 비영리단체 &mdash; EIN: 41-3426116<br>
     Copyright &copy; 2026 Kauzak Foundation, Inc. All rights reserved.
 </footer>
 

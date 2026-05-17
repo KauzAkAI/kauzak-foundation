@@ -1,0 +1,2070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Vault — Artist Development | Kauzak Foundation</title>
+    <style>
+        :root {
+            --color-bg: #0a0a0a;
+            --color-surface: #141414;
+            --color-surface-2: #1a1a1a;
+            --color-border: #222;
+            --color-border-light: #2a2a2a;
+            --color-cyan: #00d4ff;
+            --color-cyan-dim: rgba(0,212,255,0.15);
+            --color-cyan-glow: rgba(0,212,255,0.08);
+            --color-gold: #ffb400;
+            --color-gold-dim: rgba(255,180,0,0.12);
+            --color-green: #00cc66;
+            --color-green-dim: rgba(0,204,102,0.12);
+            --color-red: #ff3366;
+            --color-red-dim: rgba(255,51,102,0.1);
+            --color-purple: #a855f7;
+            --color-purple-dim: rgba(168,85,247,0.12);
+            --color-text: #e0e0e0;
+            --color-muted: #888;
+            --color-dim: #555;
+            --color-orange: #ff8c00;
+            --color-orange-dim: rgba(255,140,0,0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            min-height: 100vh;
+        }
+
+        /* --- HEADER --- */
+        header {
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--color-border);
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span { color: var(--color-cyan); }
+
+        nav a {
+            color: var(--color-muted);
+            text-decoration: none;
+            margin-left: 24px;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: var(--color-cyan); }
+
+        /* --- CONFIDENTIAL BANNER --- */
+        .confidential-banner {
+            width: 100%;
+            padding: 10px 40px;
+            background: linear-gradient(90deg, rgba(255,180,0,0.08), rgba(255,180,0,0.03));
+            border-bottom: 1px solid rgba(255,180,0,0.2);
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--color-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            text-align: center;
+            padding: 80px 24px 60px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 18px;
+            background: var(--color-cyan-dim);
+            border: 1px solid rgba(0,212,255,0.3);
+            border-radius: 20px;
+            font-size: 0.78rem;
+            color: var(--color-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 16px;
+            line-height: 1.15;
+        }
+
+        .hero h1 span { color: var(--color-cyan); }
+
+        .hero p {
+            color: var(--color-muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- SECTION STRUCTURE --- */
+        section {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .section-label {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .label-cyan { background: var(--color-cyan-dim); color: var(--color-cyan); }
+        .label-gold { background: var(--color-gold-dim); color: var(--color-gold); }
+        .label-green { background: var(--color-green-dim); color: var(--color-green); }
+        .label-purple { background: var(--color-purple-dim); color: var(--color-purple); }
+
+        section h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        section h2 span { color: var(--color-cyan); }
+
+        .section-desc {
+            color: var(--color-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            max-width: 700px;
+        }
+
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: var(--color-border);
+            margin: 0;
+        }
+
+        /* --- MISSION STATS --- */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .stat-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .stat-card .num {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-cyan);
+            margin-bottom: 4px;
+        }
+
+        .stat-card .label {
+            color: var(--color-dim);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- PROCESS TIMELINE --- */
+        .timeline {
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--color-cyan), var(--color-gold), var(--color-green), var(--color-orange), var(--color-purple), var(--color-red));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 14px;
+            padding: 30px;
+            transition: border-color 0.3s;
+        }
+
+        .timeline-item:hover {
+            border-color: var(--color-border-light);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -44px;
+            top: 34px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 3px solid var(--color-cyan);
+            background: var(--color-bg);
+        }
+
+        .timeline-item:nth-child(2)::before { border-color: var(--color-gold); }
+        .timeline-item:nth-child(3)::before { border-color: var(--color-green); }
+        .timeline-item:nth-child(4)::before { border-color: var(--color-orange); }
+        .timeline-item:nth-child(5)::before { border-color: var(--color-purple); }
+        .timeline-item:nth-child(6)::before { border-color: var(--color-red); }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .phase-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .phase-num.p1 { background: var(--color-cyan-dim); color: var(--color-cyan); }
+        .phase-num.p2 { background: var(--color-gold-dim); color: var(--color-gold); }
+        .phase-num.p3 { background: var(--color-green-dim); color: var(--color-green); }
+        .phase-num.p4 { background: var(--color-purple-dim); color: var(--color-purple); }
+        .phase-num.p5 { background: var(--color-purple-dim); color: var(--color-purple); }
+        .phase-num.p6 { background: var(--color-red-dim); color: var(--color-red); }
+
+        .phase-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .phase-duration {
+            font-size: 0.78rem;
+            color: var(--color-dim);
+            margin-left: auto;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline-item p {
+            color: var(--color-muted);
+            line-height: 1.7;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .phase-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .phase-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--color-muted);
+        }
+
+        .phase-detail .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            margin-top: 7px;
+            flex-shrink: 0;
+        }
+
+        .phase-detail .dot.cyan { background: var(--color-cyan); }
+        .phase-detail .dot.gold { background: var(--color-gold); }
+        .phase-detail .dot.green { background: var(--color-green); }
+        .phase-detail .dot.purple { background: var(--color-purple); }
+        .phase-detail .dot.orange { background: var(--color-orange); }
+        .phase-detail .dot.red { background: var(--color-red); }
+
+        /* --- VAULT STUDIO SECTION --- */
+        .vault-hero {
+            text-align: center;
+            padding: 80px 24px;
+            background: linear-gradient(180deg, var(--color-bg), rgba(0,212,255,0.03), var(--color-bg));
+        }
+
+        .vault-hero h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        /* --- STUDIO ILLUSTRATION --- */
+        .studio-viz {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .studio-viz::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-cyan), var(--color-gold), var(--color-cyan));
+        }
+
+        .studio-floor {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto auto auto;
+            gap: 16px;
+            min-height: 320px;
+        }
+
+        .studio-zone {
+            border: 1px dashed var(--color-border-light);
+            border-radius: 10px;
+            padding: 18px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .studio-zone:hover {
+            border-color: var(--color-cyan);
+            background: var(--color-cyan-glow);
+        }
+
+        .zone-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .zone-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .zone-detail {
+            font-size: 0.72rem;
+            color: var(--color-dim);
+            line-height: 1.5;
+        }
+
+        .zone-drum { grid-column: 1 / 3; grid-row: 1 / 3; border-color: var(--color-cyan); background: rgba(0,212,255,0.03); }
+        .zone-control { grid-column: 3; grid-row: 1; }
+        .zone-video { grid-column: 3; grid-row: 2; }
+        .zone-piano { grid-column: 1; grid-row: 3; }
+        .zone-guitar { grid-column: 2; grid-row: 3; }
+        .zone-acoustic { grid-column: 3; grid-row: 3; }
+
+        .studio-viz h3 {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .studio-viz h3 span { color: var(--color-cyan); }
+
+        /* --- EQUIPMENT GRID --- */
+        .equip-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .equip-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: border-color 0.3s;
+        }
+
+        .equip-card:hover { border-color: var(--color-border-light); }
+
+        .equip-card .equip-icon {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .equip-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .equip-card .equip-model {
+            font-size: 0.8rem;
+            color: var(--color-cyan);
+            margin-bottom: 8px;
+        }
+
+        .equip-card p {
+            font-size: 0.8rem;
+            color: var(--color-dim);
+            line-height: 1.5;
+        }
+
+        /* --- FEATURE HIGHLIGHT --- */
+        .highlight-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .highlight-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 14px;
+            padding: 30px;
+        }
+
+        .highlight-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .highlight-card h3 span { color: var(--color-cyan); }
+
+        .highlight-card p {
+            color: var(--color-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* --- REBUILD SECTION --- */
+        .rebuild-banner {
+            background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(168,85,247,0.06));
+            border: 1px solid rgba(0,212,255,0.15);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .rebuild-banner h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .rebuild-banner h3 span { color: var(--color-cyan); }
+
+        .rebuild-banner p {
+            color: var(--color-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .rebuild-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .rebuild-feat {
+            padding: 16px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+
+        .rebuild-feat h4 {
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .rebuild-feat p {
+            font-size: 0.78rem;
+            color: var(--color-dim);
+            line-height: 1.5;
+        }
+
+        /* --- ACOUSTIC TREATMENT SPECS --- */
+        .acoustic-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .acoustic-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 22px;
+        }
+
+        .acoustic-card h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .acoustic-card .priority {
+            font-size: 0.7rem;
+            color: var(--color-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .acoustic-card p {
+            font-size: 0.8rem;
+            color: var(--color-dim);
+            line-height: 1.6;
+        }
+
+        /* --- SOFTWARE STACK --- */
+        .software-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .sw-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+        }
+
+        .sw-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .sw-info h4 {
+            font-size: 0.88rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .sw-info p {
+            font-size: 0.75rem;
+            color: var(--color-dim);
+        }
+
+        .sw-price {
+            margin-left: auto;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--color-green);
+        }
+
+        /* --- PROPERTY SECTION --- */
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .property-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 22px;
+            text-align: center;
+        }
+
+        .property-card .prop-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .property-card h4 {
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .property-card p {
+            font-size: 0.78rem;
+            color: var(--color-dim);
+            line-height: 1.5;
+        }
+
+        /* --- VALUES SECTION --- */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .value-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 14px;
+            padding: 28px;
+            text-align: center;
+        }
+
+        .value-card .val-icon {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+        }
+
+        .value-card h3 {
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .value-card p {
+            font-size: 0.85rem;
+            color: var(--color-dim);
+            line-height: 1.6;
+        }
+
+        /* --- CTA --- */
+        .cta-section {
+            text-align: center;
+            padding: 80px 24px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: var(--color-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--color-cyan);
+            color: #000;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-btn:hover {
+            background: #33e0ff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(0,212,255,0.3);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            width: 100%;
+            padding: 30px 40px;
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+            color: var(--color-dim);
+            font-size: 0.8rem;
+            line-height: 1.8;
+        }
+
+        footer a { color: var(--color-cyan); text-decoration: none; }
+
+        /* --- PHOTO GALLERY --- */
+        .gallery-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .gallery-hero-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 1px solid var(--color-border);
+            margin-bottom: 16px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid var(--color-border);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .gallery-grid img:hover {
+            border-color: var(--color-cyan);
+            transform: scale(1.02);
+        }
+
+        .gallery-row-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .gallery-row-3 img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid var(--color-border);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .gallery-row-3 img:hover {
+            border-color: var(--color-cyan);
+            transform: scale(1.02);
+        }
+
+        .gallery-caption {
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--color-dim);
+            margin-top: -4px;
+            margin-bottom: 16px;
+        }
+
+        .gallery-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            color: var(--color-gold);
+            margin-bottom: 12px;
+            margin-top: 30px;
+        }
+
+        /* --- LIGHTBOX --- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .lightbox.active { display: flex; }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 10000;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            color: #fff;
+            cursor: pointer;
+            background: rgba(0,0,0,0.5);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            z-index: 10000;
+        }
+
+        .lightbox-nav.prev { left: 20px; }
+        .lightbox-nav.next { right: 20px; }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--color-muted);
+            font-size: 0.9rem;
+            text-align: center;
+            background: rgba(0,0,0,0.7);
+            padding: 8px 20px;
+            border-radius: 8px;
+        }
+
+        /* --- DRUMSYNCER EXCLUSIVE --- */
+        .ds-exclusive {
+            background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(168,85,247,0.04));
+            border: 1px solid rgba(0,212,255,0.2);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ds-exclusive::before {
+            content: 'EXCLUSIVE';
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: var(--color-cyan);
+            background: var(--color-cyan-dim);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .ds-exclusive h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .ds-exclusive h3 span { color: var(--color-cyan); }
+
+        .ds-exclusive .ds-tagline {
+            color: var(--color-cyan);
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .ds-exclusive > p {
+            color: var(--color-muted);
+            font-size: 0.92rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            max-width: 700px;
+        }
+
+        .ds-features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .ds-feat {
+            padding: 18px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            border: 1px solid rgba(0,212,255,0.08);
+        }
+
+        .ds-feat .ds-feat-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .ds-feat h4 {
+            font-size: 0.88rem;
+            color: #fff;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        .ds-feat p {
+            font-size: 0.78rem;
+            color: var(--color-dim);
+            line-height: 1.5;
+        }
+
+        /* --- SPONSORSHIP SECTION --- */
+        .sponsor-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .sponsor-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 14px;
+            padding: 28px 18px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        .sponsor-card:hover { border-color: var(--color-cyan); }
+
+        .sponsor-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .sponsor-card h4 {
+            font-size: 0.95rem;
+            color: #fff;
+            margin-bottom: 2px;
+            font-weight: 700;
+        }
+
+        .sponsor-card .sponsor-loc {
+            font-size: 0.72rem;
+            color: var(--color-dim);
+            margin-bottom: 6px;
+        }
+
+        .sponsor-card .sponsor-type {
+            font-size: 0.7rem;
+            color: var(--color-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .sponsor-note {
+            background: rgba(255,180,0,0.06);
+            border: 1px solid rgba(255,180,0,0.15);
+            border-radius: 10px;
+            padding: 20px 24px;
+            text-align: center;
+        }
+
+        .sponsor-note p {
+            color: var(--color-gold);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .sponsor-note strong { color: #fff; }
+
+        /* --- VISA / IMMIGRATION --- */
+        .visa-timeline {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .visa-step {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 14px;
+            padding: 26px;
+            text-align: center;
+            position: relative;
+        }
+
+        .visa-step::after {
+            content: '\279C';
+            position: absolute;
+            right: -14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-cyan);
+            font-size: 1.2rem;
+            z-index: 2;
+        }
+
+        .visa-step:last-child::after { display: none; }
+
+        .visa-step .visa-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .visa-step h4 {
+            font-size: 0.95rem;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .visa-step p {
+            font-size: 0.8rem;
+            color: var(--color-dim);
+            line-height: 1.5;
+        }
+
+        .visa-step .visa-duration {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 3px 10px;
+            background: var(--color-cyan-dim);
+            border-radius: 4px;
+            font-size: 0.7rem;
+            color: var(--color-cyan);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* --- FORMS DOWNLOAD --- */
+        .forms-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .form-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 14px;
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.3s;
+        }
+
+        .form-card:hover { border-color: var(--color-cyan); }
+
+        .form-card .form-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .form-card h4 {
+            font-size: 0.95rem;
+            color: #fff;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        .form-card .form-type {
+            font-size: 0.7rem;
+            color: var(--color-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-card p {
+            font-size: 0.8rem;
+            color: var(--color-dim);
+            line-height: 1.5;
+            margin-bottom: 14px;
+            flex-grow: 1;
+        }
+
+        .form-card .form-dl {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--color-cyan-dim);
+            border: 1px solid rgba(0,212,255,0.3);
+            border-radius: 6px;
+            color: var(--color-cyan);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .form-card .form-dl:hover {
+            background: rgba(0,212,255,0.2);
+            border-color: var(--color-cyan);
+        }
+
+        .forms-note {
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--color-dim);
+            margin-top: 8px;
+        }
+
+        /* --- MOBILE --- */
+        @media (max-width: 768px) {
+            header { padding: 16px 20px; }
+            .hero { padding: 50px 16px 40px; }
+            .hero h1 { font-size: 2rem; }
+            .vault-hero h2 { font-size: 2rem; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .timeline { padding-left: 40px; }
+            .timeline::before { left: 14px; }
+            .timeline-item::before { left: -34px; }
+            .phase-details { grid-template-columns: 1fr; }
+            .phase-duration { display: none; }
+            .equip-grid { grid-template-columns: 1fr; }
+            .highlight-row { grid-template-columns: 1fr; }
+            .rebuild-features { grid-template-columns: 1fr; }
+            .acoustic-grid { grid-template-columns: 1fr; }
+            .software-list { grid-template-columns: 1fr; }
+            .property-grid { grid-template-columns: repeat(2, 1fr); }
+            .values-grid { grid-template-columns: 1fr; }
+            .studio-floor { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-grid img { height: 140px; }
+            .gallery-row-3 { grid-template-columns: 1fr; }
+            .gallery-row-3 img { height: 200px; }
+            .gallery-hero-img { height: 220px; }
+            .ds-features-grid { grid-template-columns: 1fr; }
+            .sponsor-grid { grid-template-columns: repeat(2, 1fr); }
+            .visa-timeline { grid-template-columns: 1fr; }
+            .visa-step::after { display: none; }
+            .forms-grid { grid-template-columns: 1fr; }
+            .zone-drum { grid-column: 1; grid-row: auto; }
+            .zone-control, .zone-video, .zone-piano, .zone-guitar, .zone-acoustic { grid-column: 1; grid-row: auto; }
+            section { padding: 40px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <a href="index.html" class="logo">Kauzak <span>Foundation</span></a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="the-vault.html" style="color: var(--color-cyan);">The Vault</a>
+        <a href="donate.html">Donate</a>
+    </nav>
+</header>
+
+<!-- CONFIDENTIAL -->
+<div class="confidential-banner">
+    &#128274; Confidential &mdash; For Contacted Artists Only
+</div>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-badge">Artist Development Program</div>
+    <h1>From Discovery to <span>Career</span></h1>
+    <p>
+        The Kauzak Foundation identifies exceptional musicians worldwide and provides a
+        complete artist development pathway &mdash; from initial support through professional
+        recording at our private studio, The Vault, to long-term career growth.
+    </p>
+</div>
+
+<!-- MISSION STATS -->
+<section>
+    <div class="stats-row">
+        <div class="stat-card">
+            <div class="num">501(c)(3)</div>
+            <div class="label">Nonprofit Status</div>
+        </div>
+        <div class="stat-card">
+            <div class="num">6</div>
+            <div class="label">Development Phases</div>
+        </div>
+        <div class="stat-card">
+            <div class="num">10,000</div>
+            <div class="label">Sq Ft Studio</div>
+        </div>
+        <div class="stat-card">
+            <div class="num">2026</div>
+            <div class="label">Completion — June</div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============================== -->
+<!-- ARTIST DEVELOPMENT PROCESS     -->
+<!-- ============================== -->
+<section>
+    <div class="section-label label-cyan">The Process</div>
+    <h2>Six-Phase <span>Artist Development</span></h2>
+    <p class="section-desc">
+        Every artist who works with the Kauzak Foundation follows a structured development
+        pathway. Each phase is designed to build trust, provide real support, and create
+        the conditions for breakthrough creative work.
+    </p>
+
+    <div class="timeline">
+
+        <!-- PHASE 1 -->
+        <div class="timeline-item">
+            <div class="phase-header">
+                <div class="phase-num p1">01</div>
+                <div class="phase-title">Discovery &amp; First Contact</div>
+                <div class="phase-duration">Weeks 1&ndash;2</div>
+            </div>
+            <p>
+                The Foundation identifies artists through deep research &mdash; analyzing their work,
+                creative philosophy, musical education background, financial situation, and long-term
+                potential. We look for artists with formal training or demonstrated mastery of their
+                craft. Initial contact is made through the artist's existing platforms, establishing
+                a genuine connection before any foundation involvement is revealed.
+            </p>
+            <div class="phase-details">
+                <div class="phase-detail"><div class="dot cyan"></div>In-depth artist research &amp; profile building</div>
+                <div class="phase-detail"><div class="dot cyan"></div>Platform engagement (Patreon, YouTube, social media)</div>
+                <div class="phase-detail"><div class="dot cyan"></div>Initial communication &amp; rapport building</div>
+                <div class="phase-detail"><div class="dot cyan"></div>Offer practical help (website, technical support)</div>
+            </div>
+        </div>
+
+        <!-- PHASE 2 -->
+        <div class="timeline-item">
+            <div class="phase-header">
+                <div class="phase-num p2">02</div>
+                <div class="phase-title">Build Trust &amp; Collaborate</div>
+                <div class="phase-duration">Weeks 2&ndash;6</div>
+            </div>
+            <p>
+                Real trust is earned through action, not promises. The Foundation delivers tangible
+                support &mdash; building websites, fixing technical issues, providing financial assistance
+                &mdash; while developing a genuine professional relationship with the artist.
+            </p>
+            <div class="phase-details">
+                <div class="phase-detail"><div class="dot gold"></div>Deliver completed projects (websites, designs)</div>
+                <div class="phase-detail"><div class="dot gold"></div>Regular financial support through donations</div>
+                <div class="phase-detail"><div class="dot gold"></div>Professional email &amp; social media exchanges</div>
+                <div class="phase-detail"><div class="dot gold"></div>Discuss goals, struggles, and creative vision</div>
+            </div>
+        </div>
+
+        <!-- PHASE 3 -->
+        <div class="timeline-item">
+            <div class="phase-header">
+                <div class="phase-num p3">03</div>
+                <div class="phase-title">Deepen Connection</div>
+                <div class="phase-duration">Weeks 6&ndash;12</div>
+            </div>
+            <p>
+                As the relationship matures, the Foundation reveals more about its resources
+                and the opportunities available. Video calls, property introductions, and creative
+                discussions lay the groundwork for the formal studio invitation.
+            </p>
+            <div class="phase-details">
+                <div class="phase-detail"><div class="dot green"></div>Video calls &amp; deeper creative discussions</div>
+                <div class="phase-detail"><div class="dot green"></div>Introduction to Foundation property &amp; resources</div>
+                <div class="phase-detail"><div class="dot green"></div>Share The Vault studio vision &amp; 2026 rebuild plans</div>
+                <div class="phase-detail"><div class="dot green"></div>Express interest in artist mentorship &amp; collaboration</div>
+            </div>
+        </div>
+
+        <!-- PHASE 4 — STUDIO EVALUATION -->
+        <div class="timeline-item">
+            <div class="phase-header">
+                <div class="phase-num" style="background:var(--color-orange-dim); color:var(--color-orange);">04</div>
+                <div class="phase-title">Professional Studio Evaluation</div>
+                <div class="phase-duration">Months 3&ndash;4</div>
+            </div>
+            <p>
+                Before coming to The Vault, artists with a musical education background are
+                sent to a professional recording studio the Foundation has partnered with locally.
+                These studios are staffed by Emmy-winning engineers who record the artist's
+                demo tracks &mdash; vocals, instruments, or both. The Foundation then reviews the
+                recordings to evaluate quality, artistry, and readiness for the next step.
+            </p>
+            <div class="phase-details">
+                <div class="phase-detail"><div class="dot orange"></div>Foundation-funded sessions at a partnered professional studio</div>
+                <div class="phase-detail"><div class="dot orange"></div>Recording with Emmy-winning engineers</div>
+                <div class="phase-detail"><div class="dot orange"></div>Demo tracks: vocals, instruments, or full arrangements</div>
+                <div class="phase-detail"><div class="dot orange"></div>Foundation reviews recordings for artistic quality &amp; readiness</div>
+            </div>
+        </div>
+
+        <!-- PHASE 5 — RECORDING RETREAT -->
+        <div class="timeline-item">
+            <div class="phase-header">
+                <div class="phase-num p5">05</div>
+                <div class="phase-title">Recording Retreat &amp; Production</div>
+                <div class="phase-duration">Months 4&ndash;7</div>
+            </div>
+            <p>
+                Once the Foundation has heard the studio recordings and confirmed the artist is
+                ready, the formal invitation is extended: a fully-funded recording retreat at
+                The Vault. The artist flies in and lives in the 10,000 sq ft private residence
+                as the sole occupant &mdash; one artist at a time, no conflicts, no distractions.
+                All expenses covered: flights, housing, food, equipment, and production. Artists
+                have full, unrestricted access to all studio equipment, software, and workstations
+                to learn mixing, syncing, editing, and production on their own terms &mdash; no
+                engineer, no middleman.
+            </p>
+            <div class="phase-details">
+                <div class="phase-detail"><div class="dot purple"></div>Fully-funded travel &amp; accommodations</div>
+                <div class="phase-detail"><div class="dot purple"></div>Professional recording sessions at The Vault</div>
+                <div class="phase-detail"><div class="dot purple"></div>Multi-camera video production for content</div>
+                <div class="phase-detail"><div class="dot purple"></div>Original music production &amp; mixing</div>
+            </div>
+        </div>
+
+        <!-- PHASE 6 — CAREER DEVELOPMENT -->
+        <div class="timeline-item">
+            <div class="phase-header">
+                <div class="phase-num p6">06</div>
+                <div class="phase-title">Career Development &amp; Residency</div>
+                <div class="phase-duration">Ongoing</div>
+            </div>
+            <p>
+                Long-term career support including content strategy, US market exposure,
+                booking support, merchandise development, and potential artist residency
+                at the Foundation property. The goal: help the artist sustain a career
+                through their art alone.
+            </p>
+            <div class="phase-details">
+                <div class="phase-detail"><div class="dot red"></div>Original content strategy for YouTube revenue</div>
+                <div class="phase-detail"><div class="dot red"></div>US festival circuit &amp; booking connections</div>
+                <div class="phase-detail"><div class="dot red"></div>Long-term artist residency option</div>
+                <div class="phase-detail"><div class="dot red"></div>Merchandise, branding &amp; revenue development</div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============================== -->
+<!-- THE VAULT                       -->
+<!-- ============================== -->
+<div class="vault-hero">
+    <div class="section-label label-gold">Private Studio</div>
+    <h2>The <span>Vault</span></h2>
+    <p class="section-desc" style="margin: 12px auto 0;">
+        A 10,000 square foot private music studio and artist residence in Florida,
+        completing end of June 2026. Purpose-built for professional
+        recording, multi-camera video production, and long-term artist residency.
+        Only one artist occupies the residence at a time &mdash; no shared schedules,
+        no competing priorities. The entire property is yours for the duration of your stay.
+    </p>
+</div>
+
+<!-- PHOTO GALLERY -->
+<div class="gallery-section">
+
+    <!-- Hero Image -->
+    <img src="vault-photos/exterior-aerial.jpg" alt="The Vault — Aerial View" class="gallery-hero-img" onclick="openLightbox(0)">
+    <div class="gallery-caption">Aerial view of the artist residence &mdash; 10,000 sq ft on a private golf course</div>
+
+    <!-- Exterior Row -->
+    <div class="gallery-label">Exterior &amp; Grounds</div>
+    <div class="gallery-grid">
+        <img src="vault-photos/exterior-front.jpg" alt="Front aerial view" onclick="openLightbox(1)" loading="lazy">
+        <img src="vault-photos/entrance-stairs.jpg" alt="Grand entrance staircase" onclick="openLightbox(2)" loading="lazy">
+        <img src="vault-photos/exterior-garage.jpg" alt="3-car garage side view" onclick="openLightbox(3)" loading="lazy">
+        <img src="vault-photos/exterior-ground.jpg" alt="Ground level exterior" onclick="openLightbox(4)" loading="lazy">
+    </div>
+
+    <!-- Aerial/Lake Row -->
+    <div class="gallery-row-3">
+        <img src="vault-photos/aerial-lake.jpg" alt="Aerial with lake panorama" onclick="openLightbox(5)" loading="lazy">
+        <img src="vault-photos/aerial-lake-wide.jpg" alt="Wide aerial lake view" onclick="openLightbox(6)" loading="lazy">
+        <img src="vault-photos/exterior-porch.jpg" alt="Covered porch with wood ceiling" onclick="openLightbox(7)" loading="lazy">
+    </div>
+
+    <!-- Interior Row -->
+    <div class="gallery-label">Interior</div>
+    <div class="gallery-grid">
+        <img src="vault-photos/interior-dining-archways.jpg" alt="Dining room with archways and hardwood floors" onclick="openLightbox(8)" loading="lazy">
+        <img src="vault-photos/interior-formal-dining.jpg" alt="Formal dining room with chandelier" onclick="openLightbox(9)" loading="lazy">
+        <img src="vault-photos/interior-kitchen.jpg" alt="Gourmet kitchen with granite island" onclick="openLightbox(10)" loading="lazy">
+        <img src="vault-photos/interior-living-room.jpg" alt="Living room and entertainment area" onclick="openLightbox(11)" loading="lazy">
+    </div>
+
+    <div class="gallery-row-3">
+        <img src="vault-photos/interior-master-bedroom.jpg" alt="Master suite with hardwood floors" onclick="openLightbox(12)" loading="lazy">
+        <img src="vault-photos/interior-guest-bedroom.jpg" alt="Guest bedroom" onclick="openLightbox(13)" loading="lazy">
+        <img src="vault-photos/interior-theater.jpg" alt="Private home theater" onclick="openLightbox(14)" loading="lazy">
+    </div>
+    <div class="gallery-caption">Private home theater, gourmet kitchen, multiple suites &mdash; all exclusive to the artist during residency</div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <button class="lightbox-nav prev" onclick="navLightbox(-1, event)">&#8249;</button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-nav next" onclick="navLightbox(1, event)">&#8250;</button>
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<div class="divider"></div>
+
+<section>
+
+    <!-- STUDIO DESIGN VIEWS -->
+    <div class="studio-designs">
+        <h3 style="text-align:center; font-size:1.3rem; color:#fff; margin-bottom:8px; font-weight:700;">Studio Design &mdash; <span style="color:var(--color-cyan);">Architectural Plans</span></h3>
+        <p style="text-align:center; color:var(--color-dim); font-size:0.85rem; margin-bottom:24px;">
+            Underground concrete music studio &mdash; color palette, floor plan, wall sections, and 3D perspective.
+            <a href="vault-studio-designs.html" style="color:var(--color-cyan); text-decoration:none; margin-left:8px;">View full design document &rarr;</a>
+        </p>
+        <iframe src="vault-studio-designs.html" style="width:100%; height:800px; border:1px solid var(--color-border); border-radius:12px; background:#0a1a2e;" loading="lazy"></iframe>
+    </div>
+
+    <!-- PROPERTY -->
+    <div class="section-label label-gold">The Property</div>
+    <h2>Foundation <span>Campus</span></h2>
+    <p class="section-desc">
+        The Kauzak Foundation operates from a multi-building property in Florida with
+        dedicated spaces for creative work, artist housing, and inspiration.
+    </p>
+
+    <div class="property-grid">
+        <div class="property-card">
+            <div class="prop-icon">&#127911;</div>
+            <h4>The Vault</h4>
+            <p>10,000 sq ft &mdash; Private studio &amp; artist residence</p>
+        </div>
+        <div class="property-card">
+            <div class="prop-icon">&#127961;</div>
+            <h4>Guest House</h4>
+            <p>4,000 sq ft<br>Additional housing</p>
+        </div>
+        <div class="property-card">
+            <div class="prop-icon">&#127793;</div>
+            <h4>Farm</h4>
+            <p>22 acres<br>5 minutes from main property</p>
+        </div>
+        <div class="property-card">
+            <div class="prop-icon">&#127758;</div>
+            <h4>Location</h4>
+            <p>Florida, USA<br>Subtropical climate year-round</p>
+        </div>
+    </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- ============================== -->
+<!-- EQUIPMENT                       -->
+<!-- ============================== -->
+<section>
+    <div class="section-label label-green">Equipment</div>
+    <h2>Studio <span>Inventory</span></h2>
+    <p class="section-desc">
+        The Vault is built around the DW DWe wireless acoustic-electronic convertible system &mdash;
+        the only premium anchor in the entire build. Everything else follows a value-first,
+        open-source-heavy philosophy that delivers professional results at a fraction of
+        traditional studio pricing.
+    </p>
+
+    <!-- DWe KIT -->
+    <h3 style="color:#fff; font-size:1.15rem; margin-bottom:16px; font-weight:700;">&#129345; DW DWe Wireless Drum System</h3>
+    <div class="highlight-row">
+        <div class="highlight-card">
+            <h3>Shell Pack &mdash; <span>Santos Rosewood</span></h3>
+            <p>
+                DWe 7-piece Santos Rosewood Hard Satin Exotic Limited Edition. Wireless
+                acoustic-electronic convertible via DrumLink technology. Includes 6.5&times;14&Prime; snare,
+                7&times;8&Prime; and 8&times;10&Prime; rack toms, 9&times;12&Prime; tom, 12&times;14&Prime; and 14&times;16&Prime;
+                floor toms, 16&times;22&Prime; bass drum plus an additional matching 22&Prime; bass drum
+                for a double-bass configuration.
+            </p>
+        </div>
+        <div class="highlight-card">
+            <h3>Cymbals &mdash; <span>14 DWe Wireless</span></h3>
+            <p>
+                Full wireless cymbal rig covering all 13 positions plus hi-hats: 1&times; DECMHH14 Hi-Hat,
+                5&times; DECMCR14 (stack, pang, bell, splash &times;2), 2&times; DECMCR16 (crash &times;2),
+                6&times; DECMCR18 (crash &times;2, china &times;2, ride &times;2). All 3-zone triggering with
+                360-degree playing. Roland module maps each zone to any sound.
+            </p>
+        </div>
+    </div>
+
+    <!-- EQUIPMENT GRID -->
+    <h3 style="color:#fff; font-size:1.15rem; margin-bottom:16px; font-weight:700;">&#127899; Recording &amp; Production</h3>
+    <div class="equip-grid">
+        <div class="equip-card">
+            <div class="equip-icon">&#128187;</div>
+            <h4>PC Workstation</h4>
+            <div class="equip-model">Custom Windows PC</div>
+            <p>High-performance Windows workstation. Dell U2723QE 27&Prime; 4K display.</p>
+        </div>
+        <div class="equip-card">
+            <div class="equip-icon">&#127897;</div>
+            <h4>Audio Interface</h4>
+            <div class="equip-model">Focusrite Scarlett 18i20 (4th Gen)</div>
+            <p>8 preamps + Behringer ADA8200 ADAT expander for 16 total inputs.</p>
+        </div>
+        <div class="equip-card">
+            <div class="equip-icon">&#127908;</div>
+            <h4>Drum Microphones</h4>
+            <div class="equip-model">Complete Mic Package</div>
+            <p>Audix D6 &times;2 (kick), SM57 (snare), CAD Stage 7 pack (toms), sE7 matched pair (overheads), Cascade Fat Head ribbon (room).</p>
+        </div>
+        <div class="equip-card">
+            <div class="equip-icon">&#128266;</div>
+            <h4>Monitors</h4>
+            <div class="equip-model">Kali Audio LP-6 V2</div>
+            <p>Near-field pair with WS-6.2 subwoofer. Beyerdynamic DT 770 Pro for critical listening.</p>
+        </div>
+        <div class="equip-card">
+            <div class="equip-icon">&#127909;</div>
+            <h4>Video Production</h4>
+            <div class="equip-model">3&times; Sony ZV-E10 II</div>
+            <p>APS-C sensor, 4K recording. Blackmagic ATEM Mini Pro for live switching &amp; YouTube streaming.</p>
+        </div>
+        <div class="equip-card">
+            <div class="equip-icon">&#127929;</div>
+            <h4>Digital Grand Piano</h4>
+            <div class="equip-model">Yamaha CLP-865GP</div>
+            <p>GrandTouch action, CFX &amp; B&ouml;sendorfer samples, grand cabinet with built-in speakers. Full-size digital baby grand.</p>
+        </div>
+    </div>
+
+    <!-- SELF-LEARNING ACCESS -->
+    <div class="rebuild-banner" style="margin-bottom:40px; border-color:rgba(0,204,102,0.2); background:linear-gradient(135deg, rgba(0,204,102,0.06), rgba(0,212,255,0.06));">
+        <h3>Your Studio. <span>Your Rules.</span></h3>
+        <p>
+            Every artist in residence gets full, unrestricted access to all studio equipment,
+            software, and workstations. Learn mixing, syncing, editing, video production &mdash;
+            at your own pace, on your own schedule. There is no engineer. No gatekeeper.
+            The tools are yours to use, experiment with, and master. The entire software
+            stack is installed and ready to go the day you arrive.
+        </p>
+    </div>
+
+    <!-- SOFTWARE STACK -->
+    <h3 style="color:#fff; font-size:1.15rem; margin-bottom:16px; font-weight:700;">&#128190; Open-Source Software Stack</h3>
+    <p class="section-desc" style="margin-bottom:20px;">
+        Professional-grade tools at a fraction of the cost. Open-source software has reached
+        parity with premium commercial alternatives in audio and video production.
+        All installed on Windows PCs and ready to use.
+    </p>
+    <div class="software-list">
+        <div class="sw-item">
+            <div class="sw-icon">&#127932;</div>
+            <div class="sw-info"><h4>Reaper</h4><p>Digital Audio Workstation</p></div>
+            <div class="sw-price">$60</div>
+        </div>
+        <div class="sw-item">
+            <div class="sw-icon">&#127916;</div>
+            <div class="sw-info"><h4>DaVinci Resolve</h4><p>Professional Video Editor</p></div>
+            <div class="sw-price">Free</div>
+        </div>
+        <div class="sw-item">
+            <div class="sw-icon">&#127928;</div>
+            <div class="sw-info"><h4>Neural Amp Modeler</h4><p>Guitar Amp Simulation</p></div>
+            <div class="sw-price">Free</div>
+        </div>
+        <div class="sw-item">
+            <div class="sw-icon">&#129345;</div>
+            <div class="sw-info"><h4>Steven Slate Drums 5.5</h4><p>Drum Sample Library</p></div>
+            <div class="sw-price">$200</div>
+        </div>
+        <div class="sw-item">
+            <div class="sw-icon">&#127899;</div>
+            <div class="sw-info"><h4>Surge XT / Vital</h4><p>Synthesizers</p></div>
+            <div class="sw-price">Free</div>
+        </div>
+        <div class="sw-item">
+            <div class="sw-icon">&#127897;</div>
+            <div class="sw-info"><h4>TDR / Airwindows / Analog Obsession</h4><p>Mixing &amp; Mastering Plugins</p></div>
+            <div class="sw-price">Free</div>
+        </div>
+    </div>
+
+    <!-- DRUMSYNCER EXCLUSIVE -->
+    <div class="ds-exclusive">
+        <h3>Drum<span>Syncer</span></h3>
+        <div class="ds-tagline">Exclusive Kauzak Foundation Software &mdash; Built for Vault Artists</div>
+        <p>
+            Every artist in residence gets exclusive access to DrumSyncer &mdash; proprietary AI-powered
+            software developed by the Kauzak Foundation specifically for drum cover video production.
+            Paste a YouTube link or upload a video, and DrumSyncer handles the rest automatically.
+        </p>
+        <div class="ds-features-grid">
+            <div class="ds-feat">
+                <div class="ds-feat-icon">&#127916;</div>
+                <h4>YouTube Download</h4>
+                <p>Paste any YouTube URL and DrumSyncer downloads the video automatically via yt-dlp. No manual downloading, no browser extensions.</p>
+            </div>
+            <div class="ds-feat">
+                <div class="ds-feat-icon">&#127911;</div>
+                <h4>AI Stem Separation</h4>
+                <p>Powered by Meta's Demucs AI. Isolates drums, bass, vocals, and other instruments from any track. Removes the original drums so you can replace them with your own.</p>
+            </div>
+            <div class="ds-feat">
+                <div class="ds-feat-icon">&#127928;</div>
+                <h4>Beat Alignment</h4>
+                <p>Automatically analyzes BPM and beat positions in both the original and your drum recording, then aligns them sample-accurately. No manual grid-matching.</p>
+            </div>
+            <div class="ds-feat">
+                <div class="ds-feat-icon">&#129345;</div>
+                <h4>Audio-Video Sync</h4>
+                <p>Syncs your final drum audio to the original video timeline automatically. Exports a finished, publication-ready video file with your drums mixed in.</p>
+            </div>
+            <div class="ds-feat">
+                <div class="ds-feat-icon">&#128187;</div>
+                <h4>Web Interface</h4>
+                <p>Browser-based GUI &mdash; no command line needed. Upload, configure, process, and export from a clean web interface running locally on your Windows PC workstation.</p>
+            </div>
+            <div class="ds-feat">
+                <div class="ds-feat-icon">&#128640;</div>
+                <h4>One-Click Production</h4>
+                <p>From YouTube link to finished drum cover video in minutes. What used to take hours of manual editing now happens automatically with AI and signal processing.</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- ============================== -->
+<!-- ACOUSTIC TREATMENT              -->
+<!-- ============================== -->
+<section>
+    <div class="section-label label-purple">Sound Engineering</div>
+    <h2>Professional <span>Acoustic Treatment</span></h2>
+    <p class="section-desc">
+        The Vault is designed for heavy drums. No foam. No shortcuts. Professional-grade
+        fiberglass and mineral wool treatment engineered for low-frequency control
+        down to 40Hz &mdash; where kick drums live.
+    </p>
+
+    <div class="acoustic-grid">
+        <div class="acoustic-card">
+            <div class="priority">Priority #1</div>
+            <h4>Corner Bass Traps</h4>
+            <p>
+                Floor-to-ceiling superchunk traps in all four corners. 4&Prime; OC 703 or Rockwool RS60+.
+                Absorption down to 40Hz. Eliminates 10-15dB bass peaks.
+            </p>
+        </div>
+        <div class="acoustic-card">
+            <div class="priority">Priority #2</div>
+            <h4>Ceiling Cloud</h4>
+            <p>
+                4&Prime; OC 703 in framed panel, minimum 4&prime;&times;6&prime;, suspended 18-24&Prime;
+                below ceiling directly above the drum kit. Kills flutter echo on cymbals and snare.
+            </p>
+        </div>
+        <div class="acoustic-card">
+            <div class="priority">Priority #3</div>
+            <h4>Wall Panels</h4>
+            <p>
+                4&Prime; panels with 2&Prime; air gap at first reflection points. 30-40% wall coverage.
+                Mirror-trick placement. Room still breathes &mdash; no over-treatment.
+            </p>
+        </div>
+    </div>
+
+    <div class="highlight-row">
+        <div class="highlight-card">
+            <h3>Wall Assembly &mdash; <span>Birch + Navy</span></h3>
+            <p>
+                8&Prime; concrete shell &rarr; 2&times;4 furring with 3.5&Prime; Rockwool (NRC &ge; 1.0) &rarr;
+                navy acoustic fabric &rarr; 3/4&Prime;&times;1.5&Prime; vertical birch slats with 1&Prime; gaps.
+                Navy peeks through the gaps as Kauzak brand signature. HF scatter off the slats,
+                LF/MF passes through to the mineral wool. See full wall cross-section in the
+                <a href="vault-studio-designs.html#view2" style="color:var(--color-cyan);">design document</a>.
+            </p>
+        </div>
+        <div class="highlight-card">
+            <h3>Materials: <span>What Works</span></h3>
+            <p>
+                Two absorption materials. Rockwool RS60+ in the stud cavities for broadband absorption.
+                Cedar QRS skyline diffuser blocks on the ceiling cloud above the kit. Three walls in yellow
+                birch slats, south (camera) wall in cedar for warmth. Navy Dark fabric backing on the cloud.
+                DMX-programmable cyan LED underglow on the drum platform.
+            </p>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============================== -->
+<!-- 2026 REBUILD                    -->
+<!-- ============================== -->
+<section>
+    <div class="rebuild-banner">
+        <h3>The 2026 <span>Rebuild</span></h3>
+        <p>
+            The Vault is currently undergoing a complete transformation &mdash; new look, new colors,
+            new equipment. The 10,000 sq ft residence is being converted into a world-class
+            private studio and artist home, purpose-built for professional recording and
+            multi-camera video production. Target completion: end of June 2026.
+        </p>
+        <div class="rebuild-features">
+            <div class="rebuild-feat">
+                <h4>&#127912; New Interior Design</h4>
+                <p>Complete aesthetic overhaul with professional studio aesthetics, custom color scheme, and purpose-built recording spaces.</p>
+            </div>
+            <div class="rebuild-feat">
+                <h4>&#128266; Acoustic Engineering</h4>
+                <p>Professional-grade sound treatment designed specifically for heavy drums &mdash; corner bass traps, ceiling clouds, wall panels.</p>
+            </div>
+            <div class="rebuild-feat">
+                <h4>&#129345; DWe Installation</h4>
+                <p>DW DWe Santos Rosewood wireless system with 14 electronic cymbals, full Roland DrumLink integration.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============================== -->
+<!-- VALUES                          -->
+<!-- ============================== -->
+<section>
+    <div class="section-label label-cyan">Our Mission</div>
+    <h2>Foundation <span>Values</span></h2>
+    <p class="section-desc">
+        The Kauzak Foundation exists to support musicians who have world-class talent but lack
+        the resources, connections, or opportunities to build sustainable careers.
+    </p>
+
+    <div class="values-grid">
+        <div class="value-card">
+            <div class="val-icon">&#127911;</div>
+            <h3>Music First</h3>
+            <p>We invest in talent, not followers. The work speaks. Every decision starts with "does this serve the artist's music?"</p>
+        </div>
+        <div class="value-card">
+            <div class="val-icon">&#128154;</div>
+            <h3>Artist Wellbeing</h3>
+            <p>Mental health, financial stability, and creative freedom are not separate issues. We address the whole person, not just the product.</p>
+        </div>
+        <div class="value-card">
+            <div class="val-icon">&#127891;</div>
+            <h3>Education &amp; AI</h3>
+            <p>Open-source tools, AI innovation, and music education programs. Technology should lower barriers, not raise them.</p>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============================== -->
+<!-- SPONSORSHIP PARTNERS            -->
+<!-- ============================== -->
+<section>
+    <div class="section-label label-gold">Industry Partners</div>
+    <h2>Equipment <span>Sponsorships</span></h2>
+    <p class="section-desc">
+        The Kauzak Foundation works with major US-based drum industry brands to secure
+        equipment sponsorships for resident artists. These partnerships provide artists
+        with professional-grade gear and brand visibility to launch their careers.
+    </p>
+
+    <div class="sponsor-grid">
+        <div class="sponsor-card">
+            <div class="sponsor-logo" style="background:linear-gradient(135deg, #1a1a1a, #333); color:#d4a017; border:2px solid #d4a017;">DW</div>
+            <h4>DW Drums</h4>
+            <div class="sponsor-loc">Oxnard, California</div>
+            <div class="sponsor-type">Drums &amp; Hardware</div>
+        </div>
+        <div class="sponsor-card">
+            <div class="sponsor-logo" style="background:linear-gradient(135deg, #0d1b2a, #1b3a5c); color:#e8d5b7; border:2px solid #b08d57;">Zildjian</div>
+            <h4>Zildjian</h4>
+            <div class="sponsor-loc">Norwell, Massachusetts</div>
+            <div class="sponsor-type">Cymbals</div>
+        </div>
+        <div class="sponsor-card">
+            <div class="sponsor-logo" style="background:linear-gradient(135deg, #1a1a1a, #2a2a2a); color:#ff6600; border:2px solid #ff6600;">Sabian</div>
+            <h4>Sabian</h4>
+            <div class="sponsor-loc">Meductic, New Brunswick</div>
+            <div class="sponsor-type">Cymbals</div>
+        </div>
+        <div class="sponsor-card">
+            <div class="sponsor-logo" style="background:linear-gradient(135deg, #1c1c1c, #333); color:#cc0000; border:2px solid #cc0000;">VF</div>
+            <h4>Vic Firth</h4>
+            <div class="sponsor-loc">Norwell, Massachusetts</div>
+            <div class="sponsor-type">Drumsticks</div>
+        </div>
+        <div class="sponsor-card">
+            <div class="sponsor-logo" style="background:linear-gradient(135deg, #111, #222); color:#00aa44; border:2px solid #00aa44;">Vater</div>
+            <h4>Vater</h4>
+            <div class="sponsor-loc">Norwood, Massachusetts</div>
+            <div class="sponsor-type">Drumsticks</div>
+        </div>
+        <div class="sponsor-card">
+            <div class="sponsor-logo" style="background:linear-gradient(135deg, #1a1a1a, #2c2c2c); color:#0077cc; border:2px solid #0077cc;">PM</div>
+            <h4>Promark</h4>
+            <div class="sponsor-loc">D'Addario &mdash; Farmingdale, NY</div>
+            <div class="sponsor-type">Drumsticks</div>
+        </div>
+        <div class="sponsor-card">
+            <div class="sponsor-logo" style="background:linear-gradient(135deg, #1a1a1a, #2a2a2a); color:#dd9900; border:2px solid #dd9900;">RT</div>
+            <h4>Regal Tip</h4>
+            <div class="sponsor-loc">Niagara Falls, New York</div>
+            <div class="sponsor-type">Drumsticks</div>
+        </div>
+        <div class="sponsor-card">
+            <div class="sponsor-logo" style="background:linear-gradient(135deg, #111, #1e1e1e); color:#e0e0e0; border:2px solid #888;">SKB</div>
+            <h4>SKB Cases</h4>
+            <div class="sponsor-loc">Orange, California</div>
+            <div class="sponsor-type">Cases &amp; Protection</div>
+        </div>
+    </div>
+
+    <div class="sponsor-note">
+        <p>
+            <strong>&#128274; Sponsorship Eligibility:</strong> Equipment sponsorships are available to artists
+            who commit to a <strong>long-term residency</strong> at The Vault. Short-term recording retreats
+            provide access to all Foundation-owned equipment, but brand sponsorship partnerships
+            require an extended artist-in-residence commitment to demonstrate sustained use and visibility.
+        </p>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============================== -->
+<!-- VISA & IMMIGRATION SUPPORT      -->
+<!-- ============================== -->
+<section>
+    <div class="section-label label-green">International Artists</div>
+    <h2>Visa &amp; <span>Immigration Support</span></h2>
+    <p class="section-desc">
+        The Kauzak Foundation works with international artists to navigate the US immigration
+        process. We help with passports, visa applications, and legal documentation so artists
+        can focus on their craft instead of paperwork.
+    </p>
+
+    <div class="visa-timeline">
+        <div class="visa-step">
+            <div class="visa-icon">&#128796;</div>
+            <h4>Passport &amp; Documentation</h4>
+            <p>We assist with passport applications, renewals, and all required documentation for US entry. Foundation provides guidance and financial support for processing fees.</p>
+            <div class="visa-duration">Preparation Phase</div>
+        </div>
+        <div class="visa-step">
+            <div class="visa-icon">&#9992;&#65039;</div>
+            <h4>Initial 90-Day Stay</h4>
+            <p>First visit on a standard visa for the recording retreat &mdash; fully funded flights, housing, and production. This is the trial period to build chemistry and evaluate long-term fit.</p>
+            <div class="visa-duration">90 Days</div>
+        </div>
+        <div class="visa-step">
+            <div class="visa-icon">&#127968;</div>
+            <h4>Long-Term Residency</h4>
+            <p>If things work out, the Foundation supports the transition to a long-term visa and extended artist residency. Legal assistance, sponsorship letters, and continued financial backing.</p>
+            <div class="visa-duration">Ongoing</div>
+        </div>
+    </div>
+
+    <div class="highlight-row">
+        <div class="highlight-card">
+            <h3>What We <span>Cover</span></h3>
+            <p>
+                Passport application fees and processing, visa application and legal filing costs,
+                round-trip international flights, housing at The Vault for the full duration,
+                meals and living expenses, ground transportation, and all studio access &mdash;
+                the artist pays nothing. Zero cost to the artist at every stage.
+            </p>
+        </div>
+        <div class="highlight-card">
+            <h3>How It <span>Works</span></h3>
+            <p>
+                International artists start with a 90-day recording retreat. During that time, we
+                evaluate the working relationship, creative output, and long-term potential. If both
+                sides agree it's a fit, the Foundation begins the process of securing long-term
+                visa arrangements so the artist can continue their residency and career development
+                from The Vault indefinitely.
+            </p>
+        </div>
+    </div>
+
+    <!-- APPLICATION & VISA FORMS -->
+    <h3 style="color:#fff; font-size:1.15rem; margin-top:40px; margin-bottom:8px; font-weight:700;">&#128196; Application &amp; Visa Forms</h3>
+    <p class="section-desc" style="margin-bottom:20px;">
+        All forms are fillable PDFs &mdash; open in your browser, complete digitally, and print.
+        No emailing required. Fill out the forms you need and bring them to your embassy appointment
+        or submit directly to the Foundation.
+    </p>
+
+    <div class="forms-grid">
+        <div class="form-card">
+            <div class="form-icon">&#128221;</div>
+            <h4>Artist Fellowship Application</h4>
+            <div class="form-type">Required &mdash; All Artists</div>
+            <p>3-page application covering personal info, musical background &amp; education, genre, online presence, financial situation, travel status, and goals. Start here.</p>
+            <a href="forms/Kauzak_Artist_Application.pdf" class="form-dl" target="_blank">Open Application (PDF)</a>
+        </div>
+        <div class="form-card">
+            <div class="form-icon">&#9992;&#65039;</div>
+            <h4>B-1/B-2 Visitor Visa Support</h4>
+            <div class="form-type">Initial 90-Day Stay</div>
+            <p>For your first visit &mdash; the 90-day recording retreat. The Foundation uses this to prepare an official invitation letter for your US Embassy interview. Covers passport, travel, and ties to home country.</p>
+            <a href="forms/Kauzak_Visa_B1_B2_Visitor.pdf" class="form-dl" target="_blank">Open B-1/B-2 Form (PDF)</a>
+        </div>
+        <div class="form-card">
+            <div class="form-icon">&#127942;</div>
+            <h4>O-1B Extraordinary Ability Visa</h4>
+            <div class="form-type">Long-Term &mdash; Distinguished Artists</div>
+            <p>For artists with extraordinary ability or achievement in the arts. Requires evidence of awards, critical reviews, or a leading role in productions. The Foundation sponsors the petition.</p>
+            <a href="forms/Kauzak_Visa_O1B_Extraordinary_Ability.pdf" class="form-dl" target="_blank">Open O-1B Form (PDF)</a>
+        </div>
+        <div class="form-card">
+            <div class="form-icon">&#127758;</div>
+            <h4>P-1B Internationally Recognized Artist</h4>
+            <div class="form-type">Long-Term &mdash; International Recognition</div>
+            <p>For artists with international recognition through tours, releases, or media coverage. Can apply as a solo artist or group member. The Foundation acts as sponsoring organization.</p>
+            <a href="forms/Kauzak_Visa_P1B_Internationally_Recognized.pdf" class="form-dl" target="_blank">Open P-1B Form (PDF)</a>
+        </div>
+    </div>
+    <div class="forms-note">All forms are confidential. Fill digitally or print and complete by hand. PDF format &mdash; opens in any browser.</div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<div class="cta-section">
+    <h2>Questions?</h2>
+    <p>
+        If you've been contacted by the Foundation and want to learn more about the
+        artist development program or The Vault, reach out directly.
+    </p>
+    <a href="mailto:brian@kauzak.foundation" class="cta-btn">Contact the Foundation</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <a href="https://kauzak.foundation">kauzak.foundation</a> &mdash; Kauzak Foundation, Inc.<br>
+    501(c)(3) Nonprofit Organization &mdash; EIN: 41-3426116<br>
+    Copyright &copy; 2026 Kauzak Foundation, Inc. All rights reserved.<br>
+    <span style="color: var(--color-dim); font-size:0.72rem;">This document is confidential and intended for contacted artists only.</span>
+</footer>
+
+<script>
+    const galleryImages = [
+        { src: 'vault-photos/exterior-aerial.jpg', caption: 'Aerial View — 10,000 sq ft Artist Residence' },
+        { src: 'vault-photos/exterior-front.jpg', caption: 'Front Aerial — Golf Course Setting' },
+        { src: 'vault-photos/entrance-stairs.jpg', caption: 'Grand Entrance — Stone & Timber Detail' },
+        { src: 'vault-photos/exterior-garage.jpg', caption: '3-Car Garage — Side View' },
+        { src: 'vault-photos/exterior-ground.jpg', caption: 'Ground Level — Wrap-Around Porch' },
+        { src: 'vault-photos/aerial-lake.jpg', caption: 'Aerial — Lake Panorama' },
+        { src: 'vault-photos/aerial-lake-wide.jpg', caption: 'Wide Aerial — Lake & Community' },
+        { src: 'vault-photos/exterior-porch.jpg', caption: 'Covered Porch — Cedar Ceiling' },
+        { src: 'vault-photos/interior-dining-archways.jpg', caption: 'Dining Area — Archways & Hardwood Floors' },
+        { src: 'vault-photos/interior-formal-dining.jpg', caption: 'Formal Dining — Chandelier & Golf Course View' },
+        { src: 'vault-photos/interior-kitchen.jpg', caption: 'Gourmet Kitchen — Granite Island & Custom Cabinetry' },
+        { src: 'vault-photos/interior-living-room.jpg', caption: 'Living & Entertainment Area' },
+        { src: 'vault-photos/interior-master-bedroom.jpg', caption: 'Master Suite — Hardwood Floors & Golf View' },
+        { src: 'vault-photos/interior-guest-bedroom.jpg', caption: 'Guest Bedroom' },
+        { src: 'vault-photos/interior-theater.jpg', caption: 'Private Home Theater' }
+    ];
+
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+        currentIndex = index;
+        const lb = document.getElementById('lightbox');
+        document.getElementById('lightbox-img').src = galleryImages[index].src;
+        document.getElementById('lightbox-caption').textContent = galleryImages[index].caption;
+        lb.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+        if (e && e.target !== document.getElementById('lightbox') && e.target !== document.querySelector('.lightbox-close')) return;
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function navLightbox(dir, e) {
+        if (e) e.stopPropagation();
+        currentIndex = (currentIndex + dir + galleryImages.length) % galleryImages.length;
+        document.getElementById('lightbox-img').src = galleryImages[currentIndex].src;
+        document.getElementById('lightbox-caption').textContent = galleryImages[currentIndex].caption;
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (!document.getElementById('lightbox').classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navLightbox(-1);
+        if (e.key === 'ArrowRight') navLightbox(1);
+    });
+</script>
+
+</body>
+</html>

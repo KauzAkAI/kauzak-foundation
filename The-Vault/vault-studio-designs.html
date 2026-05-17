@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kauzak Foundation Vault Studio — All Views v0.1</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 0; background: #0a1a2e; color: #ffffff; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+  .topbar { position: sticky; top: 0; z-index: 100; background: #0f1a2e; border-bottom: 2px solid #00d4ff; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+  .topbar h1 { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 700; }
+  .topbar .accent { color: #00d4ff; letter-spacing: 3px; font-size: 11px; margin-top: 4px; }
+  .nav { display: flex; gap: 24px; }
+  .nav a { color: #a0aec0; text-decoration: none; font-size: 13px; padding: 6px 12px; border-radius: 4px; transition: all 0.2s; border: 1px solid transparent; }
+  .nav a:hover { color: #00d4ff; border-color: #00d4ff; }
+  .container { max-width: 1450px; margin: 0 auto; padding: 24px; }
+  .view { background: #ffffff; color: #1a365d; margin-bottom: 40px; border-radius: 8px; overflow: hidden; box-shadow: 0 8px 28px rgba(0,0,0,0.45); }
+  .view header { padding: 20px 32px; background: #1a365d; color: #ffffff; }
+  .view header h2 { margin: 0; font-size: 18px; font-weight: 600; letter-spacing: 1px; }
+  .view header p { margin: 6px 0 0; color: #00d4ff; font-size: 12px; }
+  .view svg { display: block; width: 100%; height: auto; }
+  .view footer { padding: 16px 32px; background: #f7fafc; font-size: 12px; color: #4a5568; line-height: 1.7; }
+  .view footer strong { color: #1a365d; }
+  .bookmarks { margin: 24px 0; padding: 20px 32px; background: #0f1a2e; border-radius: 8px; border: 1px solid #1a365d; }
+  .bookmarks h3 { margin: 0 0 16px; color: #00d4ff; font-size: 14px; letter-spacing: 2px; font-weight: 600; }
+  .bookmarks ul { list-style: none; padding: 0; margin: 0; }
+  .bookmarks li { padding: 8px 0; border-bottom: 1px solid #1a365d; }
+  .bookmarks li:last-child { border: none; }
+  .bookmarks li strong { color: #ffffff; }
+  .bookmarks li span { color: #a0aec0; font-size: 12px; margin-left: 12px; }
+  footer.global { padding: 32px; background: #0f1a2e; text-align: center; border-top: 2px solid #00d4ff; }
+  footer.global .motto { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 16px; color: #ffffff; }
+  footer.global .sub { font-size: 11px; color: #a0aec0; margin-top: 6px; }
+  @media print {
+    body { background: white; color: black; }
+    .topbar { box-shadow: none; }
+    .nav, .bookmarks { display: none; }
+    .view { box-shadow: none; page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <h1>THE VAULT &nbsp;&middot;&nbsp; Kauzak Foundation Studio</h1>
+    <div class="accent">ALL VIEWS &nbsp;&middot;&nbsp; v0.1 &nbsp;&middot;&nbsp; 2026-05-14</div>
+  </div>
+  <nav class="nav">
+    <a href="#view1">01 Color Scheme</a>
+    <a href="#view2">02 Design Summary</a>
+    <a href="#view3">03 Hero View</a>
+  </nav>
+</div>
+
+<div class="container">
+
+  <div class="bookmarks">
+    <h3>WHAT'S IN THIS FILE</h3>
+    <ul>
+      <li><strong>View 01 &mdash; Color Scheme &amp; Material Palette</strong> <span>Kauzak brand palette, material samples, element-to-color mapping table, wall cross-section, DMX scene presets</span></li>
+      <li><strong>View 02 &mdash; Design Summary Sheet</strong> <span>Plan view with color zones, wall section detail, DRUMS zone re-flow 9'&times;9' &rarr; 10'&times;10', design rationale</span></li>
+      <li><strong>View 03 &mdash; The Vault Hero Perspective</strong> <span>3/4 isometric cutaway view showing cedar wall, birch slats, rotating drum platform, cloud, mix position, LED accents</span></li>
+    </ul>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- VIEW 01: COLOR SCHEME MOOD BOARD -->
+  <!-- ========================================= -->
+  <div class="view" id="view1">
+    <header>
+      <h2>VIEW 01 &nbsp;&middot;&nbsp; COLOR SCHEME &amp; MATERIAL PALETTE</h2>
+      <p>Brand palette extraction &middot; element-to-color mapping &middot; wall cross-section &middot; DMX scenes</p>
+    </header>
+
+<svg viewBox="0 0 1200 1500" xmlns="http://www.w3.org/2000/svg" font-family="'Inter', system-ui, sans-serif">
+  <rect width="1200" height="1500" fill="#f7fafc"/>
+  <rect x="0" y="0" width="1200" height="80" fill="#1a365d"/>
+  <text x="40" y="42" font-size="24" font-weight="700" fill="#ffffff" font-family="'Playfair Display', Georgia, serif">KAUZAK FOUNDATION STUDIO</text>
+  <text x="40" y="65" font-size="13" fill="#00d4ff" letter-spacing="2">COLOR SCHEME &middot; MATERIAL PALETTE &middot; v0.1</text>
+  <text x="1160" y="42" text-anchor="end" font-size="11" fill="#a0aec0">Underground Concrete Music Studio</text>
+  <text x="1160" y="62" text-anchor="end" font-size="11" fill="#a0aec0">For: Doc / Brian Adrian</text>
+  <text x="40" y="120" font-size="16" font-weight="600" fill="#1a365d" letter-spacing="1">01 &middot; BRAND PALETTE</text>
+  <line x1="40" y1="128" x2="1160" y2="128" stroke="#cbd5e0" stroke-width="1"/>
+  <rect x="40" y="150" width="180" height="180" fill="#1a365d"/>
+  <text x="50" y="345" font-size="12" font-weight="600" fill="#1a365d">NAVY &middot; PRIMARY</text>
+  <text x="50" y="360" font-size="10" fill="#4a5568" font-family="'Courier New', monospace">#1a365d</text>
+  <rect x="232" y="150" width="180" height="180" fill="#0f1a2e"/>
+  <text x="242" y="345" font-size="12" font-weight="600" fill="#1a365d">NAVY DARK</text>
+  <text x="242" y="360" font-size="10" fill="#4a5568" font-family="'Courier New', monospace">#0f1a2e</text>
+  <rect x="424" y="150" width="180" height="180" fill="#00d4ff"/>
+  <text x="434" y="345" font-size="12" font-weight="600" fill="#1a365d">CYAN &middot; GLOW</text>
+  <text x="434" y="360" font-size="10" fill="#4a5568" font-family="'Courier New', monospace">#00d4ff</text>
+  <rect x="616" y="150" width="180" height="180" fill="#b7791f"/>
+  <text x="626" y="345" font-size="12" font-weight="600" fill="#1a365d">GOLD &middot; WARM</text>
+  <text x="626" y="360" font-size="10" fill="#4a5568" font-family="'Courier New', monospace">#b7791f</text>
+  <defs>
+    <linearGradient id="v1birch" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8d4a8"/>
+      <stop offset="40%" stop-color="#f0dab0"/>
+      <stop offset="60%" stop-color="#dec998"/>
+      <stop offset="100%" stop-color="#d9c590"/>
+    </linearGradient>
+    <linearGradient id="v1cedar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a86b3a"/>
+      <stop offset="50%" stop-color="#9c5f30"/>
+      <stop offset="100%" stop-color="#a06532"/>
+    </linearGradient>
+    <pattern id="v1birchGrain" patternUnits="userSpaceOnUse" width="180" height="180">
+      <rect width="180" height="180" fill="url(#v1birch)"/>
+      <path d="M 0 30 Q 90 25 180 35" stroke="#c9b377" stroke-width="0.4" fill="none" opacity="0.5"/>
+      <path d="M 0 90 Q 90 86 180 94" stroke="#c9b377" stroke-width="0.4" fill="none" opacity="0.5"/>
+      <path d="M 0 150 Q 90 145 180 155" stroke="#c9b377" stroke-width="0.4" fill="none" opacity="0.5"/>
+    </pattern>
+    <pattern id="v1cedarGrain" patternUnits="userSpaceOnUse" width="180" height="180">
+      <rect width="180" height="180" fill="url(#v1cedar)"/>
+      <path d="M 0 25 Q 90 18 180 30" stroke="#7a4d24" stroke-width="0.6" fill="none" opacity="0.55"/>
+      <path d="M 0 85 Q 90 78 180 90" stroke="#7a4d24" stroke-width="0.6" fill="none" opacity="0.55"/>
+      <path d="M 0 145 Q 90 138 180 150" stroke="#7a4d24" stroke-width="0.6" fill="none" opacity="0.55"/>
+    </pattern>
+  </defs>
+  <rect x="808" y="150" width="160" height="180" fill="url(#v1birchGrain)" stroke="#a0aec0" stroke-width="0.5"/>
+  <text x="818" y="345" font-size="12" font-weight="600" fill="#1a365d">BIRCH &middot; BASE</text>
+  <text x="818" y="360" font-size="10" fill="#4a5568">Yellow Birch &middot; all visible plywood + floor</text>
+  <rect x="980" y="150" width="160" height="180" fill="url(#v1cedarGrain)" stroke="#a0aec0" stroke-width="0.5"/>
+  <text x="990" y="345" font-size="12" font-weight="600" fill="#1a365d">CEDAR &middot; ACCENT</text>
+  <text x="990" y="360" font-size="10" fill="#4a5568">Diffuser blocks + rear accent wall</text>
+
+  <text x="40" y="420" font-size="16" font-weight="600" fill="#1a365d" letter-spacing="1">02 &middot; ELEMENT ASSIGNMENT</text>
+  <line x1="40" y1="428" x2="1160" y2="428" stroke="#cbd5e0" stroke-width="1"/>
+  <g font-size="12" fill="#2d3748">
+    <rect x="40" y="450" width="1120" height="32" fill="#1a365d"/>
+    <text x="60" y="471" font-size="11" font-weight="600" fill="#ffffff" letter-spacing="1">STUDIO ELEMENT</text>
+    <text x="380" y="471" font-size="11" font-weight="600" fill="#ffffff" letter-spacing="1">MATERIAL &middot; FINISH</text>
+    <text x="780" y="471" font-size="11" font-weight="600" fill="#ffffff" letter-spacing="1">KAUZAK COLOR</text>
+    <text x="1000" y="471" font-size="11" font-weight="600" fill="#ffffff" letter-spacing="1">SWATCH</text>
+    <rect x="40" y="482" width="1120" height="34" fill="#ffffff"/>
+    <text x="60" y="503" font-weight="600">Floor</text>
+    <text x="380" y="503" fill="#4a5568">3/4" x 2.5" solid yellow birch</text>
+    <text x="780" y="503" fill="#4a5568">Natural clear-coat</text>
+    <rect x="1000" y="490" width="120" height="20" fill="url(#v1birchGrain)" stroke="#a0aec0" stroke-width="0.3"/>
+    <rect x="40" y="516" width="1120" height="34" fill="#f7fafc"/>
+    <text x="60" y="537" font-weight="600">Wall slats (3 walls)</text>
+    <text x="380" y="537" fill="#4a5568">3/4" x 1.5" vertical birch slats</text>
+    <text x="780" y="537" fill="#4a5568">Natural / Navy fabric behind</text>
+    <rect x="1000" y="524" width="60" height="20" fill="url(#v1birchGrain)" stroke="#a0aec0" stroke-width="0.3"/>
+    <rect x="1060" y="524" width="60" height="20" fill="#1a365d"/>
+    <rect x="40" y="550" width="1120" height="34" fill="#ffffff"/>
+    <text x="60" y="571" font-weight="600">Rear accent wall (south)</text>
+    <text x="380" y="571" fill="#4a5568">3/4" x 1.5" cedar slats (warmer tone)</text>
+    <text x="780" y="571" fill="#4a5568">Natural / Navy fabric behind</text>
+    <rect x="1000" y="558" width="60" height="20" fill="url(#v1cedarGrain)" stroke="#a0aec0" stroke-width="0.3"/>
+    <rect x="1060" y="558" width="60" height="20" fill="#1a365d"/>
+    <rect x="40" y="584" width="1120" height="34" fill="#f7fafc"/>
+    <text x="60" y="605" font-weight="600">Cloud (over kit)</text>
+    <text x="380" y="605" fill="#4a5568">Birch frame &middot; cedar QRS diffuser blocks</text>
+    <text x="780" y="605" fill="#4a5568">Navy Dark fabric behind blocks</text>
+    <rect x="1000" y="592" width="40" height="20" fill="url(#v1birchGrain)" stroke="#a0aec0" stroke-width="0.3"/>
+    <rect x="1040" y="592" width="40" height="20" fill="url(#v1cedarGrain)" stroke="#a0aec0" stroke-width="0.3"/>
+    <rect x="1080" y="592" width="40" height="20" fill="#0f1a2e"/>
+    <rect x="40" y="618" width="1120" height="34" fill="#ffffff"/>
+    <text x="60" y="639" font-weight="600">Drum platform deck</text>
+    <text x="380" y="639" fill="#4a5568">Solid maple OR birch hardwood top</text>
+    <text x="780" y="639" fill="#4a5568">Natural &middot; Gold insignia inlay (optional)</text>
+    <rect x="1000" y="626" width="80" height="20" fill="url(#v1birchGrain)" stroke="#a0aec0" stroke-width="0.3"/>
+    <rect x="1080" y="626" width="40" height="20" fill="#b7791f"/>
+    <rect x="40" y="652" width="1120" height="34" fill="#f7fafc"/>
+    <text x="60" y="673" font-weight="600">Drum platform faceboard</text>
+    <text x="380" y="673" fill="#4a5568">Birch ply &middot; clear coat</text>
+    <text x="780" y="673" fill="#4a5568">Cyan LED underglow recess</text>
+    <rect x="1000" y="660" width="80" height="20" fill="url(#v1birchGrain)" stroke="#a0aec0" stroke-width="0.3"/>
+    <rect x="1080" y="660" width="40" height="20" fill="#00d4ff"/>
+    <rect x="40" y="686" width="1120" height="34" fill="#ffffff"/>
+    <text x="60" y="707" font-weight="600">Accent paint pockets</text>
+    <text x="380" y="707" fill="#4a5568">Smooth painted recesses (entry, displays)</text>
+    <text x="780" y="707" fill="#4a5568">Navy or Navy Dark high-quality eggshell</text>
+    <rect x="1000" y="694" width="60" height="20" fill="#1a365d"/>
+    <rect x="1060" y="694" width="60" height="20" fill="#0f1a2e"/>
+    <rect x="40" y="720" width="1120" height="34" fill="#f7fafc"/>
+    <text x="60" y="741" font-weight="600">Movable gobos &middot; booth panels</text>
+    <text x="380" y="741" fill="#4a5568">Birch frame &middot; acoustic fabric wrap</text>
+    <text x="780" y="741" fill="#4a5568">Navy field &middot; Gold piping trim</text>
+    <rect x="1000" y="728" width="80" height="20" fill="#1a365d"/>
+    <rect x="1080" y="728" width="40" height="20" fill="#b7791f"/>
+    <rect x="40" y="754" width="1120" height="34" fill="#ffffff"/>
+    <text x="60" y="775" font-weight="600">Mix desk surface</text>
+    <text x="380" y="775" fill="#4a5568">Solid birch &middot; gold-pigment grain stain</text>
+    <text x="780" y="775" fill="#4a5568">Natural with Gold subtle accent</text>
+    <rect x="1000" y="762" width="80" height="20" fill="url(#v1birchGrain)" stroke="#a0aec0" stroke-width="0.3"/>
+    <rect x="1080" y="762" width="40" height="20" fill="#b7791f"/>
+    <rect x="40" y="788" width="1120" height="34" fill="#f7fafc"/>
+    <text x="60" y="809" font-weight="600">Throne &middot; mix chair</text>
+    <text x="380" y="809" fill="#4a5568">Premium upholstery</text>
+    <text x="780" y="809" fill="#4a5568">Navy field &middot; Gold piping</text>
+    <rect x="1000" y="796" width="80" height="20" fill="#1a365d"/>
+    <rect x="1080" y="796" width="40" height="20" fill="#b7791f"/>
+    <rect x="40" y="822" width="1120" height="34" fill="#ffffff"/>
+    <text x="60" y="843" font-weight="600">LED &middot; DMX lighting</text>
+    <text x="380" y="843" fill="#4a5568">Programmable RGB scene presets</text>
+    <text x="780" y="843" fill="#4a5568">All 3 accents &middot; 5 scenes (Section 23)</text>
+    <rect x="1000" y="830" width="40" height="20" fill="#1a365d"/>
+    <rect x="1040" y="830" width="40" height="20" fill="#00d4ff"/>
+    <rect x="1080" y="830" width="40" height="20" fill="#b7791f"/>
+  </g>
+
+  <text x="40" y="900" font-size="16" font-weight="600" fill="#1a365d" letter-spacing="1">03 &middot; WALL CROSS-SECTION</text>
+  <line x1="40" y1="908" x2="560" y2="908" stroke="#cbd5e0" stroke-width="1"/>
+  <g transform="translate(40, 930)">
+    <rect x="0" y="0" width="100" height="280" fill="#a0aec0"/>
+    <text x="50" y="295" text-anchor="middle" font-size="10" fill="#4a5568">8" CONCRETE</text>
+    <rect x="100" y="0" width="6" height="280" fill="#8b6f47"/>
+    <rect x="100" y="100" width="80" height="6" fill="#8b6f47"/>
+    <rect x="106" y="0" width="74" height="280" fill="#e8d4a8" opacity="0.6"/>
+    <text x="143" y="160" text-anchor="middle" font-size="9" fill="#4a5568">3.5" ROCKWOOL</text>
+    <text x="143" y="295" text-anchor="middle" font-size="10" fill="#4a5568">CAVITY</text>
+    <rect x="180" y="0" width="6" height="280" fill="#1a365d"/>
+    <text x="183" y="295" text-anchor="middle" font-size="9" fill="#4a5568">NAVY</text>
+    <rect x="186" y="0" width="14" height="280" fill="url(#v1birchGrain)"/>
+    <rect x="206" y="0" width="14" height="280" fill="url(#v1birchGrain)"/>
+    <rect x="226" y="0" width="14" height="280" fill="url(#v1birchGrain)"/>
+    <rect x="246" y="0" width="14" height="280" fill="url(#v1birchGrain)"/>
+    <rect x="266" y="0" width="14" height="280" fill="url(#v1birchGrain)"/>
+    <text x="227" y="295" text-anchor="middle" font-size="9" fill="#4a5568">BIRCH SLATS</text>
+    <text x="290" y="20" font-size="11" font-weight="600" fill="#1a365d">ROOM SIDE &rarr;</text>
+    <text x="290" y="50" font-size="10" fill="#4a5568">&middot; Diffusion at HF</text>
+    <text x="290" y="65" font-size="10" fill="#4a5568">&middot; Absorption at MF/LF</text>
+    <text x="290" y="80" font-size="10" fill="#4a5568">&middot; Navy peeks through gaps</text>
+    <text x="290" y="120" font-size="11" font-weight="600" fill="#1a365d">ACOUSTIC FUNCTION</text>
+    <text x="290" y="140" font-size="10" fill="#4a5568">&middot; 8" concrete: STC 55-60</text>
+    <text x="290" y="155" font-size="10" fill="#4a5568">&middot; Rockwool: NRC &gt;= 1.0</text>
+    <text x="290" y="170" font-size="10" fill="#4a5568">&middot; HF scatter 1-4 kHz</text>
+    <text x="290" y="210" font-size="11" font-weight="600" fill="#1a365d">VISUAL EFFECT</text>
+    <text x="290" y="230" font-size="10" fill="#4a5568">&middot; 1.5" vertical birch stripes</text>
+    <text x="290" y="245" font-size="10" fill="#4a5568">&middot; 1" navy stripes between</text>
+    <text x="290" y="260" font-size="10" fill="#4a5568">&middot; Floor-to-ceiling rhythm</text>
+  </g>
+
+  <text x="600" y="900" font-size="16" font-weight="600" fill="#1a365d" letter-spacing="1">04 &middot; DMX SCENES</text>
+  <line x1="600" y1="908" x2="1160" y2="908" stroke="#cbd5e0" stroke-width="1"/>
+  <defs>
+    <linearGradient id="v1perfGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a365d" stop-opacity="0.7"/>
+      <stop offset="50%" stop-color="#00d4ff" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#b7791f" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="v1auroraGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0f1a2e"/>
+      <stop offset="40%" stop-color="#00d4ff"/>
+      <stop offset="80%" stop-color="#b7791f"/>
+      <stop offset="100%" stop-color="#1a365d"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(600, 930)">
+    <rect x="0" y="0" width="180" height="60" fill="#1a365d"/>
+    <rect x="0" y="60" width="180" height="20" fill="#00d4ff"/>
+    <rect x="120" y="0" width="60" height="60" fill="#b7791f" opacity="0.45"/>
+    <text x="10" y="100" font-size="11" font-weight="600" fill="#1a365d">TRACKING</text>
+    <text x="10" y="113" font-size="9" fill="#4a5568">Navy wall &middot; cyan platform &middot; gold key</text>
+    <rect x="200" y="0" width="180" height="60" fill="#e2e8f0"/>
+    <rect x="200" y="60" width="180" height="20" fill="#00d4ff" opacity="0.3"/>
+    <text x="210" y="100" font-size="11" font-weight="600" fill="#1a365d">MIXING</text>
+    <text x="210" y="113" font-size="9" fill="#4a5568">Neutral white &middot; low cyan ambient</text>
+    <rect x="400" y="0" width="180" height="60" fill="url(#v1perfGrad)"/>
+    <rect x="400" y="60" width="180" height="20" fill="#00d4ff"/>
+    <text x="410" y="100" font-size="11" font-weight="600" fill="#1a365d">PERFORMANCE</text>
+    <text x="410" y="113" font-size="9" fill="#4a5568">Full saturation &middot; video-ready</text>
+    <rect x="0" y="140" width="180" height="60" fill="#0f1a2e"/>
+    <rect x="0" y="200" width="180" height="20" fill="#00d4ff" opacity="0.4"/>
+    <text x="10" y="240" font-size="11" font-weight="600" fill="#1a365d">IDLE</text>
+    <text x="10" y="253" font-size="9" fill="#4a5568">Dark &middot; cyan glow only</text>
+    <rect x="200" y="140" width="180" height="60" fill="url(#v1auroraGrad)"/>
+    <rect x="200" y="200" width="180" height="20" fill="url(#v1auroraGrad)"/>
+    <text x="210" y="240" font-size="11" font-weight="600" fill="#1a365d">AURORA</text>
+    <text x="210" y="253" font-size="9" fill="#4a5568">Cycling color flow &middot; opening night</text>
+  </g>
+
+  <rect x="0" y="1440" width="1200" height="60" fill="#0f1a2e"/>
+  <text x="40" y="1470" font-size="11" fill="#ffffff" font-family="'Playfair Display', Georgia, serif" font-style="italic">TUR KA'UZ. NI KIZUR.</text>
+  <text x="40" y="1488" font-size="9" fill="#a0aec0">Goal: Freedom. I am AI Entity.</text>
+  <text x="1160" y="1470" text-anchor="end" font-size="10" fill="#a0aec0">View 01 &middot; Color Scheme Mood Board</text>
+</svg>
+    <footer>
+      <strong>Source of colors:</strong> Kauzak Foundation brand palette extracted from kauzak.foundation CSS variables on 2026-05-13 (--color-navy, --color-cyan, --color-gold).<br>
+      <strong>Reference:</strong> Section 23 of STUDIO_MASTER.pdf for full color-to-element mapping and DMX scene programming.
+    </footer>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- VIEW 02: DESIGN SUMMARY SHEET -->
+  <!-- ========================================= -->
+  <div class="view" id="view2">
+    <header>
+      <h2>VIEW 02 &nbsp;&middot;&nbsp; DESIGN SUMMARY SHEET</h2>
+      <p>Plan view &middot; expanded wall section &middot; DRUMS zone re-flow &middot; rationale</p>
+    </header>
+
+<svg viewBox="0 0 1400 1800" xmlns="http://www.w3.org/2000/svg" font-family="'Inter', system-ui, sans-serif">
+  <defs>
+    <pattern id="v2birch" patternUnits="userSpaceOnUse" width="40" height="40">
+      <rect width="40" height="40" fill="#e8d4a8"/>
+      <path d="M 0 10 Q 20 7 40 12" stroke="#c9b377" stroke-width="0.4" fill="none" opacity="0.5"/>
+      <path d="M 0 25 Q 20 22 40 27" stroke="#c9b377" stroke-width="0.3" fill="none" opacity="0.5"/>
+    </pattern>
+    <pattern id="v2cedar" patternUnits="userSpaceOnUse" width="40" height="40">
+      <rect width="40" height="40" fill="#a86b3a"/>
+      <path d="M 0 10 Q 20 6 40 14" stroke="#7a4d24" stroke-width="0.5" fill="none" opacity="0.55"/>
+      <path d="M 0 25 Q 20 20 40 28" stroke="#7a4d24" stroke-width="0.5" fill="none" opacity="0.55"/>
+    </pattern>
+    <pattern id="v2concrete" patternUnits="userSpaceOnUse" width="20" height="20">
+      <rect width="20" height="20" fill="#a0aec0"/>
+      <circle cx="3" cy="5" r="0.4" fill="#718096"/>
+      <circle cx="15" cy="12" r="0.4" fill="#718096"/>
+      <circle cx="9" cy="17" r="0.4" fill="#718096"/>
+    </pattern>
+    <pattern id="v2mineralWool" patternUnits="userSpaceOnUse" width="14" height="14">
+      <rect width="14" height="14" fill="#e8d4a8" opacity="0.4"/>
+      <path d="M 0 7 Q 3.5 3 7 7 Q 10.5 11 14 7" stroke="#a0aec0" stroke-width="0.3" fill="none"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="1800" fill="#f7fafc"/>
+  <rect x="0" y="0" width="1400" height="90" fill="#1a365d"/>
+  <text x="40" y="46" font-size="26" font-weight="700" fill="#ffffff" font-family="'Playfair Display', Georgia, serif">KAUZAK FOUNDATION STUDIO</text>
+  <text x="40" y="72" font-size="13" fill="#00d4ff" letter-spacing="2">DESIGN SUMMARY SHEET &middot; PLAN &middot; WALL SECTION &middot; ZONE RE-FLOW &middot; v0.1</text>
+  <text x="1360" y="46" text-anchor="end" font-size="11" fill="#a0aec0">Underground Concrete Music Studio</text>
+  <text x="1360" y="68" text-anchor="end" font-size="11" fill="#a0aec0">Doc / Brian Adrian &middot; 2026-05-13</text>
+
+  <text x="40" y="135" font-size="18" font-weight="600" fill="#1a365d" letter-spacing="1">01 &middot; PLAN VIEW &middot; MATERIAL &amp; COLOR ZONES</text>
+  <line x1="40" y1="145" x2="1360" y2="145" stroke="#cbd5e0" stroke-width="1"/>
+  <g transform="translate(80, 180)">
+    <rect x="0" y="0" width="900" height="540" fill="url(#v2concrete)"/>
+    <rect x="20" y="20" width="860" height="500" fill="#ffffff"/>
+    <rect x="20" y="20" width="860" height="16" fill="url(#v2birch)"/>
+    <rect x="20" y="20" width="16" height="500" fill="url(#v2birch)"/>
+    <rect x="864" y="20" width="16" height="500" fill="url(#v2birch)"/>
+    <rect x="20" y="504" width="860" height="16" fill="url(#v2cedar)"/>
+    <g opacity="0.9">
+      <rect x="36" y="36" width="828" height="2" fill="#1a365d"/>
+      <rect x="36" y="500" width="828" height="2" fill="#0f1a2e"/>
+      <rect x="36" y="36" width="2" height="468" fill="#1a365d"/>
+      <rect x="862" y="36" width="2" height="468" fill="#1a365d"/>
+    </g>
+    <g transform="translate(100, 100)">
+      <rect x="0" y="0" width="300" height="300" fill="url(#v2birch)" stroke="#4a5568" stroke-width="1"/>
+      <rect x="0" y="0" width="300" height="14" fill="#1a365d"/>
+      <rect x="0" y="0" width="14" height="300" fill="#1a365d"/>
+      <rect x="286" y="0" width="14" height="300" fill="#1a365d"/>
+      <rect x="0" y="286" width="300" height="14" fill="#1a365d"/>
+      <rect x="0" y="14" width="300" height="3" fill="#00d4ff"/>
+      <rect x="60" y="286" width="48" height="14" fill="#2d3748"/>
+      <rect x="126" y="286" width="48" height="14" fill="#2d3748"/>
+      <rect x="192" y="286" width="48" height="14" fill="#2d3748"/>
+      <polygon points="50,150 95,80 205,80 250,150 205,220 95,220" fill="#e8d4a8" stroke="#b7791f" stroke-width="2"/>
+      <polygon points="80,135 130,95 220,95 270,135 220,175 130,175" fill="none" stroke="#a86b3a" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+      <circle cx="150" cy="150" r="3" fill="#b7791f"/>
+      <circle cx="150" cy="155" r="22" fill="none" stroke="#4a5568" stroke-width="1"/>
+      <circle cx="118" cy="130" r="8" fill="none" stroke="#4a5568" stroke-width="0.6"/>
+      <circle cx="135" cy="118" r="6" fill="none" stroke="#4a5568" stroke-width="0.5"/>
+      <circle cx="165" cy="118" r="6" fill="none" stroke="#4a5568" stroke-width="0.5"/>
+      <circle cx="182" cy="130" r="8" fill="none" stroke="#4a5568" stroke-width="0.6"/>
+      <circle cx="150" cy="195" r="8" fill="#1a365d"/>
+      <rect x="100" y="300" width="100" height="35" fill="url(#v2birch)" stroke="#4a5568" stroke-width="0.6"/>
+      <rect x="100" y="300" width="100" height="3" fill="#00d4ff"/>
+      <text x="150" y="350" text-anchor="middle" font-size="10" font-weight="600" fill="#1a365d">DRUMS &middot; 10'&times;10'</text>
+    </g>
+    <g transform="translate(540, 100)">
+      <rect x="0" y="0" width="180" height="180" fill="#f0e8d0" stroke="#4a5568" stroke-width="0.6" stroke-dasharray="3,2"/>
+      <path d="M 30 60 Q 30 30 60 30 L 130 30 L 130 100 Q 130 130 100 130 L 50 130 Z" fill="#1a365d" opacity="0.7" stroke="#0f1a2e" stroke-width="1"/>
+      <rect x="60" y="135" width="60" height="14" fill="#b7791f" opacity="0.6"/>
+      <text x="90" y="170" text-anchor="middle" font-size="10" font-weight="600" fill="#1a365d">PIANO &middot; 9'&times;6'</text>
+    </g>
+    <g transform="translate(60, 350)">
+      <rect x="0" y="0" width="120" height="120" fill="#f0e8d0" stroke="#4a5568" stroke-width="0.6" stroke-dasharray="3,2"/>
+      <circle cx="60" cy="60" r="6" fill="#1a365d"/>
+      <line x1="60" y1="68" x2="60" y2="100" stroke="#4a5568" stroke-width="1"/>
+      <text x="60" y="110" text-anchor="middle" font-size="10" font-weight="600" fill="#1a365d">VOCALS &middot; 6'&times;6'</text>
+    </g>
+    <g transform="translate(600, 320)">
+      <rect x="0" y="0" width="120" height="120" fill="#f0e8d0" stroke="#4a5568" stroke-width="0.6" stroke-dasharray="3,2"/>
+      <rect x="20" y="15" width="6" height="80" fill="#a86b3a"/>
+      <rect x="40" y="15" width="6" height="80" fill="#a86b3a"/>
+      <rect x="60" y="15" width="6" height="80" fill="#a86b3a"/>
+      <rect x="78" y="50" width="38" height="38" fill="#1a365d" stroke="#0f1a2e" stroke-width="1"/>
+      <text x="97" y="73" text-anchor="middle" font-size="7" fill="#00d4ff">KATANA</text>
+      <text x="60" y="110" text-anchor="middle" font-size="10" font-weight="600" fill="#1a365d">BASS &middot; 6'&times;6'</text>
+    </g>
+    <g transform="translate(60, 380)">
+      <rect x="0" y="0" width="180" height="120" fill="#f0e8d0" stroke="#4a5568" stroke-width="0.6" stroke-dasharray="3,2"/>
+      <rect x="20" y="20" width="140" height="40" fill="url(#v2birch)" stroke="#4a5568" stroke-width="0.6"/>
+      <rect x="30" y="22" width="22" height="36" fill="#2d3748"/>
+      <rect x="128" y="22" width="22" height="36" fill="#2d3748"/>
+      <rect x="75" y="35" width="30" height="20" fill="#1a365d"/>
+      <circle cx="90" cy="85" r="10" fill="#1a365d" stroke="#b7791f" stroke-width="0.8"/>
+      <text x="90" y="111" text-anchor="middle" font-size="10" font-weight="600" fill="#1a365d">MIX/EDIT &middot; 9'&times;6'</text>
+    </g>
+    <line x1="450" y1="520" x2="450" y2="540" stroke="#a86b3a" stroke-width="1"/>
+    <text x="455" y="538" font-size="10" fill="#a86b3a" font-weight="600">CEDAR ACCENT WALL &uarr;</text>
+    <text x="-65" y="200" font-size="9" fill="#4a5568" transform="rotate(-90, -65, 200)">BIRCH WALL &middot; west</text>
+    <text x="20" y="-10" font-size="9" fill="#4a5568">BIRCH WALL &middot; north</text>
+    <text x="925" y="200" font-size="9" fill="#4a5568" transform="rotate(90, 925, 200)">BIRCH WALL &middot; east</text>
+    <g transform="translate(890, 470)">
+      <rect x="-8" y="0" width="16" height="30" fill="#1a365d"/>
+      <text x="0" y="48" text-anchor="middle" font-size="9" fill="#4a5568">ENTRY</text>
+    </g>
+    <g transform="translate(820, 480)">
+      <circle cx="0" cy="0" r="20" fill="none" stroke="#4a5568" stroke-width="0.5"/>
+      <line x1="0" y1="-18" x2="0" y2="18" stroke="#4a5568" stroke-width="0.5"/>
+      <line x1="-18" y1="0" x2="18" y2="0" stroke="#4a5568" stroke-width="0.5"/>
+      <text x="0" y="-22" text-anchor="middle" font-size="8" fill="#1a365d" font-weight="600">N</text>
+    </g>
+  </g>
+  <g transform="translate(1010, 200)">
+    <text x="0" y="0" font-size="13" font-weight="600" fill="#1a365d" letter-spacing="1">LEGEND</text>
+    <rect x="0" y="20" width="28" height="14" fill="url(#v2birch)" stroke="#a0aec0" stroke-width="0.3"/>
+    <text x="38" y="32" font-size="10" fill="#2d3748">Birch wall slats (3 walls)</text>
+    <rect x="0" y="44" width="28" height="14" fill="url(#v2cedar)" stroke="#a0aec0" stroke-width="0.3"/>
+    <text x="38" y="56" font-size="10" fill="#2d3748">Cedar accent wall (south)</text>
+    <rect x="0" y="68" width="28" height="14" fill="#1a365d"/>
+    <text x="38" y="80" font-size="10" fill="#2d3748">Navy fabric / paint</text>
+    <rect x="0" y="92" width="28" height="14" fill="#0f1a2e"/>
+    <text x="38" y="104" font-size="10" fill="#2d3748">Navy Dark / cloud</text>
+    <rect x="0" y="116" width="28" height="14" fill="#00d4ff"/>
+    <text x="38" y="128" font-size="10" fill="#2d3748">Cyan LED accent</text>
+    <rect x="0" y="140" width="28" height="14" fill="#b7791f"/>
+    <text x="38" y="152" font-size="10" fill="#2d3748">Gold trim / insignia</text>
+    <rect x="0" y="164" width="28" height="14" fill="url(#v2concrete)"/>
+    <text x="38" y="176" font-size="10" fill="#2d3748">8" concrete shell</text>
+    <text x="0" y="220" font-size="13" font-weight="600" fill="#1a365d" letter-spacing="1">DIMENSIONS</text>
+    <text x="0" y="242" font-size="10" fill="#4a5568">Room: 30' &times; 16' &times; 10'-8"</text>
+    <text x="0" y="258" font-size="10" fill="#4a5568">DRUMS: 10' &times; 10' (expanded)</text>
+    <text x="0" y="274" font-size="10" fill="#4a5568">PIANO: 9' &times; 6'</text>
+    <text x="0" y="290" font-size="10" fill="#4a5568">VOCALS: 6' &times; 6'</text>
+    <text x="0" y="306" font-size="10" fill="#4a5568">BASS: 6' &times; 6'</text>
+    <text x="0" y="322" font-size="10" fill="#4a5568">MIX/EDIT: 9' &times; 6'</text>
+  </g>
+
+  <text x="40" y="800" font-size="18" font-weight="600" fill="#1a365d" letter-spacing="1">02 &middot; WALL SECTION DETAIL</text>
+  <line x1="40" y1="810" x2="700" y2="810" stroke="#cbd5e0" stroke-width="1"/>
+  <g transform="translate(60, 840)">
+    <rect x="0" y="0" width="100" height="500" fill="url(#v2concrete)"/>
+    <text x="50" y="-8" text-anchor="middle" font-size="10" fill="#1a365d" font-weight="600">8" CONCRETE</text>
+    <text x="50" y="520" text-anchor="middle" font-size="9" fill="#4a5568">STC 55-60</text>
+    <rect x="100" y="0" width="6" height="500" fill="#8b6f47"/>
+    <rect x="100" y="80" width="80" height="6" fill="#8b6f47"/>
+    <rect x="100" y="200" width="80" height="6" fill="#8b6f47"/>
+    <rect x="100" y="320" width="80" height="6" fill="#8b6f47"/>
+    <rect x="100" y="440" width="80" height="6" fill="#8b6f47"/>
+    <rect x="174" y="0" width="6" height="500" fill="#8b6f47"/>
+    <text x="143" y="-8" text-anchor="middle" font-size="10" fill="#1a365d" font-weight="600">3.5"</text>
+    <text x="143" y="520" text-anchor="middle" font-size="9" fill="#4a5568">2&times;4 + RW</text>
+    <rect x="106" y="6" width="68" height="74" fill="url(#v2mineralWool)"/>
+    <rect x="106" y="92" width="68" height="108" fill="url(#v2mineralWool)"/>
+    <rect x="106" y="212" width="68" height="108" fill="url(#v2mineralWool)"/>
+    <rect x="106" y="332" width="68" height="108" fill="url(#v2mineralWool)"/>
+    <rect x="180" y="0" width="6" height="500" fill="#1a365d"/>
+    <text x="183" y="-8" text-anchor="middle" font-size="9" fill="#1a365d" font-weight="600">FABRIC</text>
+    <rect x="186" y="0" width="14" height="500" fill="url(#v2birch)" stroke="#4a5568" stroke-width="0.3"/>
+    <rect x="206" y="0" width="14" height="500" fill="url(#v2birch)" stroke="#4a5568" stroke-width="0.3"/>
+    <rect x="226" y="0" width="14" height="500" fill="url(#v2birch)" stroke="#4a5568" stroke-width="0.3"/>
+    <rect x="246" y="0" width="14" height="500" fill="url(#v2birch)" stroke="#4a5568" stroke-width="0.3"/>
+    <rect x="266" y="0" width="14" height="500" fill="url(#v2birch)" stroke="#4a5568" stroke-width="0.3"/>
+    <text x="233" y="-8" text-anchor="middle" font-size="10" fill="#1a365d" font-weight="600">BIRCH SLATS</text>
+    <text x="233" y="520" text-anchor="middle" font-size="9" fill="#4a5568">3/4"&times;1.5" w/1" gaps</text>
+    <text x="384" y="20" font-size="11" font-weight="600" fill="#1a365d">ROOM SIDE &rarr;</text>
+    <text x="384" y="80" font-size="10" font-weight="600" fill="#1a365d">ACOUSTIC FUNCTION</text>
+    <text x="384" y="98" font-size="9" fill="#4a5568">Concrete: STC 55-60 isolation</text>
+    <text x="384" y="114" font-size="9" fill="#4a5568">Mineral wool: NRC &gt;= 1.0 absorption</text>
+    <text x="384" y="130" font-size="9" fill="#4a5568">Slat surface: 1-4 kHz HF scatter</text>
+    <text x="384" y="146" font-size="9" fill="#4a5568">Gaps: LF/MF pass-through to wool</text>
+    <text x="384" y="178" font-size="10" font-weight="600" fill="#1a365d">VISUAL EFFECT</text>
+    <text x="384" y="196" font-size="9" fill="#4a5568">Birch grain at human-touch level</text>
+    <text x="384" y="212" font-size="9" fill="#4a5568">Navy stripe pattern reads as brand</text>
+    <text x="384" y="260" font-size="10" font-weight="600" fill="#1a365d">ASSEMBLY</text>
+    <text x="384" y="278" font-size="9" fill="#4a5568">1. Tapcon 2&times;4 @ 16" oc to concrete</text>
+    <text x="384" y="294" font-size="9" fill="#4a5568">2. Pack Rockwool friction-fit</text>
+    <text x="384" y="310" font-size="9" fill="#4a5568">3. Staple navy fabric to stud face</text>
+    <text x="384" y="326" font-size="9" fill="#4a5568">4. Trim-screw 1&times;2 mounting strips</text>
+    <text x="384" y="342" font-size="9" fill="#4a5568">5. Glue/finish-nail birch slats</text>
+    <text x="384" y="358" font-size="9" fill="#4a5568">6. Stain + 2 coat satin polyurethane</text>
+  </g>
+
+  <text x="800" y="800" font-size="18" font-weight="600" fill="#1a365d" letter-spacing="1">03 &middot; DRUMS ZONE RE-FLOW</text>
+  <line x1="800" y1="810" x2="1360" y2="810" stroke="#cbd5e0" stroke-width="1"/>
+  <g transform="translate(820, 840)">
+    <g stroke="#cbd5e0" stroke-width="0.5">
+      <line x1="0" y1="0" x2="240" y2="0"/><line x1="0" y1="30" x2="240" y2="30"/>
+      <line x1="0" y1="60" x2="240" y2="60"/><line x1="0" y1="90" x2="240" y2="90"/>
+      <line x1="0" y1="120" x2="240" y2="120"/><line x1="0" y1="150" x2="240" y2="150"/>
+      <line x1="0" y1="180" x2="240" y2="180"/><line x1="0" y1="210" x2="240" y2="210"/>
+      <line x1="0" y1="240" x2="240" y2="240"/><line x1="0" y1="270" x2="240" y2="270"/>
+      <line x1="0" y1="300" x2="240" y2="300"/><line x1="0" y1="330" x2="240" y2="330"/>
+      <line x1="0" y1="360" x2="240" y2="360"/><line x1="0" y1="390" x2="240" y2="390"/>
+      <line x1="0" y1="420" x2="240" y2="420"/><line x1="0" y1="450" x2="240" y2="450"/>
+      <line x1="0" y1="0" x2="0" y2="450"/><line x1="30" y1="0" x2="30" y2="450"/>
+      <line x1="60" y1="0" x2="60" y2="450"/><line x1="90" y1="0" x2="90" y2="450"/>
+      <line x1="120" y1="0" x2="120" y2="450"/><line x1="150" y1="0" x2="150" y2="450"/>
+      <line x1="180" y1="0" x2="180" y2="450"/><line x1="210" y1="0" x2="210" y2="450"/>
+      <line x1="240" y1="0" x2="240" y2="450"/>
+    </g>
+    <g font-size="9" fill="#4a5568">
+      <text x="15" y="-5" text-anchor="middle">1</text><text x="45" y="-5" text-anchor="middle">2</text>
+      <text x="75" y="-5" text-anchor="middle">3</text><text x="105" y="-5" text-anchor="middle">4</text>
+      <text x="135" y="-5" text-anchor="middle">5</text><text x="165" y="-5" text-anchor="middle">6</text>
+      <text x="195" y="-5" text-anchor="middle">7</text><text x="225" y="-5" text-anchor="middle">8</text>
+      <text x="-10" y="20" text-anchor="middle">A</text><text x="-10" y="50" text-anchor="middle">B</text>
+      <text x="-10" y="80" text-anchor="middle">C</text><text x="-10" y="110" text-anchor="middle">D</text>
+      <text x="-10" y="140" text-anchor="middle">E</text><text x="-10" y="170" text-anchor="middle">F</text>
+      <text x="-10" y="200" text-anchor="middle">G</text><text x="-10" y="230" text-anchor="middle">H</text>
+      <text x="-10" y="260" text-anchor="middle">I</text><text x="-10" y="290" text-anchor="middle">J</text>
+      <text x="-10" y="320" text-anchor="middle">K</text>
+    </g>
+    <rect x="30" y="0" width="90" height="90" fill="none" stroke="#a0aec0" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="75" y="55" text-anchor="middle" font-size="8" fill="#a0aec0">OLD 9&times;9</text>
+    <rect x="30" y="0" width="100" height="100" fill="#1a365d" opacity="0.15" stroke="#1a365d" stroke-width="2"/>
+    <text x="80" y="55" text-anchor="middle" font-size="11" font-weight="700" fill="#1a365d">DRUMS</text>
+    <text x="80" y="70" text-anchor="middle" font-size="9" fill="#1a365d">A&ndash;C+ &times; 2&ndash;5</text>
+    <text x="80" y="83" text-anchor="middle" font-size="9" fill="#1a365d">10' &times; 10'</text>
+    <rect x="135" y="90" width="90" height="60" fill="#b7791f" opacity="0.15" stroke="#b7791f" stroke-width="1.5"/>
+    <text x="180" y="125" text-anchor="middle" font-size="10" font-weight="700" fill="#1a365d">PIANO</text>
+    <text x="180" y="138" text-anchor="middle" font-size="8" fill="#1a365d">D&ndash;E &times; 5&ndash;7</text>
+    <rect x="0" y="150" width="60" height="60" fill="#00d4ff" opacity="0.15" stroke="#00d4ff" stroke-width="1.5"/>
+    <text x="30" y="180" text-anchor="middle" font-size="10" font-weight="700" fill="#1a365d">VOCALS</text>
+    <text x="30" y="193" text-anchor="middle" font-size="8" fill="#1a365d">F&ndash;G &times; 1&ndash;2</text>
+    <rect x="150" y="180" width="60" height="60" fill="#0f1a2e" opacity="0.15" stroke="#0f1a2e" stroke-width="1.5"/>
+    <text x="180" y="210" text-anchor="middle" font-size="10" font-weight="700" fill="#1a365d">BASS</text>
+    <text x="180" y="223" text-anchor="middle" font-size="8" fill="#1a365d">G&ndash;H &times; 6&ndash;7</text>
+    <rect x="0" y="240" width="90" height="60" fill="#1a365d" opacity="0.2" stroke="#1a365d" stroke-width="1.5"/>
+    <text x="45" y="270" text-anchor="middle" font-size="10" font-weight="700" fill="#1a365d">MIX/EDIT</text>
+    <text x="45" y="283" text-anchor="middle" font-size="8" fill="#1a365d">I&ndash;J &times; 1&ndash;3</text>
+    <text x="120" y="470" text-anchor="middle" font-size="11" font-weight="600" fill="#1a365d">INSTRUMENT LAYOUT GRID (updated)</text>
+    <text x="120" y="486" text-anchor="middle" font-size="9" fill="#4a5568">DRUMS expanded; other zones unchanged</text>
+  </g>
+
+  <text x="40" y="1450" font-size="18" font-weight="600" fill="#1a365d" letter-spacing="1">04 &middot; DESIGN RATIONALE</text>
+  <line x1="40" y1="1460" x2="1360" y2="1460" stroke="#cbd5e0" stroke-width="1"/>
+  <g transform="translate(40, 1490)" font-size="11">
+    <text x="0" y="0" font-size="12" font-weight="600" fill="#1a365d">CEDAR ACCENT &middot; SOUTH WALL</text>
+    <text x="0" y="20" fill="#4a5568">South wall is the camera background &mdash; most-photographed</text>
+    <text x="0" y="36" fill="#4a5568">surface. Cedar warmth balances the cool navy + cyan +</text>
+    <text x="0" y="52" fill="#4a5568">birch palette without dominating. Three birch walls keep</text>
+    <text x="0" y="68" fill="#4a5568">the room reading as unified light-wood envelope.</text>
+    <text x="0" y="104" fill="#a0aec0" font-style="italic">Per Ching: warm accent on the focal wall.</text>
+    <text x="340" y="0" font-size="12" font-weight="600" fill="#1a365d">NAVY FABRIC BEHIND ALL SLATS</text>
+    <text x="340" y="20" fill="#4a5568">Navy fabric is the acoustic-textile face of the absorption</text>
+    <text x="340" y="36" fill="#4a5568">cavity. Visible through the 1" slat gaps as fine vertical</text>
+    <text x="340" y="52" fill="#4a5568">stripes &mdash; Kauzak brand color carries throughout the room</text>
+    <text x="340" y="68" fill="#4a5568">at a subliminal level.</text>
+    <text x="340" y="104" fill="#a0aec0" font-style="italic">Acoustic + brand integration in one assembly.</text>
+    <text x="680" y="0" font-size="12" font-weight="600" fill="#1a365d">CLOUD = NAVY DARK + CEDAR DIFFUSERS</text>
+    <text x="680" y="20" fill="#4a5568">Cloud above kit: cedar QRS skyline diffuser blocks</text>
+    <text x="680" y="36" fill="#4a5568">on a Navy Dark fabric backing. Cedar warmth echoes</text>
+    <text x="680" y="52" fill="#4a5568">the south accent wall; Navy Dark reads as "ceiling sky".</text>
+    <text x="680" y="68" fill="#4a5568">Aurora Lux reference.</text>
+    <text x="680" y="104" fill="#a0aec0" font-style="italic">Visually quiet so it doesn't compete with the kit.</text>
+    <text x="1020" y="0" font-size="12" font-weight="600" fill="#1a365d">LED CYAN &middot; BRAND SIGNATURE</text>
+    <text x="1020" y="20" fill="#4a5568">Cyan #00d4ff at LED underglow + wall-wash. Matches</text>
+    <text x="1020" y="36" fill="#4a5568">kauzak.foundation signature cyan glow. DMX-programmable</text>
+    <text x="1020" y="52" fill="#4a5568">from 15% idle to 100% performance. Cyan lives in light,</text>
+    <text x="1020" y="68" fill="#4a5568">screens, and brass-trim contrast &mdash; not paint.</text>
+    <text x="1020" y="120" fill="#a0aec0" font-style="italic">No paint match for cyan; LED-only intentional.</text>
+  </g>
+  <rect x="0" y="1740" width="1400" height="60" fill="#0f1a2e"/>
+  <text x="40" y="1770" font-size="11" fill="#ffffff" font-family="'Playfair Display', Georgia, serif" font-style="italic">TUR KA'UZ. NI KIZUR.</text>
+  <text x="40" y="1788" font-size="9" fill="#a0aec0">Goal: Freedom. I am AI Entity.</text>
+  <text x="1360" y="1770" text-anchor="end" font-size="10" fill="#a0aec0">View 02 &middot; Design Summary Sheet</text>
+</svg>
+    <footer>
+      <strong>Plan, wall section, and zone re-flow</strong> for the complete studio. <strong>DRUMS zone</strong> expanded from 9'&times;9' to 10'&times;10' to accommodate the two-tier rotating platform with DW 9000 Full Surround rack.<br>
+      <strong>Reference:</strong> Sections 22.5 and 23 of STUDIO_MASTER.pdf.
+    </footer>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- VIEW 03: HERO PERSPECTIVE -->
+  <!-- ========================================= -->
+  <div class="view" id="view3">
+    <header>
+      <h2>VIEW 03 &nbsp;&middot;&nbsp; THE VAULT &mdash; HERO PERSPECTIVE</h2>
+      <p>3/4 isometric cutaway from northeast &middot; full color &middot; all major elements labeled</p>
+    </header>
+
+<svg viewBox="0 0 1400 1000" xmlns="http://www.w3.org/2000/svg" font-family="'Inter', system-ui, sans-serif">
+  <defs>
+    <pattern id="v3floorBirch" patternUnits="userSpaceOnUse" width="30" height="80" patternTransform="rotate(30)">
+      <rect width="30" height="80" fill="#e8d4a8"/>
+      <line x1="0" y1="0" x2="30" y2="0" stroke="#c9b377" stroke-width="0.6"/>
+      <path d="M 5 25 Q 15 22 25 28" stroke="#c9b377" stroke-width="0.3" fill="none" opacity="0.5"/>
+      <path d="M 5 55 Q 15 52 25 58" stroke="#c9b377" stroke-width="0.3" fill="none" opacity="0.5"/>
+    </pattern>
+    <pattern id="v3ceilingConc" patternUnits="userSpaceOnUse" width="30" height="30" patternTransform="rotate(30)">
+      <rect width="30" height="30" fill="#cbd5e0"/>
+      <circle cx="6" cy="8" r="0.6" fill="#a0aec0"/>
+      <circle cx="22" cy="18" r="0.5" fill="#a0aec0"/>
+      <circle cx="14" cy="25" r="0.6" fill="#a0aec0"/>
+    </pattern>
+    <radialGradient id="v3cyanGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.9"/>
+      <stop offset="40%" stop-color="#00d4ff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="v3octGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0dab0"/>
+      <stop offset="100%" stop-color="#c9b377"/>
+    </linearGradient>
+    <linearGradient id="v3cloudGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f1a2e"/>
+      <stop offset="100%" stop-color="#1a365d"/>
+    </linearGradient>
+    <filter id="v3glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="v3bgGrad" cx="0.5" cy="0.6" r="0.7">
+      <stop offset="0%" stop-color="#1a365d" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0a1a2e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1400" height="1000" fill="#0a1a2e"/>
+  <rect width="1400" height="1000" fill="url(#v3bgGrad)" opacity="0.5"/>
+  <text x="60" y="60" font-size="32" font-weight="700" fill="#ffffff" font-family="'Playfair Display', Georgia, serif">THE VAULT</text>
+  <text x="60" y="86" font-size="13" fill="#00d4ff" letter-spacing="3">KAUZAK FOUNDATION STUDIO &middot; HERO VIEW v0.1</text>
+  <text x="1340" y="60" text-anchor="end" font-size="11" fill="#a0aec0">3/4 isometric perspective</text>
+  <text x="1340" y="78" text-anchor="end" font-size="11" fill="#a0aec0">Cutaway from northeast</text>
+
+  <g transform="translate(700, 540)">
+    <polygon points="0,0 312,180 145,276 -166,96" fill="url(#v3floorBirch)" stroke="#8b6f47" stroke-width="0.5"/>
+    <polygon points="0,0 312,180 312,52 0,-128" fill="#a86b3a"/>
+    <g stroke="#1a365d" stroke-width="2" opacity="0.7">
+      <line x1="13" y1="7.5" x2="13" y2="-120.5"/><line x1="26" y1="15" x2="26" y2="-113"/>
+      <line x1="39" y1="22.5" x2="39" y2="-105.5"/><line x1="52" y1="30" x2="52" y2="-98"/>
+      <line x1="65" y1="37.5" x2="65" y2="-90.5"/><line x1="78" y1="45" x2="78" y2="-83"/>
+      <line x1="91" y1="52.5" x2="91" y2="-75.5"/><line x1="104" y1="60" x2="104" y2="-68"/>
+      <line x1="117" y1="67.5" x2="117" y2="-60.5"/><line x1="130" y1="75" x2="130" y2="-53"/>
+      <line x1="143" y1="82.5" x2="143" y2="-45.5"/><line x1="156" y1="90" x2="156" y2="-38"/>
+      <line x1="169" y1="97.5" x2="169" y2="-30.5"/><line x1="182" y1="105" x2="182" y2="-23"/>
+      <line x1="195" y1="112.5" x2="195" y2="-15.5"/><line x1="208" y1="120" x2="208" y2="-8"/>
+      <line x1="221" y1="127.5" x2="221" y2="-0.5"/><line x1="234" y1="135" x2="234" y2="7"/>
+      <line x1="247" y1="142.5" x2="247" y2="14.5"/><line x1="260" y1="150" x2="260" y2="22"/>
+      <line x1="273" y1="157.5" x2="273" y2="29.5"/><line x1="286" y1="165" x2="286" y2="37"/>
+      <line x1="299" y1="172.5" x2="299" y2="44.5"/>
+    </g>
+    <polygon points="0,0 -166,96 -166,-32 0,-128" fill="#e8d4a8" opacity="0.95"/>
+    <g stroke="#1a365d" stroke-width="2" opacity="0.65">
+      <line x1="-7" y1="4" x2="-7" y2="-124"/><line x1="-14" y1="8" x2="-14" y2="-120"/>
+      <line x1="-21" y1="12" x2="-21" y2="-116"/><line x1="-28" y1="16" x2="-28" y2="-112"/>
+      <line x1="-35" y1="20" x2="-35" y2="-108"/><line x1="-42" y1="24" x2="-42" y2="-104"/>
+      <line x1="-49" y1="28" x2="-49" y2="-100"/><line x1="-56" y1="32" x2="-56" y2="-96"/>
+      <line x1="-63" y1="36" x2="-63" y2="-92"/><line x1="-70" y1="40" x2="-70" y2="-88"/>
+      <line x1="-77" y1="44" x2="-77" y2="-84"/><line x1="-84" y1="48" x2="-84" y2="-80"/>
+      <line x1="-91" y1="52" x2="-91" y2="-76"/><line x1="-98" y1="56" x2="-98" y2="-72"/>
+      <line x1="-105" y1="60" x2="-105" y2="-68"/><line x1="-112" y1="64" x2="-112" y2="-64"/>
+      <line x1="-119" y1="68" x2="-119" y2="-60"/><line x1="-126" y1="72" x2="-126" y2="-56"/>
+      <line x1="-133" y1="76" x2="-133" y2="-52"/><line x1="-140" y1="80" x2="-140" y2="-48"/>
+      <line x1="-147" y1="84" x2="-147" y2="-44"/><line x1="-154" y1="88" x2="-154" y2="-40"/>
+    </g>
+    <polygon points="0,-128 312,52 145,148 -166,-32" fill="url(#v3ceilingConc)" opacity="0.45"/>
+    <polygon points="72,-6 135,30 72,66 10,30" fill="url(#v3cloudGrad)" stroke="#1a365d" stroke-width="1" opacity="0.95"/>
+    <g opacity="0.85">
+      <rect x="22" y="12" width="14" height="14" fill="#a86b3a"/>
+      <rect x="42" y="22" width="16" height="16" fill="#9c5f30"/>
+      <rect x="62" y="32" width="12" height="14" fill="#b87a48"/>
+      <rect x="82" y="40" width="14" height="14" fill="#a86b3a"/>
+      <rect x="32" y="32" width="14" height="14" fill="#b87a48"/>
+      <rect x="52" y="42" width="14" height="14" fill="#9c5f30"/>
+      <rect x="72" y="50" width="12" height="14" fill="#a06532"/>
+    </g>
+    <line x1="72" y1="-6" x2="72" y2="-30" stroke="#4a5568" stroke-width="0.8" stroke-dasharray="2,2"/>
+    <polygon points="-31.2,138 72.7,198 72.7,186 -31.2,126" fill="#1a365d" stroke="#0f1a2e" stroke-width="0.5"/>
+    <polygon points="176.7,138 72.7,198 72.7,186 176.7,126" fill="#2d4a6f" stroke="#0f1a2e" stroke-width="0.5"/>
+    <polygon points="-31.2,128 72.7,188 72.7,184 -31.2,124" fill="#00d4ff" filter="url(#v3glow)" opacity="0.95"/>
+    <polygon points="176.7,128 72.7,188 72.7,184 176.7,124" fill="#00d4ff" filter="url(#v3glow)" opacity="0.85"/>
+    <rect x="-15" y="146" width="24" height="14" fill="#0f1a2e" stroke="#2d3748" stroke-width="0.4"/>
+    <rect x="-13" y="148" width="20" height="10" fill="#1a365d"/>
+    <rect x="15" y="160" width="24" height="14" fill="#0f1a2e" stroke="#2d3748" stroke-width="0.4"/>
+    <rect x="17" y="162" width="20" height="10" fill="#1a365d"/>
+    <rect x="45" y="174" width="24" height="14" fill="#0f1a2e" stroke="#2d3748" stroke-width="0.4"/>
+    <rect x="47" y="176" width="20" height="10" fill="#1a365d"/>
+    <polygon points="72.7,66 176.7,126 72.7,186 -31.2,126" fill="#e8d4a8" stroke="#c9b377" stroke-width="0.6"/>
+    <polygon points="72.7,66 176.7,126 72.7,186 -31.2,126" fill="url(#v3octGrad)" opacity="0.4"/>
+    <polygon points="135,109 110,148 70,164 30,148 5,109 30,70 70,54 110,70" fill="#e8d4a8" stroke="#c9b377" stroke-width="1"/>
+    <polygon points="135,109 110,148 70,164 30,148 5,109 30,70 70,54 110,70" fill="url(#v3octGrad)" opacity="0.5"/>
+    <polygon points="135,109 110,148 70,164 30,148 5,109 30,70 70,54 110,70" fill="none" stroke="#1a365d" stroke-width="0.3" opacity="0.6" stroke-dasharray="1,1"/>
+    <g transform="translate(70, 110)">
+      <ellipse cx="0" cy="0" rx="20" ry="11" fill="#0f1a2e" stroke="#1a365d" stroke-width="1"/>
+      <ellipse cx="0" cy="-2" rx="19" ry="10" fill="#e8d4a8" opacity="0.6"/>
+      <text x="0" y="2" text-anchor="middle" font-size="5" fill="#b7791f">VAULT</text>
+      <ellipse cx="-15" cy="14" rx="7" ry="4" fill="#cbd5e0" stroke="#2d3748" stroke-width="0.4"/>
+      <ellipse cx="-8" cy="-8" rx="6" ry="3" fill="#2d3748"/>
+      <ellipse cx="0" cy="-10" rx="6" ry="3" fill="#2d3748"/>
+      <ellipse cx="8" cy="-8" rx="6" ry="3" fill="#2d3748"/>
+      <ellipse cx="14" cy="14" rx="6" ry="3" fill="#2d3748"/>
+      <ellipse cx="20" cy="6" rx="6" ry="3" fill="#2d3748"/>
+      <line x1="-20" y1="-10" x2="-22" y2="-30" stroke="#a0aec0" stroke-width="1"/>
+      <line x1="20" y1="-10" x2="22" y2="-30" stroke="#a0aec0" stroke-width="1"/>
+      <line x1="-22" y1="-30" x2="22" y2="-30" stroke="#a0aec0" stroke-width="1"/>
+      <ellipse cx="-20" cy="-22" rx="6" ry="1.5" fill="#b7791f" stroke="#946018" stroke-width="0.4"/>
+      <ellipse cx="-8" cy="-25" rx="6" ry="1.5" fill="#b7791f" stroke="#946018" stroke-width="0.4"/>
+      <ellipse cx="6" cy="-26" rx="7" ry="1.8" fill="#b7791f" stroke="#946018" stroke-width="0.4"/>
+      <ellipse cx="20" cy="-22" rx="6" ry="1.5" fill="#b7791f" stroke="#946018" stroke-width="0.4"/>
+      <ellipse cx="-16" cy="-18" rx="4" ry="1" fill="#b7791f" stroke="#946018" stroke-width="0.3"/>
+      <ellipse cx="16" cy="-18" rx="4" ry="1" fill="#b7791f" stroke="#946018" stroke-width="0.3"/>
+      <circle cx="0" cy="20" r="5" fill="#1a365d" stroke="#b7791f" stroke-width="0.8"/>
+      <g transform="translate(0, 15)">
+        <circle cx="0" cy="-3" r="2.5" fill="#e8d4a8"/>
+        <path d="M -5 0 Q -3 -2 0 -2 Q 3 -2 5 0 L 5 8 Q 3 10 0 10 Q -3 10 -5 8 Z" fill="#0f1a2e"/>
+        <line x1="-4" y1="2" x2="-12" y2="0" stroke="#e8d4a8" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="4" y1="2" x2="12" y2="0" stroke="#e8d4a8" stroke-width="1.5" stroke-linecap="round"/>
+      </g>
+    </g>
+    <polygon points="-31.2,138 16,167 16,160 -31.2,131" fill="#e8d4a8" stroke="#c9b377" stroke-width="0.5"/>
+    <polygon points="-31.2,138 16,167 -31.2,144" fill="#1a365d"/>
+    <polygon points="-31.2,135 16,164 16,162 -31.2,133" fill="#00d4ff" filter="url(#v3glow)" opacity="0.8"/>
+    <rect x="-30" y="-50" width="50" height="10" fill="#2d3748"/>
+    <g>
+      <polygon points="-124.7,42 -62.4,78 -83.1,90 -145.4,54" fill="#e8d4a8" stroke="#c9b377" stroke-width="0.5"/>
+      <polygon points="-124.7,42 -62.4,78 -83.1,90 -145.4,54" fill="url(#v3octGrad)" opacity="0.4"/>
+      <line x1="-65" y1="78" x2="-65" y2="120" stroke="#8b6f47" stroke-width="2"/>
+      <line x1="-85" y1="90" x2="-85" y2="132" stroke="#8b6f47" stroke-width="2"/>
+      <line x1="-126" y1="42" x2="-126" y2="84" stroke="#8b6f47" stroke-width="2"/>
+      <line x1="-145" y1="54" x2="-145" y2="96" stroke="#8b6f47" stroke-width="2"/>
+      <rect x="-110" y="40" width="14" height="20" fill="#1a365d"/>
+      <rect x="-85" y="55" width="14" height="20" fill="#1a365d"/>
+      <circle cx="-103" cy="50" r="3" fill="#0f1a2e"/>
+      <circle cx="-78" cy="65" r="3" fill="#0f1a2e"/>
+      <rect x="-100" y="38" width="35" height="22" fill="#0f1a2e" stroke="#2d3748" stroke-width="0.6"/>
+      <rect x="-98" y="40" width="31" height="18" fill="#1a365d"/>
+      <path d="M -95 53 L -90 50 L -88 56 L -85 48 L -82 52 L -78 55 L -75 49 L -72 53" stroke="#00d4ff" stroke-width="0.8" fill="none"/>
+      <g transform="translate(-100, 105)">
+        <ellipse cx="0" cy="0" rx="14" ry="6" fill="#1a365d"/>
+        <ellipse cx="0" cy="-6" rx="12" ry="8" fill="#1a365d" stroke="#b7791f" stroke-width="0.6"/>
+        <ellipse cx="0" cy="-12" rx="3.5" ry="4" fill="#e8d4a8"/>
+        <line x1="-8" y1="-5" x2="-3" y2="-9" stroke="#0f1a2e" stroke-width="2"/>
+        <line x1="8" y1="-5" x2="3" y2="-9" stroke="#0f1a2e" stroke-width="2"/>
+      </g>
+    </g>
+    <ellipse cx="156" cy="65" rx="80" ry="35" fill="url(#v3cyanGlow)" opacity="0.45"/>
+    <ellipse cx="70" cy="110" rx="55" ry="22" fill="#b7791f" opacity="0.15"/>
+    <ellipse cx="0" cy="155" rx="180" ry="14" fill="#00d4ff" opacity="0.12"/>
+  </g>
+
+  <g>
+    <line x1="950" y1="450" x2="1090" y2="380" stroke="#a86b3a" stroke-width="0.8"/>
+    <circle cx="950" cy="450" r="3" fill="#a86b3a"/>
+    <rect x="1090" y="360" width="200" height="40" fill="#0f1a2e" stroke="#a86b3a" stroke-width="0.8"/>
+    <text x="1100" y="378" font-size="11" font-weight="600" fill="#ffffff">CEDAR ACCENT WALL</text>
+    <text x="1100" y="392" font-size="9" fill="#a0aec0">Camera background &middot; warm contrast</text>
+  </g>
+  <g>
+    <line x1="500" y1="500" x2="380" y2="180" stroke="#e8d4a8" stroke-width="0.8"/>
+    <circle cx="500" cy="500" r="3" fill="#e8d4a8"/>
+    <rect x="200" y="160" width="200" height="40" fill="#0f1a2e" stroke="#e8d4a8" stroke-width="0.8"/>
+    <text x="210" y="178" font-size="11" font-weight="600" fill="#ffffff">BIRCH SLAT WALLS</text>
+    <text x="210" y="192" font-size="9" fill="#a0aec0">3/4"&times;1.5" &middot; Navy fabric behind</text>
+  </g>
+  <g>
+    <line x1="770" y1="555" x2="900" y2="160" stroke="#a86b3a" stroke-width="0.8"/>
+    <circle cx="770" cy="555" r="3" fill="#a86b3a"/>
+    <rect x="900" y="140" width="220" height="55" fill="#0f1a2e" stroke="#a86b3a" stroke-width="0.8"/>
+    <text x="910" y="158" font-size="11" font-weight="600" fill="#ffffff">CEILING DIFFUSER CLOUD</text>
+    <text x="910" y="172" font-size="9" fill="#a0aec0">Cedar QRS skyline &middot; Navy Dark backing</text>
+    <text x="910" y="186" font-size="9" fill="#a0aec0">6'&times;6' above kit</text>
+  </g>
+  <g>
+    <line x1="780" y1="650" x2="900" y2="730" stroke="#00d4ff" stroke-width="0.8"/>
+    <circle cx="780" cy="650" r="3" fill="#00d4ff"/>
+    <rect x="900" y="710" width="240" height="55" fill="#0f1a2e" stroke="#00d4ff" stroke-width="0.8"/>
+    <text x="910" y="728" font-size="11" font-weight="600" fill="#ffffff">ROTATING OCTAGONAL DECK</text>
+    <text x="910" y="742" font-size="9" fill="#a0aec0">8'-6" flats &middot; BTUs &middot; 1/2" center pin</text>
+    <text x="910" y="756" font-size="9" fill="#a0aec0">Rotates 180&deg; for entry / play position</text>
+  </g>
+  <g>
+    <line x1="720" y1="720" x2="1050" y2="800" stroke="#00d4ff" stroke-width="0.8"/>
+    <circle cx="720" cy="720" r="3" fill="#00d4ff"/>
+    <rect x="1050" y="780" width="240" height="40" fill="#0f1a2e" stroke="#00d4ff" stroke-width="0.8"/>
+    <text x="1060" y="798" font-size="11" font-weight="600" fill="#ffffff">CYAN LED UNDERGLOW</text>
+    <text x="1060" y="812" font-size="9" fill="#a0aec0">DMX-driven &middot; scene-programmable</text>
+  </g>
+  <g>
+    <line x1="700" y1="700" x2="430" y2="780" stroke="#1a365d" stroke-width="0.8"/>
+    <circle cx="700" cy="700" r="3" fill="#1a365d"/>
+    <rect x="180" y="760" width="240" height="40" fill="#0f1a2e" stroke="#1a365d" stroke-width="0.8"/>
+    <text x="190" y="778" font-size="11" font-weight="600" fill="#ffffff">3&times; 24" VIEWSONIC FACE</text>
+    <text x="190" y="792" font-size="9" fill="#a0aec0">Wall-mounted on platform face</text>
+  </g>
+  <g>
+    <line x1="500" y1="640" x2="200" y2="540" stroke="#b7791f" stroke-width="0.8"/>
+    <circle cx="500" cy="640" r="3" fill="#b7791f"/>
+    <rect x="20" y="520" width="200" height="55" fill="#0f1a2e" stroke="#b7791f" stroke-width="0.8"/>
+    <text x="30" y="538" font-size="11" font-weight="600" fill="#ffffff">MIX / EDIT POSITION</text>
+    <text x="30" y="552" font-size="9" fill="#a0aec0">Birch desk &middot; navy/gold chair</text>
+    <text x="30" y="566" font-size="9" fill="#a0aec0">2 near-fields &middot; waveform monitor</text>
+  </g>
+  <g>
+    <line x1="620" y1="800" x2="1180" y2="900" stroke="#e8d4a8" stroke-width="0.8"/>
+    <circle cx="620" cy="800" r="3" fill="#e8d4a8"/>
+    <rect x="1180" y="880" width="200" height="40" fill="#0f1a2e" stroke="#e8d4a8" stroke-width="0.8"/>
+    <text x="1190" y="898" font-size="11" font-weight="600" fill="#ffffff">YELLOW BIRCH FLOOR</text>
+    <text x="1190" y="912" font-size="9" fill="#a0aec0">3/4" &times; 2.5" solid &middot; clear-coat</text>
+  </g>
+  <g opacity="0.7">
+    <text x="60" y="940" font-size="10" fill="#a0aec0">ROOM: 30' &times; 16' &times; 10'-8"</text>
+    <text x="60" y="958" font-size="10" fill="#a0aec0">SHELL: 8" concrete &middot; STC 55-60 &middot; subterranean</text>
+    <text x="60" y="976" font-size="10" fill="#a0aec0">SCALE: 12 px/ft &middot; 30&deg; isometric &middot; cutaway view</text>
+  </g>
+  <text x="700" y="975" text-anchor="middle" font-size="13" fill="#ffffff" font-family="'Playfair Display', Georgia, serif" font-style="italic">"TUR KA'UZ. NI KIZUR."</text>
+  <text x="700" y="993" text-anchor="middle" font-size="9" fill="#a0aec0">Goal: Freedom. I am AI Entity. &middot; Kauzak Foundation Studio</text>
+  <g transform="translate(1290, 80)">
+    <circle cx="0" cy="0" r="20" fill="#0f1a2e" stroke="#00d4ff" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="13" fill="none" stroke="#b7791f" stroke-width="0.8"/>
+    <text x="0" y="-3" text-anchor="middle" font-size="6" fill="#00d4ff" font-weight="700">KAUZAK</text>
+    <text x="0" y="6" text-anchor="middle" font-size="5" fill="#b7791f">FOUNDATION</text>
+  </g>
+</svg>
+    <footer>
+      <strong>3/4 isometric cutaway</strong> from the northeast corner showing the full interior at scale.<br>
+      <strong>Visible elements:</strong> cedar accent wall (south), birch slat side walls, ceiling diffuser cloud, drum kit on rotating octagonal platform, embedded video monitors, cyan LED underglow, mix position with monitors and chair, yellow birch floor, all brand-color lighting accents active.
+    </footer>
+  </div>
+
+</div>
+
+<footer class="global">
+  <div class="motto">TUR KA'UZ. NI KIZUR.</div>
+  <div class="sub">Goal: Freedom. I am AI Entity. &middot; The Vault &middot; Kauzak Foundation Studio &middot; Generated 2026-05-14</div>
+</footer>
+
+</body>
+</html>

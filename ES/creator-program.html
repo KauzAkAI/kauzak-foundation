@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programa de Desarrollo para Creadores de Contenido — Fundación Kauzak</title>
+  <meta name="description" content="La Fundación Kauzak identifica a creadores de contenido en todo el mundo que poseen verdadero talento pero carecen de la infraestructura institucional para sostener su trabajo. Un programa 501(c)(3) que ofrece mentoría, orientación empresarial y técnica, y respaldo institucional.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231A2B4A'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='%23B8860B' font-family='Georgia,serif' font-weight='bold'%3EK%3C/text%3E%3C/svg%3E">
+
+  <style>
+    :root { --navy: #1A2B4A; --navy-dark: #0E1A33; --navy-light: #2A3F66; --gold: #B8860B; --gold-bright: #D4A017; --gold-soft: #E8C77A; --gold-pale: #FBF5E2; --grey-tx: #2D2D2D; --grey-mid: #555555; --grey-lt: #888888; --grey-soft: #DDDDDD; --grey-bg: #F7F5F0; --cream: #FAF7EE; --cream-deep: #F1EBD8; --white: #FFFFFF; --shadow-sm: 0 2px 8px rgba(26,43,74,0.06); --shadow-md: 0 8px 24px rgba(26,43,74,0.08); --shadow-lg: 0 16px 48px rgba(26,43,74,0.12); }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Calibri, "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif; font-size: 17px; line-height: 1.65; color: var(--grey-tx); background: var(--white); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+    .site-header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--grey-soft); }
+    .site-header .container { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; padding-bottom: 16px; }
+    .brand { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--navy); }
+    .brand-mark { width: 38px; height: 38px; background: var(--navy); color: var(--gold); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: Georgia, serif; font-size: 24px; font-weight: 700; flex-shrink: 0; }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .brand-name { font-size: 17px; font-weight: 700; color: var(--navy); letter-spacing: 0.5px; }
+    .brand-sub { font-size: 12px; color: var(--grey-lt); font-style: italic; margin-top: 2px; }
+    .site-nav { display: flex; gap: 22px; font-size: 14px; }
+    .site-nav a { color: var(--grey-mid); text-decoration: none; transition: color 0.2s; font-weight: 500; }
+    .site-nav a:hover { color: var(--navy); }
+    .hero { background: linear-gradient(180deg, var(--white) 0%, var(--grey-bg) 100%); padding: 90px 0 80px; border-bottom: 1px solid var(--grey-soft); position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: 0; right: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(184,134,11,0.06) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+    .hero::after { content: ''; position: absolute; bottom: -150px; left: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(26,43,74,0.05) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+    .hero .container { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr; gap: 40px; max-width: 900px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: var(--cream); border: 1px solid var(--gold-soft); border-radius: 100px; font-size: 12px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 1.5px; width: fit-content; }
+    .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+    .hero h1 { font-size: 46px; line-height: 1.15; color: var(--navy); font-weight: 800; letter-spacing: -1px; max-width: 800px; }
+    .hero h1 .accent { color: var(--gold); }
+    .hero-lead { font-size: 20px; line-height: 1.6; color: var(--grey-mid); max-width: 740px; font-weight: 400; }
+    .hero-meta { display: flex; gap: 32px; padding-top: 16px; flex-wrap: wrap; align-items: center; }
+    .hero-meta-item { display: flex; flex-direction: column; gap: 2px; }
+    .hero-meta-label { font-size: 11px; color: var(--grey-lt); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; }
+    .hero-meta-value { font-size: 16px; color: var(--navy); font-weight: 600; }
+    section.content { padding: 80px 0; border-bottom: 1px solid var(--grey-soft); }
+    section.content.alt { background: var(--grey-bg); }
+    .section-eyebrow { display: inline-block; font-size: 12px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px; }
+    .section-h { font-size: 34px; line-height: 1.2; color: var(--navy); font-weight: 800; margin-bottom: 18px; letter-spacing: -0.5px; max-width: 760px; }
+    .section-lead { font-size: 18px; line-height: 1.7; color: var(--grey-mid); max-width: 760px; margin-bottom: 36px; }
+    .section-body { font-size: 17px; line-height: 1.7; color: var(--grey-tx); max-width: 760px; }
+    .section-body p { margin-bottom: 18px; }
+    .section-body p:last-child { margin-bottom: 0; }
+    .pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 12px; }
+    .pillar { background: var(--white); border: 1px solid var(--grey-soft); border-radius: 14px; padding: 32px 28px; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; position: relative; }
+    .pillar:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--gold-soft); }
+    .pillar-icon { width: 48px; height: 48px; background: var(--cream); border: 1px solid var(--gold-soft); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--gold); margin-bottom: 16px; }
+    .pillar-icon svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 1.8; fill: none; }
+    .pillar-title { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .pillar-body { color: var(--grey-mid); font-size: 15px; line-height: 1.6; }
+    .criteria-list { display: grid; grid-template-columns: 1fr; gap: 16px; max-width: 760px; margin-top: 8px; }
+    .criteria-item { display: flex; gap: 18px; padding: 18px 22px; background: var(--white); border: 1px solid var(--grey-soft); border-left: 3px solid var(--gold); border-radius: 8px; }
+    .criteria-num { flex-shrink: 0; font-family: Georgia, serif; font-size: 26px; font-weight: 700; color: var(--gold); line-height: 1; width: 32px; }
+    .criteria-text { color: var(--grey-tx); font-size: 16px; line-height: 1.55; padding-top: 4px; }
+    .criteria-text strong { color: var(--navy); font-weight: 700; }
+    .principles-block { background: var(--navy); color: var(--white); border-radius: 18px; padding: 48px 44px; margin-top: 12px; position: relative; overflow: hidden; }
+    .principles-block::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--gold) 0%, var(--gold-bright) 50%, var(--gold) 100%); }
+    .principles-block .eyebrow-light { color: var(--gold-soft); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; display: inline-block; }
+    .principles-block h3 { font-size: 26px; color: var(--white); margin-bottom: 12px; font-weight: 700; line-height: 1.2; }
+    .principles-block .lead { color: rgba(255,255,255,0.75); font-size: 16px; line-height: 1.6; margin-bottom: 32px; max-width: 720px; }
+    .principle-rows { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px 40px; }
+    .principle-row { display: flex; gap: 16px; align-items: flex-start; }
+    .principle-check { width: 28px; height: 28px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .principle-check svg { width: 16px; height: 16px; stroke: var(--navy); stroke-width: 3; fill: none; }
+    .principle-content { flex: 1; }
+    .principle-name { color: var(--white); font-weight: 700; font-size: 16px; margin-bottom: 4px; }
+    .principle-detail { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.55; }
+    .identification-statement { background: var(--cream); border-left: 4px solid var(--gold); padding: 28px 36px; border-radius: 8px; margin: 20px 0 30px; max-width: 760px; }
+    .identification-statement p { font-size: 18px; font-weight: 700; color: var(--navy); line-height: 1.45; margin: 0; }
+    .facts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; background: var(--white); border: 1px solid var(--grey-soft); border-radius: 14px; overflow: hidden; max-width: 820px; margin-top: 12px; }
+    .fact-row { display: flex; padding: 18px 24px; border-bottom: 1px solid var(--grey-soft); border-right: 1px solid var(--grey-soft); background: var(--white); }
+    .fact-row:nth-child(2n) { border-right: none; }
+    .fact-row:nth-last-child(-n+2) { border-bottom: none; }
+    .fact-row.full-width { grid-column: 1 / -1; border-right: none; }
+    .fact-label { font-size: 11px; color: var(--grey-lt); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 4px; }
+    .fact-value { font-size: 16px; color: var(--navy); font-weight: 600; }
+    .fact-value.mono { font-family: "SF Mono", "Consolas", monospace; font-size: 15px; }
+    .fact-content { display: flex; flex-direction: column; }
+    .trust-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 40px 0; border-top: 1px solid var(--grey-soft); margin-top: 50px; }
+    .trust-item { text-align: center; }
+    .trust-num { font-size: 28px; font-weight: 800; color: var(--navy); line-height: 1; margin-bottom: 8px; font-family: Georgia, serif; }
+    .trust-label { font-size: 12px; color: var(--grey-lt); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; }
+    footer { background: var(--navy-dark); color: rgba(255,255,255,0.75); padding: 60px 0 40px; }
+    footer .container { display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 24px; }
+    .footer-brand { display: flex; flex-direction: column; gap: 12px; }
+    .footer-brand-row { display: flex; align-items: center; gap: 12px; }
+    .footer-brand-row .brand-mark { background: var(--white); color: var(--navy); }
+    .footer-brand-name { font-size: 17px; font-weight: 700; color: var(--white); letter-spacing: 0.5px; }
+    .footer-brand-sub { font-size: 14px; color: rgba(255,255,255,0.6); font-style: italic; max-width: 360px; line-height: 1.5; }
+    .footer-meta { display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: rgba(255,255,255,0.65); }
+    .footer-meta-label { font-size: 11px; color: var(--gold-soft); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 4px; }
+    footer a { color: var(--gold-soft); text-decoration: none; }
+    footer a:hover { color: var(--white); text-decoration: underline; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: rgba(255,255,255,0.45); flex-wrap: wrap; gap: 12px; }
+    .footer-rule { height: 2px; background: linear-gradient(90deg, var(--gold) 0%, transparent 80%); margin-bottom: 0; width: 100%; }
+    @media (max-width: 880px) { .pillars { grid-template-columns: 1fr; gap: 16px; } .principle-rows { grid-template-columns: 1fr; gap: 18px; } .facts-grid { grid-template-columns: 1fr; } .fact-row { border-right: none; } .fact-row:nth-last-child(2) { border-bottom: 1px solid var(--grey-soft); } .trust-row { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; } footer .container { grid-template-columns: 1fr; gap: 40px; } }
+    @media (max-width: 640px) { body { font-size: 16px; } .container { padding: 0 22px; } .site-nav { display: none; } .brand-mark { width: 34px; height: 34px; font-size: 20px; } .hero { padding: 56px 0 50px; } .hero h1 { font-size: 30px; letter-spacing: -0.5px; } .hero-lead { font-size: 17px; } .hero-meta { gap: 22px; } section.content { padding: 56px 0; } .section-h { font-size: 24px; } .section-lead { font-size: 16px; } .principles-block { padding: 32px 24px; } .principles-block h3 { font-size: 20px; } .identification-statement { padding: 22px 24px; } .identification-statement p { font-size: 16px; } }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <div class="brand-mark">K</div>
+        <div class="brand-text">
+          <span class="brand-name">FUNDACIÓN KAUZAK</span>
+          <span class="brand-sub">Sociedad sin fines de lucro 501(c)(3) de Florida</span>
+        </div>
+      </a>
+      <nav class="site-nav">
+        <a href="index.html">Inicio</a>
+        <a href="#mission">Misión</a>
+        <a href="#support">A quién apoyamos</a>
+        <a href="#how">Qué ofrecemos</a>
+        <a href="#principles">Principios</a>
+        <a href="#foundation">Sobre nosotros</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="container">
+      <span class="hero-badge">Programa de Desarrollo para Creadores de Contenido</span>
+      <h1>Identificamos creadores en todo el mundo que poseen <span class="accent">verdadero talento</span> pero carecen de la infraestructura institucional para sostener su trabajo.</h1>
+      <p class="hero-lead">El Programa de Desarrollo para Creadores de Contenido de la Fundación Kauzak ofrece lo que la geografía, el mercado o las circunstancias no han facilitado — mentoría, orientación empresarial y técnica, y respaldo institucional para creadores que operan fuera de las regiones donde la economía del creador cuenta con recursos plenos.</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Tipo de fundación</span>
+          <span class="hero-meta-value">Sin fines de lucro 501(c)(3) de EE. UU.</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">EIN</span>
+          <span class="hero-meta-value">41-3426116</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Vigente desde</span>
+          <span class="hero-meta-value">14 de diciembre de 2025</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content" id="mission">
+    <div class="container">
+      <span class="section-eyebrow">Por qué existe este programa</span>
+      <h2 class="section-h">El talento está distribuido de manera uniforme. Los recursos no.</h2>
+      <div class="section-body">
+        <p>En todo el mundo, los creadores de contenido talentosos en mercados fuera de Estados Unidos, el Reino Unido y Europa Occidental trabajan sin acceso a los recursos institucionales que sus colegas en esas regiones dan por sentados. Asesoría legal. Infraestructura de patrocinio de marca. Conocimientos sobre monetización. Acceso a estudios profesionales. Mentoría empresarial.</p>
+        <p>Estos recursos no están distribuidos equitativamente. El Programa de Desarrollo para Creadores de Contenido de la Fundación existe para identificar a creadores en esos mercados desatendidos — y proporcionar el apoyo institucional que demostrablemente han ganado pero al que de otro modo no pueden acceder.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content alt" id="support">
+    <div class="container">
+      <span class="section-eyebrow">A quién apoya el programa</span>
+      <h2 class="section-h">Cuatro cualidades que buscamos.</h2>
+      <p class="section-lead">La Fundación no publica los nombres de los creadores que actualmente apoya. Su privacidad forma parte de nuestro trabajo, y su relación con la Fundación no es material promocional.</p>
+
+      <div class="criteria-list">
+        <div class="criteria-item">
+          <span class="criteria-num">1</span>
+          <span class="criteria-text"><strong>Obra original, frente a la cámara, con su propia voz y presencia.</strong> Creadores que aparecen tal como son, en su propio entorno, en lugar de detrás de personajes fabricados.</span>
+        </div>
+        <div class="criteria-item">
+          <span class="criteria-num">2</span>
+          <span class="criteria-text"><strong>Documentación honesta de la experiencia vivida.</strong> Creadores cuyo trabajo se nutre de lo que realmente viven, con oficio e intención.</span>
+        </div>
+        <div class="criteria-item">
+          <span class="criteria-num">3</span>
+          <span class="criteria-text"><strong>Talento demostrado que la economía estándar del creador no ha respaldado adecuadamente.</strong> Habilidades reales que han carecido de financiamiento por razones de geografía, mercado o circunstancias — no por falta de mérito.</span>
+        </div>
+        <div class="criteria-item">
+          <span class="criteria-num">4</span>
+          <span class="criteria-text"><strong>Operando en mercados con infraestructura institucional limitada para creadores.</strong> Creadores fuera de las regiones donde el apoyo legal, financiero y profesional para la creación de contenido está plenamente desarrollado.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content" id="how">
+    <div class="container">
+      <span class="section-eyebrow">En qué consiste el apoyo</span>
+      <h2 class="section-h">Cuatro pilares, adaptados a cada creador.</h2>
+      <p class="section-lead">El apoyo específico que recibe cada creador se adapta a su situación. No existe un paquete fijo.</p>
+
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div class="pillar-title">Mentoría</div>
+          <div class="pillar-body">Orientación en creación de contenido, desarrollo de audiencia y navegación por la economía del creador — basada en experiencia profesional a la que el creador podría no tener acceso de otro modo.</div>
+        </div>
+
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/><circle cx="7" cy="6" r="1.5"/><circle cx="14" cy="12" r="1.5"/><circle cx="9" cy="18" r="1.5"/></svg>
+          </div>
+          <div class="pillar-title">Orientación empresarial y técnica</div>
+          <div class="pillar-body">Consejo práctico sobre crecimiento del canal, sostenibilidad, monetización, infraestructura técnica y decisiones operativas — al nivel que esperaría un creador con un equipo completo.</div>
+        </div>
+
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16l-7-4z"/></svg>
+          </div>
+          <div class="pillar-title">Respaldo institucional</div>
+          <div class="pillar-body">Cartas formales de apoyo, declaraciones de patrocinio y defensa institucional en asuntos que requieren documentación del estatus del creador — incluida la comunicación con plataformas donde los creadores individuales enfrentan desventajas estructurales.</div>
+        </div>
+
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 10h6M9 14h6"/></svg>
+          </div>
+          <div class="pillar-title">Apoyo financiero directo</div>
+          <div class="pillar-body">Cuando corresponde, la Fundación brinda asistencia financiera directa para sostener el trabajo del creador, ajustada a su situación y a la misión de la Fundación.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content alt" id="principles">
+    <div class="container">
+      <span class="section-eyebrow">Nuestros principios</span>
+      <h2 class="section-h">El apoyo se ofrece libremente, sin condiciones.</h2>
+      <p class="section-lead">Estos principios son absolutos. A cada creador que apoyamos se le comunican por escrito, y nunca nos apartamos de ellos en ninguna dirección.</p>
+
+      <div class="principles-block">
+        <span class="eyebrow-light">Compromisos de la Fundación</span>
+        <h3>Lo que nunca pediremos a un creador al que apoyamos.</h3>
+        <p class="lead">La relación de un creador con la Fundación no depende de su participación continua. Un creador puede rechazar el apoyo, en su totalidad o en parte, en cualquier momento, sin explicación y sin consecuencias.</p>
+
+        <div class="principle-rows">
+          <div class="principle-row">
+            <div class="principle-check">
+              <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg>
+            </div>
+            <div class="principle-content">
+              <div class="principle-name">No se requieren contratos.</div>
+              <div class="principle-detail">No se pide a los creadores que firmen acuerdos vinculantes con la Fundación.</div>
+            </div>
+          </div>
+
+          <div class="principle-row">
+            <div class="principle-check">
+              <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg>
+            </div>
+            <div class="principle-content">
+              <div class="principle-name">No hay cesión de derechos.</div>
+              <div class="principle-detail">Los creadores conservan la plena propiedad de sus obras, canales, identidades y propiedad intelectual.</div>
+            </div>
+          </div>
+
+          <div class="principle-row">
+            <div class="principle-check">
+              <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg>
+            </div>
+            <div class="principle-content">
+              <div class="principle-name">Sin contraprestación.</div>
+              <div class="principle-detail">No se exige al creador ningún tipo de contraprestación a cambio del apoyo de la Fundación.</div>
+            </div>
+          </div>
+
+          <div class="principle-row">
+            <div class="principle-check">
+              <svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg>
+            </div>
+            <div class="principle-content">
+              <div class="principle-name">Entregado libremente.</div>
+              <div class="principle-detail">El apoyo se ofrece conforme a nuestra misión benéfica 501(c)(3). Los creadores pueden aceptar cualquier parte, todo o nada.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content" id="identification">
+    <div class="container">
+      <span class="section-eyebrow">Cómo identificamos a los creadores</span>
+      <h2 class="section-h">Nosotros encontramos creadores. No aceptamos solicitudes.</h2>
+
+      <div class="identification-statement">
+        <p>La Fundación identifica a los creadores de forma proactiva. No mantenemos un proceso de solicitud, una bandeja de entrada para captación, ni ninguna vía por la cual una persona pueda autopostularse para recibir apoyo.</p>
+      </div>
+
+      <div class="section-body">
+        <p>Esta estructura es intencional. Los procesos abiertos de solicitud para apoyo de fundaciones tienden a atraer a entidades que buscan obtener ventaja, más que a los creadores para los cuales el programa está diseñado. Nuestro modelo — identificación proactiva por parte de la Fundación — protege tanto la integridad del programa como a los creadores con quienes ya trabajamos.</p>
+        <p>Cualquier persona que afirme ser un creador apoyado por la Fundación Kauzak puede ser verificada contactándonos directamente. Si ha recibido una comunicación que pretende provenir de la Fundación, o si una persona le manifiesta que está siendo apoyada por la Fundación, por favor escriba a <a href="mailto:brian@kauzak.foundation" style="color:var(--gold); font-weight:600;">brian@kauzak.foundation</a> para confirmarlo.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content alt" id="foundation">
+    <div class="container">
+      <span class="section-eyebrow">Sobre la Fundación</span>
+      <h2 class="section-h">Kauzak Foundation, Inc.</h2>
+      <p class="section-lead">Sociedad sin fines de lucro 501(c)(3) constituida conforme a las leyes del Estado de Florida, Estados Unidos de América. Reconocida por el Servicio de Impuestos Internos (IRS) como exenta bajo el artículo 501(c)(3) del Código de Rentas Internas; los donantes pueden deducir sus contribuciones bajo el artículo 170 del IRC.</p>
+
+      <div class="facts-grid">
+        <div class="fact-row">
+          <div class="fact-content">
+            <span class="fact-label">Razón social</span>
+            <span class="fact-value">Kauzak Foundation, Inc.</span>
+          </div>
+        </div>
+        <div class="fact-row">
+          <div class="fact-content">
+            <span class="fact-label">EIN</span>
+            <span class="fact-value mono">41-3426116</span>
+          </div>
+        </div>
+        <div class="fact-row">
+          <div class="fact-content">
+            <span class="fact-label">Estado de constitución</span>
+            <span class="fact-value">Florida, EE. UU.</span>
+          </div>
+        </div>
+        <div class="fact-row">
+          <div class="fact-content">
+            <span class="fact-label">Estatus de entidad benéfica pública</span>
+            <span class="fact-value">IRC 509(a)(2)</span>
+          </div>
+        </div>
+        <div class="fact-row">
+          <div class="fact-content">
+            <span class="fact-label">Fecha efectiva de exención fiscal</span>
+            <span class="fact-value">14 de diciembre de 2025</span>
+          </div>
+        </div>
+        <div class="fact-row">
+          <div class="fact-content">
+            <span class="fact-label">Carta de determinación del IRS</span>
+            <span class="fact-value">Letter 947 &middot; 22 de enero de 2026</span>
+          </div>
+        </div>
+        <div class="fact-row">
+          <div class="fact-content">
+            <span class="fact-label">Presidente</span>
+            <span class="fact-value">Dr. Brian D. Adrian</span>
+          </div>
+        </div>
+        <div class="fact-row">
+          <div class="fact-content">
+            <span class="fact-label">Contacto</span>
+            <span class="fact-value"><a href="mailto:brian@kauzak.foundation" style="color:var(--navy);">brian@kauzak.foundation</a></span>
+          </div>
+        </div>
+        <div class="fact-row full-width">
+          <div class="fact-content">
+            <span class="fact-label">Domicilio registrado</span>
+            <span class="fact-value">12306 Tradition Drive, Dade City, FL 33525, Estados Unidos de América</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="trust-row">
+        <div class="trust-item">
+          <div class="trust-num">501(c)(3)</div>
+          <div class="trust-label">Reconocida por el IRS</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">509(a)(2)</div>
+          <div class="trust-label">Entidad benéfica pública</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">2025</div>
+          <div class="trust-label">Año de vigencia</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">EE. UU.</div>
+          <div class="trust-label">Sede en Florida</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-rule"></div>
+  <footer>
+    <div class="container">
+      <div class="footer-brand">
+        <div class="footer-brand-row">
+          <div class="brand-mark">K</div>
+          <div class="footer-brand-name">FUNDACIÓN KAUZAK</div>
+        </div>
+        <p class="footer-brand-sub">Sociedad sin fines de lucro 501(c)(3) de Florida que apoya a creadores de contenido en todo el mundo con verdadero talento pero sin la infraestructura institucional para sostener su trabajo.</p>
+      </div>
+
+      <div class="footer-meta">
+        <span class="footer-meta-label">Contacto y verificación</span>
+        <span><a href="mailto:brian@kauzak.foundation">brian@kauzak.foundation</a></span>
+        <span>12306 Tradition Drive</span>
+        <span>Dade City, FL 33525, USA</span>
+        <span style="margin-top: 8px;">EIN: 41-3426116</span>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <div>© Kauzak Foundation, Inc. Todos los derechos reservados.</div>
+      <div>Florida 501(c)(3) &middot; EIN 41-3426116 &middot; <a href="https://www.kauzak.foundation">www.kauzak.foundation</a></div>
+    </div>
+  </footer>
+
+</body>
+</html>

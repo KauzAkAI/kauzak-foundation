@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>云 &amp; Brian — Language Flashcards</title>
+<style>
+  :root {
+    --bg: #f6f3ee;
+    --card: #ffffff;
+    --ink: #2b2520;
+    --accent: #c0392b;
+    --accent2: #1a6b54;
+    --muted: #8a8178;
+    --chip: #ece6dd;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--ink); padding: 16px; }
+  header { max-width: 1100px; margin: 0 auto 14px; }
+  h1 { font-size: 1.5rem; margin-bottom: 2px; }
+  .welcome { color: var(--accent); font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; }
+  .howto { max-width: 1100px; margin: 12px auto 0; background: #fdf9f0; border: 1.5px solid #e8ddc8; border-radius: 12px; padding: 12px 16px; font-size: .92rem; line-height: 1.65; }
+  .howto summary { font-weight: 700; cursor: pointer; color: var(--accent2); font-size: 1rem; }
+  .howto ol { margin: 10px 0 4px 22px; }
+  .howto li { margin-bottom: 6px; }
+  .sub { color: var(--muted); font-size: .9rem; margin-bottom: 12px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; background: var(--card); border-radius: 12px; padding: 12px 14px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+  .modeBtn { border: 2px solid var(--accent); background: #fff; color: var(--accent); font-size: .95rem; font-weight: 600; padding: 8px 14px; border-radius: 999px; cursor: pointer; }
+  .modeBtn.active { background: var(--accent); color: #fff; }
+  .ctl { display: flex; align-items: center; gap: 6px; font-size: .85rem; color: var(--muted); }
+  input[type=range] { width: 110px; }
+  .playAll { margin-left: auto; border: none; background: var(--accent2); color: #fff; font-weight: 600; padding: 9px 16px; border-radius: 999px; cursor: pointer; }
+  .playAll.stop { background: #a33; }
+  .cats { max-width: 1100px; margin: 12px auto; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat { border: none; background: var(--chip); padding: 6px 12px; border-radius: 999px; font-size: .82rem; cursor: pointer; color: var(--ink); }
+  .cat.active { background: var(--ink); color: #fff; }
+  .grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+  .card { background: var(--card); border-radius: 14px; overflow: hidden; box-shadow: 0 1px 5px rgba(0,0,0,.1); display: flex; flex-direction: column; }
+  .card.playing { outline: 3px solid var(--accent2); }
+  .imgWrap { height: 150px; background: linear-gradient(135deg, #ece6dd, #f9f5ef); display: flex; align-items: center; justify-content: center; font-size: 84px; position: relative; }
+  .imgWrap img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+  .body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+  .primary { font-size: 1.45rem; font-weight: 700; line-height: 1.2; }
+  .pinyin { color: var(--accent); font-size: 1rem; }
+  .secondary { color: var(--muted); font-size: 1rem; }
+  .sent { margin-top: 8px; border-top: 1px dashed #ddd5c8; padding-top: 8px; font-size: .9rem; line-height: 1.45; }
+  .sent .py { color: var(--accent); }
+  .sent .tr { color: var(--muted); }
+  .btns { display: flex; gap: 8px; margin-top: 10px; }
+  .btns button { flex: 1; border: 1.5px solid var(--accent2); background: #fff; color: var(--accent2); border-radius: 8px; padding: 7px 4px; font-size: .85rem; font-weight: 600; cursor: pointer; }
+  .btns button:hover { background: var(--accent2); color: #fff; }
+  .btns button.mic { border-color: var(--accent); color: var(--accent); }
+  .btns button.mic:hover { background: var(--accent); color: #fff; }
+  .res { min-height: 1em; font-size: .82rem; margin-top: 6px; line-height: 1.35; }
+  .note { max-width: 1100px; margin: 10px auto 30px; color: var(--muted); font-size: .8rem; text-align: center; }
+  .tabs { max-width: 1100px; margin: 14px auto 0; display: flex; gap: 8px; flex-wrap: wrap; }
+  .tab { border: none; background: #fff; padding: 9px 16px; border-radius: 10px; font-weight: 600; cursor: pointer; color: var(--muted); box-shadow: 0 1px 4px rgba(0,0,0,.06); font-size: .9rem; }
+  .tab.active { color: var(--accent); box-shadow: inset 0 -3px 0 var(--accent), 0 1px 4px rgba(0,0,0,.06); }
+  #panel { max-width: 680px; margin: 0 auto; background: var(--card); border-radius: 14px; padding: 24px; box-shadow: 0 1px 5px rgba(0,0,0,.1); display: none; }
+  .qProgress { color: var(--muted); font-size: .85rem; display: flex; justify-content: space-between; }
+  .qPrompt { font-size: 1.7rem; font-weight: 700; margin: 14px 0 4px; text-align: center; }
+  .qPy { text-align: center; color: var(--accent); margin-bottom: 10px; }
+  .bigEmoji { text-align: center; font-size: 60px; margin: 6px 0; }
+  .opts { display: grid; gap: 10px; margin-top: 14px; }
+  .opt { border: 2px solid #e2dccf; background: #fff; border-radius: 10px; padding: 13px; font-size: 1.05rem; cursor: pointer; text-align: left; font-family: inherit; }
+  .opt:hover { border-color: var(--accent2); }
+  .opt.correct { background: #e7f5ef; border-color: var(--accent2); color: var(--accent2); font-weight: 700; }
+  .opt.wrong { background: #fbeae8; border-color: var(--accent); color: var(--accent); }
+  .reveal { margin-top: 12px; text-align: center; color: var(--muted); font-size: .95rem; line-height: 1.5; }
+  .nextBtn { margin-top: 16px; width: 100%; background: var(--accent2); border: none; color: #fff; font-weight: 700; padding: 12px; border-radius: 10px; cursor: pointer; font-size: 1rem; }
+  .endScore { text-align: center; font-size: 1.4rem; margin: 12px 0; font-weight: 700; }
+  .streak { text-align: center; font-size: 1.05rem; color: var(--accent); margin: 8px 0; }
+  .hearBtn { display: block; margin: 8px auto; font-size: 48px; background: none; border: none; cursor: pointer; }
+  .mast { position: absolute; top: 6px; right: 9px; color: #f0b429; font-size: .75rem; text-shadow: 0 1px 2px rgba(0,0,0,.35); letter-spacing: 1px; }
+</style>
+</head>
+<body>
+<header>
+  <h1 id="title">Yun &amp; Brian — Flashcards 单词卡</h1>
+  <div class="welcome">欢迎，香云！Welcome, Xiangyun! 💫</div>
+  <div class="sub">Click 🔊 to hear it spoken. Use the slider to slow it down. 点喇叭听发音。</div>
+  <div class="controls">
+    <button id="modeZh" class="modeBtn active" onclick="setMode('zh')">I'm learning Chinese 我学中文</button>
+    <button id="modeEn" class="modeBtn" onclick="setMode('en')">我学英语 I'm learning English</button>
+    <div class="ctl">Speed 速度 <input type="range" id="rate" min="0.4" max="1.2" step="0.1" value="0.7"> <span id="rateVal">0.7</span></div>
+    <button id="playAllBtn" class="playAll" onclick="togglePlayAll()">▶ Play all 全部播放</button>
+  </div>
+</header>
+<details class="howto" id="howto" open>
+  <summary>📖 使用说明 How to use</summary>
+  <ol>
+    <li><b>先点上面的「我学英语 I'm learning English」按钮</b> — 这样英语会放在最前面，发音练习也会练英语。</li>
+    <li><b>📇 卡片</b> — 看单词、拼音和例句。点 🔊 听发音。上面的"速度 Speed"滑块可以把声音调慢。</li>
+    <li><b>🎤 跟读</b> — 点麦克风按钮，大声读出英语单词，电脑会告诉你发音对不对。✅ 表示说对了！（第一次使用时请允许浏览器使用麦克风）</li>
+    <li><b>🎯 测验</b> — 看中文，从四个选项里选出正确的英文。</li>
+    <li><b>👂 听力</b> — 只听声音，选出你听到的英语单词。锻炼耳朵！</li>
+    <li><b>📅 今日十词</b> — 每天学十个词：先学习，再测验。每天坚持，保持连续记录 🔥！</li>
+    <li>卡片上的星星 ★ 表示你已经掌握的词 — 答错会重新练习，答对会加星。</li>
+    <li>进度自动保存在浏览器里 — 请一直用同一个浏览器（比如 Safari）。</li>
+  </ol>
+</details>
+<div class="tabs">
+  <button class="tab active" data-v="cards" onclick="setView('cards')">📇 Cards 卡片</button>
+  <button class="tab" data-v="quiz" onclick="setView('quiz')">🎯 Quiz 测验</button>
+  <button class="tab" data-v="listen" onclick="setView('listen')">👂 Listening 听力</button>
+  <button class="tab" data-v="daily" onclick="setView('daily')">📅 Today's 10 今日十词</button>
+</div>
+<div class="cats" id="cats"></div>
+<div id="panel"></div>
+<div class="grid" id="grid"></div>
+<div class="note">🎤 The "Say it" button uses your microphone to check pronunciation — works in Chrome and Edge (allow mic access when asked).<br>
+If no Chinese voice is heard: Windows Settings → Time &amp; Language → Speech → Add voices → Chinese.</div>
+
+<script>
+const DATA = [
+ {cat:"Greetings",e:"🙏",kw:"thank,you",zh:"谢谢",py:"xièxie",en:"Thank you",zhs:"谢谢你的帮助。",pys:"Xièxie nǐ de bāngzhù.",ens:"Thank you for your help."},
+ {cat:"Greetings",e:"🙇",kw:"helping,hands",zh:"麻烦你了",py:"máfan nǐ le",en:"Sorry to trouble you",zhs:"麻烦你了，谢谢！",pys:"Máfan nǐ le, xièxie!",ens:"Sorry to trouble you, thank you!"},
+ {cat:"Greetings",e:"🌄",kw:"sunrise",zh:"早",py:"zǎo",en:"Morning!",zhs:"早！今天天气真好。",pys:"Zǎo! Jīntiān tiānqì zhēn hǎo.",ens:"Morning! The weather is great today."},
+ {cat:"Greetings",e:"💬",kw:"friends,talking",zh:"最近怎么样",py:"zuìjìn zěnmeyàng",en:"How have you been?",zhs:"最近怎么样？工作忙吗？",pys:"Zuìjìn zěnmeyàng? Gōngzuò máng ma?",ens:"How have you been? Busy with work?"},
+ {cat:"Greetings",e:"🍚",kw:"meal,chinese",zh:"吃了吗",py:"chī le ma",en:"Have you eaten?",zhs:"吃了吗？没吃一起吃。",pys:"Chī le ma? Méi chī yìqǐ chī.",ens:"Have you eaten? If not, let's eat together."},
+ {cat:"Greetings",e:"💪",kw:"hard,work",zh:"辛苦了",py:"xīnkǔ le",en:"You've worked hard",zhs:"今天辛苦了，早点休息。",pys:"Jīntiān xīnkǔ le, zǎodiǎn xiūxi.",ens:"You worked hard today — rest early."},
+ {cat:"Greetings",e:"😅",kw:"apology",zh:"不好意思",py:"bù hǎoyìsi",en:"Excuse me / sorry",zhs:"不好意思，我来晚了。",pys:"Bù hǎoyìsi, wǒ lái wǎn le.",ens:"Sorry, I'm late."},
+ {cat:"Greetings",e:"👋",kw:"wave,hello",zh:"哈喽",py:"hālóu",en:"Hello (casual)",zhs:"哈喽！好久不见。",pys:"Hālóu! Hǎojiǔ bú jiàn.",ens:"Hello! Long time no see."},
+ {cat:"People",e:"👩‍🏫",kw:"teacher,classroom",zh:"老师",py:"lǎoshī",en:"Teacher",zhs:"我的老师人很好。",pys:"Wǒ de lǎoshī rén hěn hǎo.",ens:"My teacher is very kind."},
+ {cat:"People",e:"🧑‍🎓",kw:"student",zh:"学生",py:"xuésheng",en:"Student",zhs:"她是个好学生。",pys:"Tā shì ge hǎo xuésheng.",ens:"She is a good student."},
+ {cat:"People",e:"👦",kw:"boy,portrait",zh:"哥哥",py:"gēge",en:"Older brother",zhs:"我哥哥很高。",pys:"Wǒ gēge hěn gāo.",ens:"My brother is tall."},
+ {cat:"People",e:"👧",kw:"girl,portrait",zh:"姐姐",py:"jiějie",en:"Older sister",zhs:"我姐姐住在北京。",pys:"Wǒ jiějie zhù zài Běijīng.",ens:"My sister lives in Beijing."},
+ {cat:"People",e:"👨‍⚕️",kw:"doctor",zh:"医生",py:"yīshēng",en:"Doctor",zhs:"我今天看了医生。",pys:"Wǒ jīntiān kàn le yīshēng.",ens:"I saw the doctor today."},
+ {cat:"People",e:"🤝",kw:"friends",zh:"朋友",py:"péngyou",en:"Friend",zhs:"她是我最好的朋友。",pys:"Tā shì wǒ zuì hǎo de péngyou.",ens:"She is my best friend."},
+ {cat:"People",e:"👨‍👩‍👧",kw:"family",zh:"家人",py:"jiārén",en:"Family",zhs:"我爱我的家人。",pys:"Wǒ ài wǒ de jiārén.",ens:"I love my family."},
+ {cat:"People",e:"👩",kw:"mother",zh:"妈妈",py:"māma",en:"Mother",zhs:"我妈妈在做饭。",pys:"Wǒ māma zài zuò fàn.",ens:"My mother is cooking."},
+ {cat:"People",e:"👨",kw:"father",zh:"爸爸",py:"bàba",en:"Father",zhs:"我爸爸很高。",pys:"Wǒ bàba hěn gāo.",ens:"My father is tall."},
+ {cat:"Animals",e:"🦒",kw:"giraffe",zh:"长颈鹿",py:"chángjǐnglù",en:"Giraffe",zhs:"我在动物园看见了一只长颈鹿。",pys:"Wǒ zài dòngwùyuán kànjiàn le yì zhī chángjǐnglù.",ens:"I saw a giraffe at the zoo."},
+ {cat:"Animals",e:"🐶",kw:"dog",zh:"狗",py:"gǒu",en:"Dog",zhs:"这只狗很友好。",pys:"Zhè zhī gǒu hěn yǒuhǎo.",ens:"The dog is friendly."},
+ {cat:"Animals",e:"🐱",kw:"cat",zh:"猫",py:"māo",en:"Cat",zhs:"这只猫很小。",pys:"Zhè zhī māo hěn xiǎo.",ens:"The cat is small."},
+ {cat:"Animals",e:"🐦",kw:"bird",zh:"鸟",py:"niǎo",en:"Bird",zhs:"我看见一只鸟。",pys:"Wǒ kànjiàn yì zhī niǎo.",ens:"I see a bird."},
+ {cat:"Food & Drink",e:"🍎",kw:"apple",zh:"苹果",py:"píngguǒ",en:"Apple",zhs:"我每天吃一个苹果。",pys:"Wǒ měitiān chī yí ge píngguǒ.",ens:"I eat an apple every day."},
+ {cat:"Food & Drink",e:"🍊",kw:"orange,fruit",zh:"橙子",py:"chéngzi",en:"Orange",zhs:"这个橙子很甜。",pys:"Zhège chéngzi hěn tián.",ens:"This orange is sweet."},
+ {cat:"Food & Drink",e:"🥕",kw:"carrot",zh:"胡萝卜",py:"húluóbo",en:"Carrot",zhs:"兔子喜欢吃胡萝卜。",pys:"Tùzi xǐhuan chī húluóbo.",ens:"Rabbits like carrots."},
+ {cat:"Food & Drink",e:"🍌",kw:"banana",zh:"香蕉",py:"xiāngjiāo",en:"Banana",zhs:"香蕉是黄色的。",pys:"Xiāngjiāo shì huángsè de.",ens:"The banana is yellow."},
+ {cat:"Food & Drink",e:"🍞",kw:"bread",zh:"面包",py:"miànbāo",en:"Bread",zhs:"我早餐吃面包。",pys:"Wǒ zǎocān chī miànbāo.",ens:"I eat bread for breakfast."},
+ {cat:"Food & Drink",e:"🍚",kw:"rice,bowl",zh:"米饭",py:"mǐfàn",en:"Rice",zhs:"我们每天吃米饭。",pys:"Wǒmen měitiān chī mǐfàn.",ens:"We eat rice every day."},
+ {cat:"Food & Drink",e:"🥚",kw:"egg",zh:"鸡蛋",py:"jīdàn",en:"Egg",zhs:"请给我两个鸡蛋。",pys:"Qǐng gěi wǒ liǎng ge jīdàn.",ens:"I want two eggs, please."},
+ {cat:"Food & Drink",e:"🥛",kw:"milk",zh:"牛奶",py:"niúnǎi",en:"Milk",zhs:"牛奶是凉的。",pys:"Niúnǎi shì liáng de.",ens:"The milk is cold."},
+ {cat:"Food & Drink",e:"💧",kw:"water,glass",zh:"水",py:"shuǐ",en:"Water",zhs:"请多喝水。",pys:"Qǐng duō hē shuǐ.",ens:"Please drink more water."},
+ {cat:"Food & Drink",e:"🍵",kw:"tea",zh:"茶",py:"chá",en:"Tea",zhs:"中国茶很有名。",pys:"Zhōngguó chá hěn yǒumíng.",ens:"Chinese tea is famous."},
+ {cat:"Food & Drink",e:"☕",kw:"coffee",zh:"咖啡",py:"kāfēi",en:"Coffee",zhs:"我早上喝咖啡。",pys:"Wǒ zǎoshang hē kāfēi.",ens:"I drink coffee in the morning."},
+ {cat:"Food & Drink",e:"🍗",kw:"chicken,food",zh:"鸡肉",py:"jīròu",en:"Chicken",zhs:"鸡肉很好吃。",pys:"Jīròu hěn hǎochī.",ens:"The chicken is delicious."},
+ {cat:"Food & Drink",e:"🐟",kw:"fish,food",zh:"鱼",py:"yú",en:"Fish",zhs:"我爸爸喜欢吃鱼。",pys:"Wǒ bàba xǐhuan chī yú.",ens:"My father likes fish."},
+ {cat:"Food & Drink",e:"🍲",kw:"soup",zh:"汤",py:"tāng",en:"Soup",zhs:"汤很热。",pys:"Tāng hěn rè.",ens:"The soup is hot."},
+ {cat:"Food & Drink",e:"🍇",kw:"fruit",zh:"水果",py:"shuǐguǒ",en:"Fruit",zhs:"水果对你有好处。",pys:"Shuǐguǒ duì nǐ yǒu hǎochù.",ens:"Fruit is good for you."},
+ {cat:"Verbs",e:"🍽️",kw:"eating",zh:"吃",py:"chī",en:"Eat",zhs:"你今天吃饭了吗？",pys:"Nǐ jīntiān chī fàn le ma?",ens:"Did you eat today?"},
+ {cat:"Verbs",e:"🥤",kw:"drinking",zh:"喝",py:"hē",en:"Drink",zhs:"我晚上喝茶。",pys:"Wǒ wǎnshang hē chá.",ens:"I drink tea at night."},
+ {cat:"Verbs",e:"🚶",kw:"walking,person",zh:"去",py:"qù",en:"Go",zhs:"我八点去上班。",pys:"Wǒ bā diǎn qù shàngbān.",ens:"I go to work at eight."},
+ {cat:"Verbs",e:"👋",kw:"welcome",zh:"来",py:"lái",en:"Come",zhs:"请来我家。",pys:"Qǐng lái wǒ jiā.",ens:"Please come to my house."},
+ {cat:"Verbs",e:"👀",kw:"looking",zh:"看见",py:"kànjiàn",en:"See",zhs:"我看见一只鸟。",pys:"Wǒ kànjiàn yì zhī niǎo.",ens:"I see a bird."},
+ {cat:"Verbs",e:"👍",kw:"thumbs,up",zh:"喜欢",py:"xǐhuan",en:"Like",zhs:"我喜欢这首歌。",pys:"Wǒ xǐhuan zhè shǒu gē.",ens:"I like this song."},
+ {cat:"Verbs",e:"❤️",kw:"heart,love",zh:"爱",py:"ài",en:"Love",zhs:"我爱我的妈妈。",pys:"Wǒ ài wǒ de māma.",ens:"I love my mother."},
+ {cat:"Verbs",e:"🙋",kw:"wish",zh:"想要",py:"xiǎngyào",en:"Want",zhs:"我想学英语。",pys:"Wǒ xiǎng xué Yīngyǔ.",ens:"I want to learn English."},
+ {cat:"Verbs",e:"✋",kw:"holding",zh:"有",py:"yǒu",en:"Have",zhs:"我有两个兄弟。",pys:"Wǒ yǒu liǎng ge xiōngdì.",ens:"I have two brothers."},
+ {cat:"Verbs",e:"🍳",kw:"cooking",zh:"做",py:"zuò",en:"Make",zhs:"我会做晚饭。",pys:"Wǒ huì zuò wǎnfàn.",ens:"I can make dinner."},
+ {cat:"Verbs",e:"🛒",kw:"shopping",zh:"买",py:"mǎi",en:"Buy",zhs:"我想买苹果。",pys:"Wǒ xiǎng mǎi píngguǒ.",ens:"I want to buy apples."},
+ {cat:"Verbs",e:"😴",kw:"sleeping",zh:"睡觉",py:"shuìjiào",en:"Sleep",zhs:"我睡八个小时。",pys:"Wǒ shuì bā ge xiǎoshí.",ens:"I sleep eight hours."},
+ {cat:"Verbs",e:"💼",kw:"office,work",zh:"工作",py:"gōngzuò",en:"Work",zhs:"我每天工作。",pys:"Wǒ měitiān gōngzuò.",ens:"I work every day."},
+ {cat:"Verbs",e:"📚",kw:"studying",zh:"学习",py:"xuéxí",en:"Learn",zhs:"我们一起学英语。",pys:"Wǒmen yìqǐ xué Yīngyǔ.",ens:"We learn English together."},
+ {cat:"Verbs",e:"📖",kw:"reading,book",zh:"读",py:"dú",en:"Read",zhs:"我晚上读书。",pys:"Wǒ wǎnshang dúshū.",ens:"I read books at night."},
+ {cat:"Verbs",e:"✍️",kw:"writing",zh:"写",py:"xiě",en:"Write",zhs:"请写你的名字。",pys:"Qǐng xiě nǐ de míngzi.",ens:"Please write your name."},
+ {cat:"Verbs",e:"🗣️",kw:"speaking",zh:"说",py:"shuō",en:"Speak",zhs:"你能说慢一点吗？",pys:"Nǐ néng shuō màn yìdiǎn ma?",ens:"Can you speak slowly?"},
+ {cat:"Verbs",e:"👂",kw:"music,listening",zh:"听",py:"tīng",en:"Listen",zhs:"听听这音乐。",pys:"Tīngting zhè yīnyuè.",ens:"Listen to the music."},
+ {cat:"Verbs",e:"🚶‍♂️",kw:"walking,path",zh:"走路",py:"zǒulù",en:"Walk",zhs:"我走路去公园。",pys:"Wǒ zǒulù qù gōngyuán.",ens:"I walk to the park."},
+ {cat:"Verbs",e:"🤝",kw:"helping",zh:"帮助",py:"bāngzhù",en:"Help",zhs:"你能帮我吗？",pys:"Nǐ néng bāng wǒ ma?",ens:"Can you help me?"},
+ {cat:"Adjectives",e:"🐘",kw:"elephant",zh:"大",py:"dà",en:"Big",zhs:"这个城市很大。",pys:"Zhège chéngshì hěn dà.",ens:"The city is big."},
+ {cat:"Adjectives",e:"🐭",kw:"mouse,small",zh:"小",py:"xiǎo",en:"Small",zhs:"这只猫很小。",pys:"Zhè zhī māo hěn xiǎo.",ens:"The cat is small."},
+ {cat:"Adjectives",e:"🔥",kw:"fire,hot",zh:"热",py:"rè",en:"Hot",zhs:"今天很热。",pys:"Jīntiān hěn rè.",ens:"Today is very hot."},
+ {cat:"Adjectives",e:"❄️",kw:"ice,winter",zh:"冷",py:"lěng",en:"Cold",zhs:"冬天很冷。",pys:"Dōngtiān hěn lěng.",ens:"The winter is cold."},
+ {cat:"Adjectives",e:"👍",kw:"good",zh:"好",py:"hǎo",en:"Good",zhs:"这本书很好。",pys:"Zhè běn shū hěn hǎo.",ens:"This book is good."},
+ {cat:"Adjectives",e:"👎",kw:"storm",zh:"坏",py:"huài",en:"Bad",zhs:"今天天气不好。",pys:"Jīntiān tiānqì bù hǎo.",ens:"The weather is bad today."},
+ {cat:"Adjectives",e:"😊",kw:"smile,happy",zh:"开心",py:"kāixīn",en:"Happy",zhs:"见到你我很开心。",pys:"Jiàndào nǐ wǒ hěn kāixīn.",ens:"I am happy to see you."},
+ {cat:"Adjectives",e:"😢",kw:"sad",zh:"难过",py:"nánguò",en:"Sad",zhs:"别难过。",pys:"Bié nánguò.",ens:"Don't be sad."},
+ {cat:"Adjectives",e:"🥱",kw:"tired,yawn",zh:"累",py:"lèi",en:"Tired",zhs:"我今晚很累。",pys:"Wǒ jīnwǎn hěn lèi.",ens:"I am tired tonight."},
+ {cat:"Adjectives",e:"🌸",kw:"flowers",zh:"漂亮",py:"piàoliang",en:"Beautiful",zhs:"这些花很漂亮。",pys:"Zhèxiē huā hěn piàoliang.",ens:"The flowers are beautiful."},
+ {cat:"Adjectives",e:"✨",kw:"new,gift",zh:"新",py:"xīn",en:"New",zhs:"我有一部新手机。",pys:"Wǒ yǒu yí bù xīn shǒujī.",ens:"I have a new phone."},
+ {cat:"Adjectives",e:"🏚️",kw:"old,house",zh:"旧",py:"jiù",en:"Old",zhs:"这房子很旧。",pys:"Zhè fángzi hěn jiù.",ens:"This house is old."},
+ {cat:"Adjectives",e:"🚄",kw:"train,speed",zh:"快",py:"kuài",en:"Fast",zhs:"火车很快。",pys:"Huǒchē hěn kuài.",ens:"The train is fast."},
+ {cat:"Adjectives",e:"🐢",kw:"turtle",zh:"慢",py:"màn",en:"Slow",zhs:"公交车很慢。",pys:"Gōngjiāochē hěn màn.",ens:"The bus is slow."},
+ {cat:"Adjectives",e:"😌",kw:"relax",zh:"容易",py:"róngyì",en:"Easy",zhs:"多练习，英语就容易。",pys:"Duō liànxí, Yīngyǔ jiù róngyì.",ens:"English is easy with practice."},
+ {cat:"Colors",e:"🔴",kw:"red",zh:"红色",py:"hóngsè",en:"Red",zhs:"苹果是红色的。",pys:"Píngguǒ shì hóngsè de.",ens:"The apple is red."},
+ {cat:"Colors",e:"🔵",kw:"blue,sky",zh:"蓝色",py:"lánsè",en:"Blue",zhs:"天空是蓝色的。",pys:"Tiānkōng shì lánsè de.",ens:"The sky is blue."},
+ {cat:"Colors",e:"🟢",kw:"green,leaves",zh:"绿色",py:"lǜsè",en:"Green",zhs:"树是绿色的。",pys:"Shù shì lǜsè de.",ens:"The tree is green."},
+ {cat:"Colors",e:"🟡",kw:"yellow",zh:"黄色",py:"huángsè",en:"Yellow",zhs:"太阳是黄色的。",pys:"Tàiyáng shì huángsè de.",ens:"The sun is yellow."},
+ {cat:"Colors",e:"⚫",kw:"black",zh:"黑色",py:"hēisè",en:"Black",zhs:"我的猫是黑色的。",pys:"Wǒ de māo shì hēisè de.",ens:"My cat is black."},
+ {cat:"Colors",e:"⚪",kw:"white,snow",zh:"白色",py:"báisè",en:"White",zhs:"雪是白色的。",pys:"Xuě shì báisè de.",ens:"The snow is white."},
+ {cat:"Places",e:"🏠",kw:"home",zh:"家",py:"jiā",en:"Home",zhs:"我刚到家。",pys:"Wǒ gāng dào jiā.",ens:"I just got home."},
+ {cat:"Places",e:"🏫",kw:"school",zh:"学校",py:"xuéxiào",en:"School",zhs:"学校离我家很近。",pys:"Xuéxiào lí wǒ jiā hěn jìn.",ens:"The school is near my house."},
+ {cat:"Places",e:"🏪",kw:"store,shop",zh:"商店",py:"shāngdiàn",en:"Store",zhs:"我要去商店。",pys:"Wǒ yào qù shāngdiàn.",ens:"I am going to the store."},
+ {cat:"Places",e:"🏥",kw:"hospital",zh:"医院",py:"yīyuàn",en:"Hospital",zhs:"我朋友在医院工作。",pys:"Wǒ péngyou zài yīyuàn gōngzuò.",ens:"My friend works at the hospital."},
+ {cat:"Places",e:"🍽️",kw:"restaurant",zh:"餐厅",py:"cāntīng",en:"Restaurant",zhs:"这家餐厅很好。",pys:"Zhè jiā cāntīng hěn hǎo.",ens:"This restaurant is good."},
+ {cat:"Places",e:"🌳",kw:"park",zh:"公园",py:"gōngyuán",en:"Park",zhs:"我们在公园散步。",pys:"Wǒmen zài gōngyuán sànbù.",ens:"We walk in the park."},
+ {cat:"Places",e:"🏙️",kw:"city,skyline",zh:"城市",py:"chéngshì",en:"City",zhs:"上海是个大城市。",pys:"Shànghǎi shì ge dà chéngshì.",ens:"Shanghai is a big city."},
+ {cat:"Places",e:"✈️",kw:"airport",zh:"机场",py:"jīchǎng",en:"Airport",zhs:"我会在机场接你。",pys:"Wǒ huì zài jīchǎng jiē nǐ.",ens:"I will meet you at the airport."},
+ {cat:"Places",e:"🏦",kw:"bank,building",zh:"银行",py:"yínháng",en:"Bank",zhs:"银行九点开门。",pys:"Yínháng jiǔ diǎn kāimén.",ens:"The bank opens at nine."},
+ {cat:"Time",e:"📅",kw:"calendar",zh:"天",py:"tiān",en:"Day",zhs:"祝你今天愉快。",pys:"Zhù nǐ jīntiān yúkuài.",ens:"Have a good day."},
+ {cat:"Time",e:"🌙",kw:"night,moon",zh:"晚上",py:"wǎnshang",en:"Night",zhs:"晚上很安静。",pys:"Wǎnshang hěn ānjìng.",ens:"The night is quiet."},
+ {cat:"Time",e:"🌅",kw:"morning,sunrise",zh:"早上",py:"zǎoshang",en:"Morning",zhs:"我早上跑步。",pys:"Wǒ zǎoshang pǎobù.",ens:"I run in the morning."},
+ {cat:"Time",e:"🗓️",kw:"week,planner",zh:"星期",py:"xīngqī",en:"Week",zhs:"下星期见。",pys:"Xià xīngqī jiàn.",ens:"See you next week."},
+ {cat:"Time",e:"🎆",kw:"new,year,fireworks",zh:"年",py:"nián",en:"Year",zhs:"新年快乐。",pys:"Xīnnián kuàilè.",ens:"Happy New Year."},
+ {cat:"Time",e:"⏰",kw:"clock",zh:"时间",py:"shíjiān",en:"Time",zhs:"现在几点了？",pys:"Xiànzài jǐ diǎn le?",ens:"What time is it?"},
+ {cat:"Body",e:"🙆",kw:"head,portrait",zh:"头",py:"tóu",en:"Head",zhs:"我头疼。",pys:"Wǒ tóu téng.",ens:"My head hurts."},
+ {cat:"Body",e:"✋",kw:"hand",zh:"手",py:"shǒu",en:"Hand",zhs:"洗洗你的手。",pys:"Xǐxi nǐ de shǒu.",ens:"Wash your hands."},
+ {cat:"Body",e:"👁️",kw:"eye",zh:"眼睛",py:"yǎnjing",en:"Eye",zhs:"她的眼睛很漂亮。",pys:"Tā de yǎnjing hěn piàoliang.",ens:"Her eyes are beautiful."},
+ {cat:"Body",e:"👄",kw:"mouth,smile",zh:"嘴",py:"zuǐ",en:"Mouth",zhs:"张开嘴。",pys:"Zhāngkāi zuǐ.",ens:"Open your mouth."},
+ {cat:"Weather",e:"☀️",kw:"sun",zh:"太阳",py:"tàiyáng",en:"Sun",zhs:"太阳很亮。",pys:"Tàiyáng hěn liàng.",ens:"The sun is bright."},
+ {cat:"Weather",e:"🌧️",kw:"rain",zh:"雨",py:"yǔ",en:"Rain",zhs:"今天雨很大。",pys:"Jīntiān yǔ hěn dà.",ens:"The rain is heavy today."},
+ {cat:"Weather",e:"☃️",kw:"snow",zh:"雪",py:"xuě",en:"Snow",zhs:"我喜欢雪。",pys:"Wǒ xǐhuan xuě.",ens:"I like the snow."},
+ {cat:"Weather",e:"💨",kw:"wind,trees",zh:"风",py:"fēng",en:"Wind",zhs:"风很大。",pys:"Fēng hěn dà.",ens:"The wind is strong."},
+ {cat:"Home & Objects",e:"🏡",kw:"house,garden",zh:"房子",py:"fángzi",en:"House",zhs:"这房子有个花园。",pys:"Zhè fángzi yǒu ge huāyuán.",ens:"The house has a garden."},
+ {cat:"Home & Objects",e:"🚪",kw:"door",zh:"门",py:"mén",en:"Door",zhs:"请关门。",pys:"Qǐng guān mén.",ens:"Please close the door."},
+ {cat:"Home & Objects",e:"🪟",kw:"window",zh:"窗户",py:"chuānghu",en:"Window",zhs:"请打开窗户。",pys:"Qǐng dǎkāi chuānghu.",ens:"Open the window, please."},
+ {cat:"Home & Objects",e:"🛋️",kw:"table,dining",zh:"桌子",py:"zhuōzi",en:"Table",zhs:"食物在桌子上。",pys:"Shíwù zài zhuōzi shang.",ens:"The food is on the table."},
+ {cat:"Home & Objects",e:"🪑",kw:"chair",zh:"椅子",py:"yǐzi",en:"Chair",zhs:"这把椅子很舒服。",pys:"Zhè bǎ yǐzi hěn shūfu.",ens:"This chair is comfortable."},
+ {cat:"Home & Objects",e:"🛏️",kw:"bed,bedroom",zh:"床",py:"chuáng",en:"Bed",zhs:"我要上床睡觉了。",pys:"Wǒ yào shàng chuáng shuìjiào le.",ens:"I am going to bed."},
+ {cat:"Home & Objects",e:"📱",kw:"phone",zh:"手机",py:"shǒujī",en:"Phone",zhs:"我的手机是新的。",pys:"Wǒ de shǒujī shì xīn de.",ens:"My phone is new."},
+ {cat:"Home & Objects",e:"🚗",kw:"car",zh:"汽车",py:"qìchē",en:"Car",zhs:"这辆车很快。",pys:"Zhè liàng chē hěn kuài.",ens:"The car is fast."},
+ {cat:"Home & Objects",e:"🚕",kw:"taxi",zh:"出租车",py:"chūzūchē",en:"Taxi / Cab",zhs:"我们坐出租车去机场。",pys:"Wǒmen zuò chūzūchē qù jīchǎng.",ens:"We take a taxi to the airport."},
+ {cat:"Home & Objects",e:"🚂",kw:"train",zh:"火车",py:"huǒchē",en:"Train",zhs:"火车八点出发。",pys:"Huǒchē bā diǎn chūfā.",ens:"The train leaves at eight."},
+ {cat:"Home & Objects",e:"📕",kw:"book",zh:"书",py:"shū",en:"Book",zhs:"这本书很有意思。",pys:"Zhè běn shū hěn yǒuyìsi.",ens:"This book is interesting."},
+ {cat:"Home & Objects",e:"💰",kw:"money",zh:"钱",py:"qián",en:"Money",zhs:"我今天把钱寄出去了。",pys:"Wǒ jīntiān bǎ qián jì chūqù le.",ens:"I sent the money today."}
+];
+
+// --- Alphabet: letter, example word, emoji, Chinese ---
+const ALPHA = [
+ ["A","Apple","🍎","苹果","píngguǒ"],["B","Book","📕","书","shū"],["C","Cat","🐱","猫","māo"],
+ ["D","Dog","🐶","狗","gǒu"],["E","Egg","🥚","鸡蛋","jīdàn"],["F","Fish","🐟","鱼","yú"],
+ ["G","Giraffe","🦒","长颈鹿","chángjǐnglù"],["H","Hand","✋","手","shǒu"],["I","Ice cream","🍦","冰淇淋","bīngqílín"],
+ ["J","Juice","🧃","果汁","guǒzhī"],["K","Kite","🪁","风筝","fēngzheng"],["L","Lion","🦁","狮子","shīzi"],
+ ["M","Moon","🌙","月亮","yuèliang"],["N","Nose","👃","鼻子","bízi"],["O","Orange","🍊","橙子","chéngzi"],
+ ["P","Pen","🖊️","笔","bǐ"],["Q","Queen","👑","女王","nǚwáng"],["R","Rain","🌧️","雨","yǔ"],
+ ["S","Sun","☀️","太阳","tàiyáng"],["T","Train","🚂","火车","huǒchē"],["U","Umbrella","☂️","雨伞","yǔsǎn"],
+ ["V","Van","🚐","面包车","miànbāochē"],["W","Water","💧","水","shuǐ"],["X","Box","📦","盒子","hézi"],
+ ["Y","Yellow","🟡","黄色","huángsè"],["Z","Zoo","🦓","动物园","dòngwùyuán"]
+];
+const VOWELS = "AEIOU";
+ALPHA.forEach(([L, word, e, zhw, pyw]) => DATA.push({
+  cat: "Alphabet", e,
+  zh: "字母 " + L,
+  py: VOWELS.includes(L) ? "vowel 元音" : "consonant 辅音",
+  en: L + " " + L.toLowerCase() + " — " + word,
+  zhs: L + " 代表" + zhw + "。",
+  pys: L + " dàibiǎo " + pyw + ".",
+  ens: (L === "X" ? L + " is in " + word + "." : L + " is for " + word + ".")
+}));
+
+// --- Numbers ---
+const NUMS = [
+ ["0","Zero","零","líng","0️⃣","房间号是零五。","Fángjiān hào shì líng wǔ.","The room number is zero five."],
+ ["1","One","一","yī","1️⃣","我有一个苹果。","Wǒ yǒu yí ge píngguǒ.","I have one apple."],
+ ["2","Two","二","èr","2️⃣","我有两个鸡蛋。","Wǒ yǒu liǎng ge jīdàn.","I have two eggs."],
+ ["3","Three","三","sān","3️⃣","我们三点见。","Wǒmen sān diǎn jiàn.","We meet at three."],
+ ["4","Four","四","sì","4️⃣","一年有四个季节。","Yì nián yǒu sì ge jìjié.","A year has four seasons."],
+ ["5","Five","五","wǔ","5️⃣","一只手有五个手指。","Yì zhī shǒu yǒu wǔ ge shǒuzhǐ.","One hand has five fingers."],
+ ["6","Six","六","liù","6️⃣","我六点起床。","Wǒ liù diǎn qǐchuáng.","I get up at six."],
+ ["7","Seven","七","qī","7️⃣","一个星期有七天。","Yí ge xīngqī yǒu qī tiān.","A week has seven days."],
+ ["8","Eight","八","bā","8️⃣","我睡八个小时。","Wǒ shuì bā ge xiǎoshí.","I sleep eight hours."],
+ ["9","Nine","九","jiǔ","9️⃣","商店九点开门。","Shāngdiàn jiǔ diǎn kāimén.","The store opens at nine."],
+ ["10","Ten","十","shí","🔟","我有十块钱。","Wǒ yǒu shí kuài qián.","I have ten dollars."],
+ ["20","Twenty","二十","èrshí","🔢","她二十岁。","Tā èrshí suì.","She is twenty years old."],
+ ["100","One hundred","一百","yìbǎi","💯","这本书一百块。","Zhè běn shū yìbǎi kuài.","This book is one hundred dollars."],
+ ["1000","One thousand","一千","yìqiān","🔢","这个城市有一千年的历史。","Zhège chéngshì yǒu yìqiān nián de lìshǐ.","This city is one thousand years old."]
+];
+NUMS.forEach(([n, en, zh, py, e, zhs, pys, ens]) => DATA.push({cat:"Numbers", e, zh: zh + " " + n, py, en, zhs, pys, ens}));
+
+// --- Tricky Sounds (hardest English sounds for Chinese speakers) ---
+[
+ {e:"👅",zh:"TH 音（咬舌音）",py:"tip of tongue between teeth 舌尖放在牙齿之间",en:"TH — think / thank",
+  zhs:"舌尖轻轻放在上下牙齿之间，吹气。",pys:"Think. Thank you. Three things.",ens:"Think. Thank you. Three things. I think about you."},
+ {e:"🍚",zh:"R 和 L",py:"R: tongue curls back 卷舌 — L: tongue touches roof 抵上颚",en:"R / L — rice / light",
+  zhs:"R 卷舌不碰牙齿，L 舌尖抵住上颚。",pys:"Rice. Light. Really. Lovely.",ens:"Rice. Light. Really lovely. I like fried rice."},
+ {e:"🧥",zh:"V 和 W",py:"V: teeth touch lip 上牙咬下唇 — W: round lips 圆嘴唇",en:"V / W — very / well",
+  zhs:"V 上牙轻咬下唇，W 嘴唇变圆。",pys:"Very. Well. Vest. West.",ens:"Very well. Vest. West. The weather is very warm."},
+ {e:"🚢",zh:"短 i 和长 ee",py:"ship 短促 — sheep 拉长",en:"i / ee — ship / sheep",
+  zhs:"ship 的 i 短，sheep 的 ee 长。",pys:"Ship. Sheep. Sit. Seat.",ens:"Ship. Sheep. Sit. Seat. The sheep is on the ship."},
+ {e:"🛏️",zh:"词尾辅音",py:"finish the final sound 把最后的音发完整",en:"Final sounds — bed / bet",
+  zhs:"英语词尾的 d、t、k 要发出来，不要丢掉。",pys:"Bed. Bet. Like. Liked.",ens:"Bed. Bet. Like. Liked. I go to bed at night."},
+ {e:"🤫",zh:"S 和 SH",py:"S: smile 嘴角拉开 — SH: round lips 嘴唇前突",en:"S / SH — see / she",
+  zhs:"S 像蛇的声音，SH 像让人安静的声音。",pys:"See. She. Sea. Sheep.",ens:"See. She. She sees the sea."}
+].forEach(d => DATA.push({cat:"Tricky Sounds", ...d}));
+
+// --- Heart 心里话: words for people who matter ---
+[
+ {e:"❤️",zh:"我爱你",py:"wǒ ài nǐ",en:"I love you",zhs:"我爱你，永远。",pys:"Wǒ ài nǐ, yǒngyuǎn.",ens:"I love you, always."},
+ {e:"💭",zh:"我想你了",py:"wǒ xiǎng nǐ le",en:"I miss you",zhs:"我每天都想你。",pys:"Wǒ měitiān dōu xiǎng nǐ.",ens:"I miss you every day."},
+ {e:"🌙",zh:"我在想你",py:"wǒ zài xiǎng nǐ",en:"I'm thinking of you",zhs:"睡前我在想你。",pys:"Shuì qián wǒ zài xiǎng nǐ.",ens:"I'm thinking of you before bed."},
+ {e:"💕",zh:"亲爱的",py:"qīn'ài de",en:"Dear / Darling",zhs:"亲爱的，晚安。",pys:"Qīn'ài de, wǎn'ān.",ens:"Good night, dear."},
+ {e:"🤗",zh:"抱抱",py:"bàobao",en:"Hug",zhs:"给你一个大大的抱抱。",pys:"Gěi nǐ yí ge dàdà de bàobao.",ens:"A big hug for you."},
+ {e:"💖",zh:"你对我很重要",py:"nǐ duì wǒ hěn zhòngyào",en:"You mean a lot to me",zhs:"你对我真的很重要。",pys:"Nǐ duì wǒ zhēn de hěn zhòngyào.",ens:"You really mean a lot to me."},
+ {e:"🌟",zh:"我为你骄傲",py:"wǒ wèi nǐ jiāo'ào",en:"I'm proud of you",zhs:"我永远为你感到骄傲。",pys:"Wǒ yǒngyuǎn wèi nǐ gǎndào jiāo'ào.",ens:"I will always be proud of you."},
+ {e:"🫶",zh:"我一直在你身边",py:"wǒ yìzhí zài nǐ shēnbiān",en:"I'm here for you",zhs:"别怕，我一直在你身边。",pys:"Bié pà, wǒ yìzhí zài nǐ shēnbiān.",ens:"Don't be afraid — I'm here for you."},
+ {e:"🫂",zh:"你不是一个人",py:"nǐ bú shì yí ge rén",en:"You're not alone",zhs:"记住，你不是一个人。",pys:"Jìzhù, nǐ bú shì yí ge rén.",ens:"Remember, you're not alone."},
+ {e:"🌷",zh:"照顾好自己",py:"zhàogù hǎo zìjǐ",en:"Take care of yourself",zhs:"好好吃饭，照顾好自己。",pys:"Hǎohǎo chīfàn, zhàogù hǎo zìjǐ.",ens:"Eat well and take care of yourself."},
+ {e:"📞",zh:"听到你的声音真好",py:"tīngdào nǐ de shēngyīn zhēn hǎo",en:"It's good to hear your voice",zhs:"听到你的声音真好。",pys:"Tīngdào nǐ de shēngyīn zhēn hǎo.",ens:"It's so good to hear your voice."},
+ {e:"✈️",zh:"我想见你",py:"wǒ xiǎng jiàn nǐ",en:"I want to see you",zhs:"我真的很想见你。",pys:"Wǒ zhēn de hěn xiǎng jiàn nǐ.",ens:"I really want to see you."},
+ {e:"😴",zh:"晚安，做个好梦",py:"wǎn'ān, zuò ge hǎo mèng",en:"Good night, sweet dreams",zhs:"晚安，做个好梦。",pys:"Wǎn'ān, zuò ge hǎo mèng.",ens:"Good night — sweet dreams."}
+].forEach(d => DATA.push({cat:"Heart 心里话", ...d}));
+
+// --- Astronomy 天文: the beauty Brian and Yun look up at ---
+[
+ {e:"🌌",zh:"宇宙",py:"yǔzhòu",en:"Universe",zhs:"宇宙非常大，非常美。",pys:"Yǔzhòu fēicháng dà, fēicháng měi.",ens:"The universe is very big and very beautiful."},
+ {e:"🌀",zh:"星系",py:"xīngxì",en:"Galaxy",zhs:"宇宙里有数十亿个星系。",pys:"Yǔzhòu lǐ yǒu shù shí yì ge xīngxì.",ens:"There are billions of galaxies in the universe."},
+ {e:"🌌",zh:"银河系",py:"yínhéxì",en:"Milky Way",zhs:"我们住在银河系里。",pys:"Wǒmen zhù zài yínhéxì lǐ.",ens:"We live in the Milky Way."},
+ {e:"⭐",zh:"星星",py:"xīngxing",en:"Star",zhs:"星星在气体云中诞生。",pys:"Xīngxing zài qìtǐ yún zhōng dànshēng.",ens:"Stars are born inside gas clouds."},
+ {e:"🌫️",zh:"星云",py:"xīngyún",en:"Nebula",zhs:"星云是星星的摇篮。",pys:"Xīngyún shì xīngxing de yáolán.",ens:"A nebula is the cradle of stars."},
+ {e:"☁️",zh:"气体云",py:"qìtǐ yún",en:"Gas cloud",zhs:"星星在气体云里形成。",pys:"Xīngxing zài qìtǐ yún lǐ xíngchéng.",ens:"Stars form inside gas clouds."},
+ {e:"🔴",zh:"氢",py:"qīng",en:"Hydrogen",zhs:"氢气发红色和粉色的光。",pys:"Qīngqì fā hóngsè hé fěnsè de guāng.",ens:"Hydrogen glows red and pink."},
+ {e:"🟢",zh:"氧",py:"yǎng",en:"Oxygen",zhs:"氧气发蓝绿色的光。",pys:"Yǎngqì fā lán-lǜsè de guāng.",ens:"Oxygen glows blue-green."},
+ {e:"💫",zh:"恒星诞生",py:"héngxīng dànshēng",en:"Star formation",zhs:"引力把气体云变成恒星。",pys:"Yǐnlì bǎ qìtǐ yún biànchéng héngxīng.",ens:"Gravity turns gas clouds into stars."},
+ {e:"🏭",zh:"星暴星系",py:"xīngbào xīngxì",en:"Starburst galaxy",zhs:"星暴星系是恒星工厂。",pys:"Xīngbào xīngxì shì héngxīng gōngchǎng.",ens:"A starburst galaxy is a star factory."},
+ {e:"🪐",zh:"行星",py:"xíngxīng",en:"Planet",zhs:"地球是一颗行星。",pys:"Dìqiú shì yì kē xíngxīng.",ens:"Earth is a planet."},
+ {e:"🌕",zh:"月亮",py:"yuèliang",en:"Moon",zhs:"今晚的月亮很美。",pys:"Jīnwǎn de yuèliang hěn měi.",ens:"The moon is beautiful tonight."},
+ {e:"🔭",zh:"望远镜",py:"wàngyuǎnjìng",en:"Telescope",zhs:"我们用望远镜看星星。",pys:"Wǒmen yòng wàngyuǎnjìng kàn xīngxing.",ens:"We look at the stars with a telescope."},
+ {e:"💥",zh:"超新星",py:"chāoxīnxīng",en:"Supernova",zhs:"超新星是恒星的大爆炸。",pys:"Chāoxīnxīng shì héngxīng de dà bàozhà.",ens:"A supernova is the great explosion of a star."},
+ {e:"🕳️",zh:"黑洞",py:"hēidòng",en:"Black hole",zhs:"黑洞的引力非常强。",pys:"Hēidòng de yǐnlì fēicháng qiáng.",ens:"A black hole's gravity is very strong."},
+ {e:"🌠",zh:"光年",py:"guāngnián",en:"Light-year",zhs:"星光走了很多光年才到我们眼睛里。",pys:"Xīngguāng zǒu le hěn duō guāngnián cái dào wǒmen yǎnjing lǐ.",ens:"Starlight travels many light-years to reach our eyes."},
+ {e:"🌃",zh:"夜空",py:"yèkōng",en:"Night sky",zhs:"我们看着同一片夜空。",pys:"Wǒmen kànzhe tóng yí piàn yèkōng.",ens:"We look at the same night sky."},
+ {e:"✨",zh:"星尘",py:"xīngchén",en:"Stardust",zhs:"我们都是星尘做的。",pys:"Wǒmen dōu shì xīngchén zuò de.",ens:"We are all made of stardust."}
+].forEach(d => DATA.push({cat:"Astronomy 天文", ...d}));
+
+// --- Astronomy expansion: planets, wonders, and star legends ---
+[
+ {e:"🌠",zh:"流星",py:"liúxīng",en:"Shooting star",zhs:"看到流星要许个愿。",pys:"Kàndào liúxīng yào xǔ ge yuàn.",ens:"When you see a shooting star, make a wish."},
+ {e:"☄️",zh:"彗星",py:"huìxīng",en:"Comet",zhs:"彗星有长长的尾巴。",pys:"Huìxīng yǒu chángcháng de wěiba.",ens:"A comet has a long tail."},
+ {e:"🌟",zh:"星座",py:"xīngzuò",en:"Constellation",zhs:"你最喜欢哪个星座？",pys:"Nǐ zuì xǐhuan nǎge xīngzuò?",ens:"Which constellation do you like best?"},
+ {e:"🧭",zh:"北极星",py:"běijíxīng",en:"North Star",zhs:"北极星为旅人指路。",pys:"Běijíxīng wèi lǚrén zhǐ lù.",ens:"The North Star guides travelers."},
+ {e:"🥄",zh:"北斗七星",py:"běidǒu qīxīng",en:"Big Dipper",zhs:"北斗七星指向北极星。",pys:"Běidǒu qīxīng zhǐxiàng běijíxīng.",ens:"The Big Dipper points to the North Star."},
+ {e:"☀️",zh:"太阳系",py:"tàiyángxì",en:"Solar system",zhs:"太阳系有八颗行星。",pys:"Tàiyángxì yǒu bā kē xíngxīng.",ens:"The solar system has eight planets."},
+ {e:"🟠",zh:"火星",py:"huǒxīng",en:"Mars",zhs:"火星是红色的行星。",pys:"Huǒxīng shì hóngsè de xíngxīng.",ens:"Mars is the red planet."},
+ {e:"💛",zh:"金星",py:"jīnxīng",en:"Venus",zhs:"金星是清晨最亮的星。",pys:"Jīnxīng shì qīngchén zuì liàng de xīng.",ens:"Venus is the brightest star at dawn."},
+ {e:"🪐",zh:"土星",py:"tǔxīng",en:"Saturn",zhs:"土星有美丽的光环。",pys:"Tǔxīng yǒu měilì de guānghuán.",ens:"Saturn has beautiful rings."},
+ {e:"🟤",zh:"木星",py:"mùxīng",en:"Jupiter",zhs:"木星是最大的行星。",pys:"Mùxīng shì zuì dà de xíngxīng.",ens:"Jupiter is the biggest planet."},
+ {e:"🌈",zh:"极光",py:"jíguāng",en:"Aurora",zhs:"极光像天空在跳舞。",pys:"Jíguāng xiàng tiānkōng zài tiàowǔ.",ens:"The aurora looks like the sky dancing."},
+ {e:"🌑",zh:"月食",py:"yuèshí",en:"Lunar eclipse",zhs:"月食时月亮变成红色。",pys:"Yuèshí shí yuèliang biànchéng hóngsè.",ens:"During a lunar eclipse, the moon turns red."},
+ {e:"🌅",zh:"日出",py:"rìchū",en:"Sunrise",zhs:"每天的日出都不一样。",pys:"Měitiān de rìchū dōu bù yíyàng.",ens:"Every sunrise is different."},
+ {e:"🧲",zh:"引力",py:"yǐnlì",en:"Gravity",zhs:"引力让月亮绕着地球转。",pys:"Yǐnlì ràng yuèliang ràozhe dìqiú zhuàn.",ens:"Gravity keeps the moon circling the Earth."},
+ {e:"🔄",zh:"轨道",py:"guǐdào",en:"Orbit",zhs:"地球绕太阳一圈要一年。",pys:"Dìqiú rào tàiyáng yì quān yào yì nián.",ens:"Earth takes one year to orbit the sun."},
+ {e:"🎆",zh:"大爆炸",py:"dà bàozhà",en:"Big Bang",zhs:"宇宙从大爆炸开始。",pys:"Yǔzhòu cóng dà bàozhà kāishǐ.",ens:"The universe began with the Big Bang."},
+ {e:"🔴",zh:"红巨星",py:"hóngjùxīng",en:"Red giant",zhs:"老的恒星会变成红巨星。",pys:"Lǎo de héngxīng huì biànchéng hóngjùxīng.",ens:"Old stars become red giants."},
+ {e:"💞",zh:"双星",py:"shuāngxīng",en:"Binary stars",zhs:"双星永远互相绕着对方转。",pys:"Shuāngxīng yǒngyuǎn hùxiāng ràozhe duìfāng zhuàn.",ens:"Binary stars circle each other forever."},
+ {e:"🛰️",zh:"韦伯望远镜",py:"wéibó wàngyuǎnjìng",en:"Webb telescope",zhs:"韦伯望远镜能看到最远的星系。",pys:"Wéibó wàngyuǎnjìng néng kàndào zuì yuǎn de xīngxì.",ens:"The Webb telescope can see the farthest galaxies."},
+ {e:"🏛️",zh:"创生之柱",py:"chuàngshēng zhī zhù",en:"Pillars of Creation",zhs:"创生之柱是恒星诞生的地方。",pys:"Chuàngshēng zhī zhù shì héngxīng dànshēng de dìfang.",ens:"The Pillars of Creation are where stars are born."},
+ {e:"💑",zh:"牛郎织女",py:"niúláng zhīnǚ",en:"The star lovers (legend)",zhs:"牛郎和织女每年在鹊桥相会一次。",pys:"Niúláng hé Zhīnǚ měi nián zài quèqiáo xiānghuì yí cì.",ens:"The Cowherd and the Weaver Girl meet once a year on a bridge of magpies."},
+ {e:"👸",zh:"嫦娥",py:"Cháng'é",en:"Chang'e, the moon goddess",zhs:"传说嫦娥住在月亮上。",pys:"Chuánshuō Cháng'é zhù zài yuèliang shang.",ens:"Legend says Chang'e lives on the moon."},
+ {e:"💡",zh:"脉冲星",py:"màichōngxīng",en:"Pulsar",zhs:"脉冲星像宇宙的灯塔。",pys:"Màichōngxīng xiàng yǔzhòu de dēngtǎ.",ens:"A pulsar is like a lighthouse in the universe."},
+ {e:"⚛️",zh:"中子星",py:"zhōngzǐxīng",en:"Neutron star",zhs:"中子星是宇宙中最重的星之一。",pys:"Zhōngzǐxīng shì yǔzhòu zhōng zuì zhòng de xīng zhī yī.",ens:"A neutron star is one of the heaviest stars in the universe."},
+ {e:"📡",zh:"射电望远镜",py:"shèdiàn wàngyuǎnjìng",en:"Radio telescope",zhs:"射电望远镜听宇宙的声音。",pys:"Shèdiàn wàngyuǎnjìng tīng yǔzhòu de shēngyīn.",ens:"A radio telescope listens to the sounds of the universe."},
+ {e:"👁️",zh:"天眼",py:"tiānyǎn (FAST)",en:"China's Sky Eye telescope",zhs:"中国的天眼是世界上最大的射电望远镜。",pys:"Zhōngguó de tiānyǎn shì shìjiè shang zuì dà de shèdiàn wàngyuǎnjìng.",ens:"China's Sky Eye is the biggest radio telescope in the world."},
+ {e:"📶",zh:"信号",py:"xìnhào",en:"Signal",zhs:"我们收到了来自星星的信号。",pys:"Wǒmen shōudào le láizì xīngxing de xìnhào.",ens:"We received a signal from a star."},
+ {e:"🔍",zh:"发现",py:"fāxiàn",en:"Discover",zhs:"Brian 发现了两颗脉冲星。",pys:"Brian fāxiàn le liǎng kē màichōngxīng.",ens:"Brian discovered two pulsars."},
+ {e:"🏆",zh:"Brian 的脉冲星",py:"Brian de màichōngxīng",en:"Brian's pulsars",zhs:"J1652-48 每秒转 264 圈，J1851+00 每秒转 44 圈。",pys:"J1652-48 měi miǎo zhuàn liǎngbǎi liùshísì quān, J1851+00 měi miǎo zhuàn sìshísì quān.",ens:"J1652-48 spins 264 times every second. J1851+00 spins 44 times every second."}
+].forEach(d => DATA.push({cat:"Astronomy 天文", ...d}));
+
+// --- Tones 声调: the four tones, for Brian ---
+[
+ {e:"➖",zh:"第一声 mā",py:"high and flat 高平",en:"1st tone — flat",zhs:"妈。妈妈。",pys:"mā. māma.",ens:"Mā — one steady high note, like singing: mother."},
+ {e:"📈",zh:"第二声 má",py:"rising 上升",en:"2nd tone — rising",zhs:"麻。麻烦。",pys:"má. máfan.",ens:"Má — rises like asking 'what?': trouble."},
+ {e:"📉",zh:"第三声 mǎ",py:"dip down, then up 先降后升",en:"3rd tone — dipping",zhs:"马。马上。",pys:"mǎ. mǎshàng.",ens:"Mǎ — dips low then comes up: horse."},
+ {e:"⬇️",zh:"第四声 mà",py:"sharp fall 下降",en:"4th tone — falling",zhs:"骂。别骂我。",pys:"mà. bié mà wǒ.",ens:"Mà — falls sharply, like a command: to scold."},
+ {e:"⚪",zh:"轻声 ma",py:"light and quick 轻短",en:"Neutral tone",zhs:"吗。你好吗？",pys:"ma. Nǐ hǎo ma?",ens:"Ma — short and light: the question word."},
+ {e:"🐴",zh:"绕口令",py:"ràokǒulìng",en:"Tone twister",zhs:"妈妈骑马，马慢，妈妈骂马。",pys:"Māma qí mǎ, mǎ màn, māma mà mǎ.",ens:"Mom rides a horse, the horse is slow, mom scolds the horse."}
+].forEach(d => DATA.push({cat:"Tones 声调", ...d}));
+
+// --- Our Story 我们的故事 ---
+[
+ {e:"🕐",zh:"你那边几点了？",py:"nǐ nàbiān jǐ diǎn le?",en:"What time is it there?",zhs:"佛罗里达和中国差十二个小时。",pys:"Fóluólǐdá hé Zhōngguó chà shí'èr ge xiǎoshí.",ens:"Florida and China are twelve hours apart."},
+ {e:"📹",zh:"视频聊天",py:"shìpín liáotiān",en:"Video chat",zhs:"我们今晚视频聊天吧。",pys:"Wǒmen jīnwǎn shìpín liáotiān ba.",ens:"Let's video chat tonight."},
+ {e:"🛂",zh:"签证",py:"qiānzhèng",en:"Visa",zhs:"我正在申请签证。",pys:"Wǒ zhèngzài shēnqǐng qiānzhèng.",ens:"I am applying for the visa."},
+ {e:"🛬",zh:"我在机场等你",py:"wǒ zài jīchǎng děng nǐ",en:"I'll wait for you at the airport",zhs:"到了机场，我第一个等你。",pys:"Dào le jīchǎng, wǒ dì yī ge děng nǐ.",ens:"At the airport, I'll be the first one waiting for you."},
+ {e:"🌝",zh:"同一个月亮",py:"tóng yí ge yuèliang",en:"The same moon",zhs:"我们看的是同一个月亮。",pys:"Wǒmen kàn de shì tóng yí ge yuèliang.",ens:"We look at the same moon."},
+ {e:"🗓️",zh:"总有一天",py:"zǒng yǒu yì tiān",en:"Someday",zhs:"总有一天我们会见面。",pys:"Zǒng yǒu yì tiān wǒmen huì jiànmiàn.",ens:"Someday we will meet."},
+ {e:"🇺🇸",zh:"佛罗里达",py:"Fóluólǐdá",en:"Florida",zhs:"Brian 住在佛罗里达。",pys:"Brian zhù zài Fóluólǐdá.",ens:"Brian lives in Florida."},
+ {e:"🇨🇳",zh:"中国",py:"Zhōngguó",en:"China",zhs:"云住在中国。",pys:"Yún zhù zài Zhōngguó.",ens:"Yun lives in China."},
+ {e:"👩‍🏫",zh:"互相学习",py:"hùxiāng xuéxí",en:"Learn from each other",zhs:"云教 Brian 中文，Brian 教云英语。",pys:"Yún jiāo Brian Zhōngwén, Brian jiāo Yún Yīngyǔ.",ens:"Yun teaches Brian Chinese, and Brian teaches Yun English."},
+ {e:"⭐",zh:"两颗脉冲星",py:"liǎng kē màichōngxīng",en:"Two pulsars",zhs:"Brian 给云讲他的两颗脉冲星。",pys:"Brian gěi Yún jiǎng tā de liǎng kē màichōngxīng.",ens:"Brian tells Yun about his two pulsars."}
+].forEach(d => DATA.push({cat:"Our Story 我们的故事", ...d}));
+
+let mode = 'zh';           // 'zh' = Brian learning Chinese, 'en' = Yun learning English
+let activeCat = 'All';
+let playing = false;
+let playTimer = null;
+let zhVoice = null, enVoice = null;
+
+function pickVoices() {
+  const vs = speechSynthesis.getVoices();
+  zhVoice = vs.find(v => /^zh([-_]CN)?/i.test(v.lang) && /Xiaoxiao|Huihui|Yaoyao|Kangkang/i.test(v.name))
+         || vs.find(v => /^zh/i.test(v.lang));
+  enVoice = vs.find(v => /^en[-_]US/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang));
+}
+speechSynthesis.onvoiceschanged = pickVoices;
+pickVoices();
+
+function speak(text, lang, after) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang === 'zh' ? 'zh-CN' : 'en-US';
+  const v = lang === 'zh' ? zhVoice : enVoice;
+  if (v) u.voice = v;
+  u.rate = parseFloat(document.getElementById('rate').value);
+  if (after) u.onend = after;
+  speechSynthesis.speak(u);
+}
+
+function speakWord(i)  { speechSynthesis.cancel(); const d = DATA[i]; speak(d.zh, 'zh', () => setTimeout(() => speak(d.en, 'en'), 500)); }
+function speakSent(i)  { speechSynthesis.cancel(); const d = DATA[i]; speak(d.zhs, 'zh', () => setTimeout(() => speak(d.ens, 'en'), 700)); }
+
+// --- Pronunciation practice: speak into the mic, see what the computer heard ---
+function norm(s) { return s.toLowerCase().replace(/[^a-z一-鿿0-9 ]/g, '').trim(); }
+function listen(i) {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const res = document.getElementById('res-' + i);
+  if (!SR) { res.textContent = '⚠️ Mic needs Chrome or Edge. 需要 Chrome 或 Edge 浏览器。'; return; }
+  speechSynthesis.cancel();
+  const d = DATA[i];
+  // Practice the language you are LEARNING
+  const studyLang = mode === 'zh' ? 'zh-CN' : 'en-US';
+  const target = mode === 'zh' ? d.zh : d.en;
+  const r = new SR();
+  r.lang = studyLang;
+  r.interimResults = false;
+  r.maxAlternatives = 3;
+  res.textContent = '🎙️ Listening... say: ' + target;
+  res.style.color = '#1a6b54';
+  r.onresult = ev => {
+    const alts = [...ev.results[0]].map(a => a.transcript);
+    const heard = alts[0];
+    const t = norm(target.replace(/—.*$/, '').replace(/\(.*\)/, ''));
+    const ok = alts.some(a => { const h = norm(a); return h && (t.includes(h) || h.includes(t) || t.split(' ').some(w => w.length > 2 && h.includes(w))); });
+    res.textContent = ok ? '✅ Heard: "' + heard + '" — sounds right! 很棒！' : '🔁 Heard: "' + heard + '" — listen again and retry. 再试一次。';
+    res.style.color = ok ? '#1a6b54' : '#c0392b';
+  };
+  r.onerror = e => { res.textContent = e.error === 'not-allowed' ? '⚠️ Please allow microphone access. 请允许使用麦克风。' : '⚠️ Did not catch that — try again. 再试一次。'; res.style.color = '#c0392b'; };
+  r.onspeechend = () => r.stop();
+  r.start();
+}
+
+function filtered() { return DATA.map((d,i)=>({d,i})).filter(x => activeCat==='All' || x.d.cat===activeCat); }
+
+function togglePlayAll() {
+  if (playing) { stopAll(); return; }
+  playing = true;
+  document.getElementById('playAllBtn').textContent = '⏹ Stop 停止';
+  document.getElementById('playAllBtn').classList.add('stop');
+  const list = filtered();
+  let idx = 0;
+  function next() {
+    if (!playing || idx >= list.length) { stopAll(); return; }
+    const {d, i} = list[idx];
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('playing'));
+    const el = document.getElementById('card-' + i);
+    if (el) { el.classList.add('playing'); el.scrollIntoView({behavior:'smooth', block:'center'}); }
+    // word: study language first, then translation; then sentence pair; then pause; next card
+    const first  = mode === 'zh' ? ['zh','en'] : ['en','zh'];
+    speak(mode==='zh'? d.zh : d.en, first[0], () =>
+      playTimer = setTimeout(() => speak(mode==='zh'? d.en : d.zh, first[1], () =>
+        playTimer = setTimeout(() => speak(mode==='zh'? d.zhs : d.ens, first[0], () =>
+          playTimer = setTimeout(() => speak(mode==='zh'? d.ens : d.zhs, first[1], () => {
+            idx++; playTimer = setTimeout(next, 2500);
+          }), 800)
+        ), 1200)
+      ), 800)
+    );
+  }
+  next();
+}
+function stopAll() {
+  playing = false;
+  clearTimeout(playTimer);
+  speechSynthesis.cancel();
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('playing'));
+  const b = document.getElementById('playAllBtn');
+  b.textContent = '▶ Play all 全部播放';
+  b.classList.remove('stop');
+}
+
+function setMode(m) {
+  mode = m; stopAll();
+  document.getElementById('modeZh').classList.toggle('active', m==='zh');
+  document.getElementById('modeEn').classList.toggle('active', m==='en');
+  render();
+}
+function setCat(c) { activeCat = c; stopAll(); render(); }
+
+// ============ Progress (smart review memory) ============
+let PROG = {};
+try { PROG = JSON.parse(localStorage.getItem('yb_progress') || '{}'); } catch(e) {}
+function saveProg() { try { localStorage.setItem('yb_progress', JSON.stringify(PROG)); } catch(e) {} }
+function cid(d) { return d.zh + '|' + d.en; }
+function getProg(d) { return PROG[cid(d)] || {box:0, seen:0, right:0, wrong:0}; }
+function updProg(d, ok) {
+  const p = getProg(d); p.seen++;
+  if (ok) { p.right++; p.box = Math.min(5, p.box + 1); } else { p.wrong++; p.box = 0; }
+  PROG[cid(d)] = p; saveProg();
+}
+function shuffle(a) { for (let i=a.length-1; i>0; i--) { const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+// Weighted pick: new + recently-wrong cards come up more often
+function pickCards(n, base) {
+  const arr = (base || filtered().map(x => x.d)).slice();
+  const w = arr.map(d => { const p = getProg(d); return p.seen === 0 ? 6 : [5,4,3,2,1,0.5][p.box]; });
+  const out = [];
+  while (out.length < Math.min(n, arr.length)) {
+    let t = w.reduce((s,x)=>s+x,0) * Math.random(), k = 0;
+    while ((t -= w[k]) > 0) k++;
+    out.push(arr[k]); arr.splice(k,1); w.splice(k,1);
+  }
+  return out;
+}
+
+let view = 'cards', QUIZ = null, DAILY = null;
+function setView(v) {
+  view = v; QUIZ = null; if (v !== 'daily') DAILY = null;
+  stopAll();
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.v === v));
+  render();
+}
+
+// ============ Quiz / Listening engine ============
+function optText(c) { return mode === 'zh' ? c.zh + ' · ' + c.py : c.en; }
+function makeQ(c) {
+  const sameCat = shuffle(DATA.filter(d => d !== c && d.cat === c.cat));
+  const others  = shuffle(DATA.filter(d => d !== c && d.cat !== c.cat));
+  const seen = new Set([optText(c)]);
+  const dis = [];
+  for (const d of [...sameCat, ...others]) {
+    const t = optText(d);
+    if (!seen.has(t)) { seen.add(t); dis.push(t); }
+    if (dis.length === 3) break;
+  }
+  return { c, correct: optText(c), opts: shuffle([optText(c), ...dis]) };
+}
+function startQuiz(kind, cards) {
+  QUIZ = { kind, qs: pickCards(10, cards).map(makeQ), idx: 0, score: 0, answered: false, fromDaily: !!cards };
+  renderQ();
+}
+function renderQ() {
+  const p = document.getElementById('panel');
+  if (QUIZ.idx >= QUIZ.qs.length) { // end screen
+    const s = QUIZ.score, n = QUIZ.qs.length;
+    const m = PROG._meta || {streak:0, last:''};
+    const cheer = s === n ? '🏆 Perfect! 太棒了！' : s >= n*0.7 ? '🎉 Great job! 真棒！' : '💪 Keep practicing! 继续加油！';
+    p.innerHTML = `<div class="bigEmoji">${s === n ? '🏆' : s >= n*0.7 ? '🎉' : '💪'}</div>
+      <div class="endScore">${s} / ${n}</div>
+      <div class="reveal">${cheer}</div>
+      ${QUIZ.fromDaily ? `<div class="streak">🔥 Streak: ${m.streak} day${m.streak===1?'':'s'} 连续学习</div>` : ''}
+      <button class="nextBtn" onclick="${QUIZ.fromDaily ? "DAILY=null;render()" : "startQuiz(QUIZ.kind)"}">${QUIZ.fromDaily ? 'Done 完成' : '▶ Play again 再来一次'}</button>`;
+    return;
+  }
+  const q = QUIZ.qs[QUIZ.idx], c = q.c;
+  const promptHtml = QUIZ.kind === 'listen'
+    ? `<button class="hearBtn" onclick="replayQ()" title="Listen again">🔊</button>
+       <div class="qPy">Listen and choose 听一听，选一选</div>`
+    : (mode === 'zh'
+        ? `<div class="qPrompt">${c.en}</div><div class="qPy">choose the Chinese 选中文</div>`
+        : `<div class="qPrompt">${c.zh}</div><div class="qPy">choose the English 选英文</div>`);
+  p.innerHTML = `<div class="qProgress"><span>Question ${QUIZ.idx+1} / ${QUIZ.qs.length}</span><span>Score 得分: ${QUIZ.score}</span></div>
+    ${QUIZ.kind === 'listen' ? '' : `<div class="bigEmoji">${c.e}</div>`}
+    ${promptHtml}
+    <div class="opts">${q.opts.map((o,k) => `<button class="opt" id="opt-${k}" onclick="answerQ(${k})">${o}</button>`).join('')}</div>
+    <div class="reveal" id="reveal"></div>`;
+  if (QUIZ.kind === 'listen') setTimeout(() => speak(mode==='zh'?c.zh:c.en, mode), 300);
+}
+function replayQ() {
+  if (!QUIZ || QUIZ.idx >= QUIZ.qs.length) return;
+  const c = QUIZ.qs[QUIZ.idx].c;
+  speechSynthesis.cancel();
+  speak(mode === 'zh' ? c.zh : c.en, mode);
+}
+function answerQ(k) {
+  if (QUIZ.answered) return;
+  QUIZ.answered = true;
+  const q = QUIZ.qs[QUIZ.idx], ok = q.opts[k] === q.correct;
+  if (ok) QUIZ.score++;
+  updProg(q.c, ok);
+  q.opts.forEach((o,j) => {
+    const el = document.getElementById('opt-' + j);
+    if (o === q.correct) el.classList.add('correct');
+    else if (j === k) el.classList.add('wrong');
+    el.onclick = null;
+  });
+  speechSynthesis.cancel();
+  speak(mode==='zh' ? q.c.zh : q.c.en, mode);
+  document.getElementById('reveal').innerHTML =
+    `${q.c.e} ${q.c.zh} <span style="color:var(--accent)">${q.c.py}</span> — ${q.c.en}<br>
+     <button class="nextBtn" onclick="nextQ()">${QUIZ.idx+1 >= QUIZ.qs.length ? 'See result 看结果' : 'Next 下一题 →'}</button>`;
+}
+function nextQ() {
+  QUIZ.idx++; QUIZ.answered = false;
+  if (QUIZ.idx >= QUIZ.qs.length && QUIZ.fromDaily) completeDaily();
+  renderQ();
+}
+
+// ============ Daily lesson + streak ============
+function completeDaily() {
+  const today = new Date().toDateString();
+  const m = PROG._meta || {streak:0, last:''};
+  if (m.last !== today) {
+    const yest = new Date(Date.now() - 864e5).toDateString();
+    m.streak = (m.last === yest) ? m.streak + 1 : 1;
+    m.last = today; PROG._meta = m; saveProg();
+  }
+}
+function startDaily() {
+  DAILY = { list: pickCards(10, DATA.filter(d => true)), idx: 0, phase: 'learn' };
+  renderDaily();
+}
+function renderDaily() {
+  const p = document.getElementById('panel');
+  const m = PROG._meta || {streak:0, last:''};
+  if (!DAILY) {
+    const done = m.last === new Date().toDateString();
+    p.innerHTML = `<div class="bigEmoji">📅</div>
+      <div class="qPrompt">Today's 10 今日十词</div>
+      <div class="reveal">Ten cards picked just for you — new words plus the ones that need review.<br>为你挑选的十张卡片 — 新词加需要复习的词。</div>
+      <div class="streak">🔥 Streak 连续学习: ${m.streak} day${m.streak===1?'':'s'}${done ? ' — done today! 今天完成了！' : ''}</div>
+      <button class="nextBtn" onclick="startDaily()">▶ Start 开始</button>`;
+    return;
+  }
+  const c = DAILY.list[DAILY.idx], i = DATA.indexOf(c);
+  p.innerHTML = `<div class="qProgress"><span>Learn 学习 ${DAILY.idx+1} / ${DAILY.list.length}</span><span>then a quiz 然后测验</span></div>
+    <div class="bigEmoji">${c.e}</div>
+    <div class="qPrompt">${mode==='zh' ? c.zh : c.en}</div>
+    <div class="qPy">${mode==='zh' ? c.py : c.zh + ' ' + c.py}</div>
+    <div class="reveal">${mode==='zh' ? c.en : ''}<br>${c.zhs}<br><span style="color:var(--accent)">${c.pys}</span><br>${c.ens}</div>
+    <div class="btns" style="margin-top:14px">
+      <button onclick="speakWord(${i})">🔊 Word 词</button>
+      <button onclick="speakSent(${i})">🔊 Sentence 句子</button>
+      <button class="mic" onclick="listen(${i})">🎤 Say it 跟读</button>
+    </div>
+    <div class="res" id="res-${i}"></div>
+    <button class="nextBtn" onclick="nextDaily()">${DAILY.idx+1 >= DAILY.list.length ? 'Start quiz 开始测验 →' : 'Next 下一个 →'}</button>`;
+  speechSynthesis.cancel();
+  speak(mode==='zh' ? c.zh : c.en, mode);
+}
+function nextDaily() {
+  DAILY.idx++;
+  if (DAILY.idx >= DAILY.list.length) { DAILY.phase = 'quiz'; startQuiz('quiz', DAILY.list); }
+  else renderDaily();
+}
+
+// ============ Render dispatcher ============
+function render() {
+  const cats = ['All', ...new Set(DATA.map(d => d.cat))];
+  document.getElementById('cats').innerHTML = cats.map(c =>
+    `<button class="cat ${c===activeCat?'active':''}" onclick="setCat('${c}')">${c}</button>`).join('');
+  const grid = document.getElementById('grid'), panel = document.getElementById('panel');
+  document.getElementById('cats').style.display = (view === 'daily') ? 'none' : 'flex';
+  if (view === 'cards') { panel.style.display = 'none'; grid.style.display = 'grid'; renderCards(); return; }
+  grid.style.display = 'none'; panel.style.display = 'block';
+  if (view === 'quiz') startQuiz('quiz');
+  else if (view === 'listen') startQuiz('listen');
+  else renderDaily();
+}
+
+function renderCards() {
+  document.getElementById('grid').innerHTML = filtered().map(({d,i}) => {
+    const p = getProg(d);
+    const mast = p.box > 0 ? `<div class="mast">${'★'.repeat(p.box)}</div>` : '';
+    const top = mode==='zh'
+      ? `<div class="primary">${d.zh}</div><div class="pinyin">${d.py}</div><div class="secondary">${d.en}</div>`
+      : `<div class="primary">${d.en}</div><div class="secondary">${d.zh} <span class="pinyin">${d.py}</span></div>`;
+    const sent = mode==='zh'
+      ? `<div>${d.zhs}</div><div class="py">${d.pys}</div><div class="tr">${d.ens}</div>`
+      : `<div>${d.ens}</div><div class="tr">${d.zhs} <span class="py">${d.pys}</span></div>`;
+    return `<div class="card" id="card-${i}">
+      <div class="imgWrap">${d.e}${mast}</div>
+      <div class="body">
+        ${top}
+        <div class="sent">${sent}</div>
+        <div class="btns">
+          <button onclick="speakWord(${i})">🔊 Word 词</button>
+          <button onclick="speakSent(${i})">🔊 Sentence 句子</button>
+          <button class="mic" onclick="listen(${i})">🎤 Say it 跟读</button>
+        </div>
+        <div class="res" id="res-${i}"></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+document.getElementById('rate').addEventListener('input', e =>
+  document.getElementById('rateVal').textContent = e.target.value);
+
+render();
+</script>
+</body>
+</html>
